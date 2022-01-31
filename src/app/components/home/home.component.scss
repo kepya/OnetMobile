@@ -1,0 +1,700 @@
+@import url('../../app.component.scss');
+
+.content {
+    display: block;
+
+    .banner {
+        font-family: Sarabun;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 20px;
+        display: flex;
+        align-items: center;
+        color: #30303C;
+        width: 100%;
+
+        .scrollerWithShopInfo {
+            margin-left: 5rem;
+            margin-right: 5rem;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: end;
+            width: 100%;
+            // margin-top: -1.5rem;
+            margin-bottom: 0px;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            // margin-top: -2rem;
+
+            .scroller-container {
+
+                position: relative;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 50%;
+                height: 434px;
+                background-position: center;
+                // background-image: url('../../../assets/images/main.png');
+                background-size: contain;
+                background-repeat: no-repeat;
+                margin-right: 4.5rem;
+                margin-bottom: 0px;
+                margin-top: 0px;
+
+                .scroller-content {
+                    width: 100%;
+                    height: 313px;
+                    position: relative;
+                    display: block;
+                    align-content: space-between;
+
+                    .btn_group {
+                        height: 100%;
+                        padding-top: auto;
+                        position: relative;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+        
+                        .nav-button {
+                            position: relative;
+                            width: 44px;
+                            height: 56px;
+            
+                            background: #F5F5FA;
+                            border: 1px solid #F5F5FA;
+                            opacity: 0.8;
+                            color: #5C5C73;
+                            font-size: 25px;
+                            border-radius: 3px;
+                        }
+                    }
+
+                    .list_item {
+                        position: relative;
+                        display: flex;
+                        justify-content: end;
+                        align-items: center;
+                        margin-right: 2rem;
+                        
+                        .item {
+                            position: relative;
+                            background: #FFFFFF;
+                            opacity: 0.7;
+                            box-shadow: 0px 0px 1px rgba(48, 48, 60, 0.32);
+                            width: 56px;
+                            height: 4px;
+                            margin-left: .5rem;
+                            border-radius: 5px;
+                        }
+                    }
+                }
+            }
+
+            .shopInfo {
+                display: block;
+                align-items: center;
+                width: 20%;
+                align-items: center;
+                background: #FFFFFF;
+                border: 1px solid #E9E9F0;
+                box-sizing: border-box;
+                box-shadow: 0px 1px 1px rgba(48, 48, 60, 0.08), 0px 2px 2px rgba(48, 48, 60, 0.12);
+
+                h3 {
+                    font-size: 12px;
+                    line-height: 16px;
+                    display: flex;
+                    align-items: center;
+                    color: #A0A0B0;
+                    margin: 0px;
+                }
+
+                .shopInfoItem {
+                    display: block;
+                    align-items: center;
+                    padding: 1.5rem;
+                    
+                    span {
+                        margin-left: 1rem;
+                    }
+
+                    section {
+                        display: flex;
+                        align-items: center;
+                    }
+
+                    section:hover {
+                    cursor: pointer;
+                    }
+
+                    .item {
+                        display: flex;
+                        align-items: center;
+                        margin-bottom: 1rem;
+
+                        .callIcon {
+                            width: 17.96px;
+                            height: 17.96px;
+                            background-position: center;
+                            background-image: url("../../../assets/icons/call.png");
+                            background-size: contain;
+                            background-repeat: no-repeat;
+                            margin-right: 1rem;
+                        }
+
+                        .call, .shipping, .work {
+                            display: block;
+                            align-items: center;
+                            span {
+                                margin: 0px;
+                            }
+                        }
+
+                        .locationIcon {
+                            width: 24px;
+                            height: 24px;
+                            background-position: center;
+                            background-image: url("../../../assets/icons/location.png");
+                            background-size: contain;
+                            background-repeat: no-repeat;
+                            margin-right: 1rem;
+                        }
+
+                        .workIcon {
+                            width: 24px;
+                            height: 24px;
+                            background-position: center;
+                            background-image: url("../../../assets/icons/round-work-24px.png");
+                            background-size: contain;
+                            background-repeat: no-repeat;
+                            margin-right: 1rem;
+                        }
+
+                    }
+
+                }
+                .trending {
+                    display: block;
+                    align-items: center;
+                    padding: 1.5rem;
+                    border-top: 1px solid #E9E9F0;
+
+                    h3 {
+                        font-size: 12px;
+                        line-height: 16px;
+                        display: flex;
+                        align-items: center;
+                        color: #A0A0B0;
+                        margin: 0px;
+                    }
+
+                    section {
+                        display: flex;
+                        align-items: center;
+                    }
+
+                    section:hover {
+                        cursor: pointer;
+                    }
+
+                    .article {
+                        .articleImg {
+                            width: 90px;
+                            height: 88px;
+                            background-position: center;
+                            background-image: url("../../../assets/images/phone_line1.png");
+                            background-size: contain;
+                            background-repeat: no-repeat;
+                        }
+
+                        .articleContent {
+                            display: block;
+                            align-items: center;
+                            margin-left: 1rem;
+
+                            h3 {
+                                margin-top: .5rem;
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
+    .list_mark {
+        margin-left: 5rem;
+        margin-right: 5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid #E9E9F0;
+        box-sizing: border-box;
+        box-shadow: 0px 1px 1px rgba(48, 48, 60, 0.08), 0px 2px 2px rgba(48, 48, 60, 0.12);
+        border-radius: 3px;
+        height: 96px;
+        
+        .apple {
+            height: 50%;
+            background-position: center;
+            background-image: url("../../../assets/logo/apple_logo.png");
+            background-size: contain;
+            background-repeat: no-repeat;
+            border-right: 1px solid #E9E9F0;
+        }
+
+        .samsung {
+            height: 50%;
+            background-position: center;
+            background-image: url("../../../assets/logo/Samsung_Logo.png");
+            background-size: contain;
+            background-repeat: no-repeat;
+            border-right: 1px solid #E9E9F0;
+        }
+
+        .xiaomi {
+            height: 50%;
+            background-position: center;
+            background-image: url("../../../assets/logo/Xiaomi_logo.png");
+            background-size: contain;
+            background-repeat: no-repeat;
+            border-right: 1px solid #E9E9F0;
+        }
+
+        .huawei {
+            height: 50%;
+            background-position: center;
+            background-image: url("../../../assets/logo/huawei_logo.png");
+            background-size: contain;
+            background-repeat: no-repeat;
+            border-right: 1px solid #E9E9F0;
+        }
+
+        .infinix {
+            height: 30%;
+            background-position: center;
+            background-image: url("../../../assets/logo/infinix_logo.png");
+            background-size: contain;
+            background-repeat: no-repeat;
+            border-right: 1px solid #E9E9F0;
+        }
+
+        .alcatel {
+            height: 40%;
+            background-position: center;
+            background-image: url("../../../assets/logo/alcatel_logo.png");
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+    }
+
+    h1 {
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 36px;
+        color: #30303C;
+    }
+
+    .best_seller, .on_sale, .new_arrival {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 4rem;
+        margin-bottom: 2rem;
+        margin-left: 5rem;
+        margin-right: 5rem;
+
+        h1 {
+            margin: 0px;
+        }
+
+        span {
+            cursor: pointer;
+            font-size: 16px;
+            line-height: 24px;
+            color: #ED1C24;
+            border-bottom: 2px solid #DCDCE4;
+        }
+    }
+
+    .list_best_product, .list_on_sale, .list_new_arrival {
+        min-height: 455px;
+        position: relative;
+        z-index: 2;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        margin-left: 5rem;
+        margin-right: 5rem;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        display: flex;
+        // justify-content: flex-start;
+        // align-items: center;
+
+        .item {
+            height: 100%;
+            position: relative;
+            display: block;
+            justify-content: center;
+            align-items: center;
+            // background: #FFFFFF;
+            border: 1px solid #E9E9F0;
+            box-sizing: border-box;
+            box-shadow: 0px 1px 1px rgba(48, 48, 60, 0.08), 0px 2px 2px rgba(48, 48, 60, 0.12);
+            border-radius: 3px;
+            margin-right: 2rem;
+            min-width: 230px;
+
+            .product {
+                display: block;
+                justify-content: center;
+                align-items: center;
+                padding: 1rem;
+
+                .image {
+                    height: 203px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-bottom: .5rem;
+
+                    section {
+                        margin-left: auto;
+                        margin-right: auto;
+                        width: 100%;
+                        height: 100%;
+                        background-position: center;
+                        // background-image: url('../../../assets/images/main.png');
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                    }
+                }
+
+                .detail {
+                    .marque {
+                        font-weight: normal;
+                        font-size: 12px;
+                        line-height: 16px;
+                        color: #30303C;
+                    }
+
+                    .prix_vente {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+
+                        .prix {
+                            display: block;
+                            flex-direction: column;
+                            justify-content: center;
+                            align-items: center;
+
+                            .prix_reduis {
+                                font-weight: bold;
+                                font-size: 18px;
+                                line-height: 24px;
+                                color: #ED1C24;
+                            }
+                            .prix_normal {
+                                font-size: 16px;
+                                line-height: 24px;
+                                text-decoration-line: line-through;
+                                color: #7A7A8D;                                
+                            }
+                        }
+
+                        .reduction {
+                            
+                            .tauxReduction {
+                                background: #FFFFFF;
+                                border: 1px solid #ED1C24;
+                                box-sizing: border-box;
+                                border-radius: 3px;
+    
+                                font-weight: normal;
+                                font-size: 14px;
+                                line-height: 20px;
+                                color: #ED1C24;
+                            }
+                        }
+
+                    }
+
+                    .hide {
+                        display: none;
+                        // .starsWithReview {
+                        //     display: flex;
+                        //     justify-content: space-between;
+                        //     align-items: center;
+                        //     margin-top: .5rem;
+                        //     margin-bottom: 1rem;
+
+                        //     .stars {
+                        //         display: flex;
+                        //         align-items: center;
+                        //         justify-content: space-between;
+
+                        //         .ligth {
+                        //             width: 16.78px;
+                        //             height: 16px;
+                        //             background-position: center;
+                        //             // background-image: url('../../../assets/images/main.png');
+                        //             background-size: contain;
+                        //             background-repeat: no-repeat;
+                        //         }
+                        //         .dark {
+                        //             width: 16.78px;
+                        //             height: 16px;
+                        //             background-position: center;
+                        //             // background-image: url('../../../assets/images/main.png');
+                        //             background-size: contain;
+                        //             background-repeat: no-repeat;
+                        //         }
+                        //     }
+
+                        //     .review {
+                        //         margin-left: .8rem;
+                        //         span {
+                        //             font-size: 12px;
+                        //             line-height: 16px;
+                        //             color: #30303C;
+                        //         }
+                        //     }
+                        // }
+
+                        // .btn_group {
+                        //     display: flex;
+                        //     justify-content: space-between;
+                        //     align-items: center;
+                        //     margin-bottom: 0px;
+                        //     .btnBuy {      
+                        //         width: 97px;
+                        //         height: 32px;                          
+                        //         background: #ED1C24;
+                        //         border: 1px solid #ED1C24;
+                        //         border-radius: 3px;
+
+                        //         font-size: 14px;
+                        //         line-height: 20px;
+                        //         text-align: center;
+                        //         color: #FFFFFF;
+                        //     }
+
+                        //     .btnknow {
+                        //         margin-left: 1rem;
+                        //         width: 97px;
+                        //         height: 32px;
+                        //         background: #F5F5FA;
+                        //         border: 1px solid #F5F5FA;
+                        //         border-radius: 3px;
+
+                        //         font-size: 14px;
+                        //         line-height: 20px;
+                        //         text-align: center;
+                        //         color: #5C5C73;
+                        //     }
+                        // }
+                    }
+                }
+            }
+
+            .product:hover {
+
+                .detail {
+
+                    .hide {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        .item:hover {
+            z-index: 2;
+            background-color: rgb(150, 160, 130);
+            /* Le bloque est grossie de 25% */
+            // -webkit-transform:scale(1.25); /* Safari et Chrome */
+            // -moz-transform:scale(1.25); /* Firefox */
+            // -ms-transform:scale(1.25); /* Internet Explorer 9 */
+            // -o-transform:scale(1.25); /* Opera */
+            // transform:scale(1.25);
+            transition-property: width, height, background-color;
+            transition-duration: 2s;
+            transition-delay: .5s;
+
+            .product {
+
+                .detail {
+
+                    .hide {
+                        transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+                        display: block;
+                        .starsWithReview {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            margin-top: .5rem;
+                            margin-bottom: 1rem;
+
+                            .stars {
+                                display: flex;
+                                align-items: center;
+                                justify-content: space-between;
+
+                                .ligth {
+                                    width: 16.78px;
+                                    height: 16px;
+                                    background-position: center;
+                                    // background-image: url('../../../assets/images/main.png');
+                                    background-size: contain;
+                                    background-repeat: no-repeat;
+                                }
+                                .dark {
+                                    width: 16.78px;
+                                    height: 16px;
+                                    background-position: center;
+                                    // background-image: url('../../../assets/images/main.png');
+                                    background-size: contain;
+                                    background-repeat: no-repeat;
+                                }
+                            }
+
+                            .review {
+                                margin-left: .8rem;
+                                span {
+                                    font-size: 12px;
+                                    line-height: 16px;
+                                    color: #30303C;
+                                }
+                            }
+                        }
+
+                        .btn_group {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            margin-bottom: 0px;
+                            .btnBuy {      
+                                width: 97px;
+                                height: 32px;                          
+                                background: #ED1C24;
+                                border: 1px solid #ED1C24;
+                                border-radius: 3px;
+
+                                font-size: 14px;
+                                line-height: 20px;
+                                text-align: center;
+                                color: #FFFFFF;
+                            }
+
+                            .btnknow {
+                                margin-left: 1rem;
+                                width: 97px;
+                                height: 32px;
+                                background: #F5F5FA;
+                                border: 1px solid #F5F5FA;
+                                border-radius: 3px;
+
+                                font-size: 14px;
+                                line-height: 20px;
+                                text-align: center;
+                                color: #5C5C73;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .bannerAfterListOfBest {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 5rem;
+        margin-right: 5rem;
+        height: 120px;
+        background: #E9E9F0;
+        border: 1px solid #E9E9F0;
+        border-radius: 3px;
+
+        span {
+            font-weight: bold;
+            font-size: 24px;
+            line-height: 36px;
+            color: #7A7A8D;
+        }
+    }
+}
+
+*::-webkit-scrollbar {
+    height: 8px;
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
+}
+   
+*::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+   
+*::-webkit-scrollbar-thumb {
+    width: 8px;
+    background-color: rgb(28, 28, 29);
+    outline: 1px solid rgb(28, 28, 29);
+}
+
+@media screen and (max-width: 930px)
+{
+    .content {
+        .banner {
+    
+            .scrollerWithShopInfo {
+                display: block;
+    
+                .scroller-container {
+                    margin-left: auto;
+                    width: 45%;
+                    margin-bottom: 1rem;
+                    .scroller-content {
+                        .btn_group {
+    
+                        }
+                    }
+                }
+    
+                .shopInfo {
+                    margin-left: auto;
+                    margin-right: 5rem;
+                    width: 45%;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1432px)
+{
+    .content {
+        .banner {
+    
+            .scrollerWithShopInfo {
+                .scroller-container {
+                    margin-left: auto;
+                    margin-bottom: 1rem;
+                    .scroller-content {
+                        .btn_group {
+                            position: relative;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

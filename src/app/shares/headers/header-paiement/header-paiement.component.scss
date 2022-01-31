@@ -1,0 +1,151 @@
+.container {
+    padding: 2px 5em;
+    font-family: Sarabun;
+    font-style: normal;
+    font-weight: normal;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    color: #30303C;
+    padding-top: 1rem;
+    padding-bottom: .5rem;
+
+    .onetLogoWithTitlePage {
+        display: flex;
+        justify-content: space-between;
+
+        .onetLogo {
+            width: 82.5px;
+            height: 44px;
+            background: url("../../../../assets/logo/onetLogo.png");
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .titlePage {
+            margin-left: 1.5rem;
+            h3 {
+                font-weight: bold;
+                font-size: 24px;
+                line-height: 36px;
+                color: #000000;
+                margin: 0px;
+            }
+        }
+    }
+
+    .nav-link {
+        display: flex;
+        justify-content: space-between;
+
+        .link {
+            display: flex;
+            flex-direction: column;
+            margin-left: .5rem;
+        }
+
+        .problem {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .phoneIcon {
+                width: 17.96px;
+                height: 17.96px;
+                background: url("../../../../assets/icons/call.png");
+                background-size: contain;
+                background-repeat: no-repeat;
+            }
+
+            .link {
+
+                .haveProblem {
+                    font-size: 12px;
+                    line-height: 16px;
+                    display: flex;
+                    align-items: center;
+                    color: #A0A0B0;
+                }
+
+                .number {
+            
+                }
+            }
+        }
+
+        .security {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-left: 3em;
+
+            .securityIcon {
+                width: 24px;
+                height: 24px;
+                background: url("../../../../assets/icons/round-security-24px.png");
+                background-size: contain;
+                background-repeat: no-repeat;
+            }
+        }
+
+        .return {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-left: 3em;
+
+            .returnIcon {
+                width: 24px;
+                height: 24px;
+                background: url("../../../../assets/icons/round-refresh-24px.png");
+                background-size: contain;
+                background-repeat: no-repeat;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 576px) and (max-width: 876px) 
+{
+    .container {
+        .nav-link {
+            .security {
+                margin-left: 1em;
+            }
+    
+            .return {
+                margin-left: 1em;
+            }
+        }
+    }
+}
+
+//max-width: 576px
+@media screen and (max-width: 766px)
+{
+    .container {
+        display: block;
+    
+        .onetLogoWithTitlePage {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin-bottom: .5rem;
+        }
+    
+        .nav-link {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+    }
+}
+
+//largeur d'ecran
+// 576
+// 720
+// 960
+// 1140

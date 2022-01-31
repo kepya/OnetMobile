@@ -1,0 +1,704 @@
+.container {
+
+    .content {
+        display: block;
+        align-items: center;
+        font-family: Sarabun;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 20px;
+        color: #30303C;
+        height: 100%;
+        width: 100%;
+
+        h4 {
+            font-weight: bold;
+            font-size: 20px;
+            line-height: 28px;
+            display: flex;
+            align-items: center;
+            margin: 0px;
+        }
+
+        .onetLogoWithInformation {
+            // height: 55px;
+            display: flex;
+            border: 1px solid #E9E9F0;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0px;
+
+            .onetLogo {
+                margin-left: 5rem;
+                width: 82.5px;
+                height: 44px;
+                background: url("../../../../assets/logo/onetLogo.png");
+                background-size: contain;
+                background-repeat: no-repeat;
+            }
+
+            .informations {
+                margin-right: 5rem;
+                display: flex;
+                height: 100%;
+                justify-content: space-between;
+                align-items: center;
+
+                .number {      
+                    padding-right: 1.5rem;
+
+                    h4{
+
+                    }
+                }
+
+                .langue {
+                    border-left: 1px solid #E9E9F0;
+                    border-right: 1px solid #E9E9F0;
+                    
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    text-align: center;
+                    padding: 1rem 1.5rem;
+
+                    .symbol {
+                        margin-left: .3rem;
+                    }
+
+                    section:hover {
+                        cursor: pointer;
+                    }
+
+                    section:active {
+                        border-bottom: 2px solid #ED1C24;
+                    }
+
+                    .francais {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        border-bottom: 2px solid #ED1C24;
+                        margin-right: 1rem;
+
+                        .logoFrench {
+                            margin-top: .3rem;
+                            background-position: bottom;
+                            width: 14px;
+                            height: 14px;
+                            background: url("../../../../assets/icons/🇫🇷.png");
+                            background-size: contain;
+                            background-repeat: no-repeat;
+                        }
+
+                        .symbol {
+
+                        }
+                    }
+
+                    .anglais {
+                        display: flex;
+                        justify-content: space-between;
+
+                        .logoEnglish {
+                            margin-top: .3rem;
+                            width: 14px;
+                            height: 14px;
+                            background: url("../../../../assets/logo/en.jpg");
+                            background-size: contain;
+                            background-repeat: no-repeat;
+                        }
+
+                        .symbol {
+                            
+                        }
+                    }
+                }
+
+                .localisation {
+                    padding-left: 1.5rem;
+
+                    :first-child {
+                        font-weight: normal;
+                        font-size: 12px;
+                        line-height: 16px;
+                        display: flex;
+                        align-items: center;
+                        color: #A0A0B0;
+                    }
+
+                    :last-child {
+                        color: #ED1C24;
+                        border-bottom: 2px solid #DCDCE4;
+                    }
+                }
+            }
+        }
+
+        .toolbarMenuContent{
+            height: 56px;
+            padding: 0px;
+            background: #434352;
+            box-shadow: 0px 1px 1px rgba(48, 48, 60, 0.08), 0px 2px 2px rgba(48, 48, 60, 0.12);
+            display: flex;
+            align-items: center;
+            width: 100%;
+
+            .toolbarMenu {
+                // margin-top: -.1rem;
+                margin-left: 5rem;
+                margin-right: 5rem;
+                height: 100%;
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+    
+                .menuWithCatalog {
+                    height: 100%;
+                    width: 20%;
+                    margin-right: 1rem;
+                    display: block;
+                    .menu {
+                        height: 100%;
+                        width: 100%;
+                        
+                        background: #30303C;
+                        display: flex;
+                        align-items: center;
+    
+                        section:hover {
+                            cursor: pointer;
+                        }
+    
+                        .boutton_menu {
+                            align-items: center;
+                            hr {
+                                background: #F5F5FA;
+                                width: 20px;
+                                height: 2px;
+                                margin-right: 2rem;
+                                margin-left: 2rem;
+                            }
+                        }
+    
+                        .catalog {
+                            h4 {
+                                color: #F5F5FA;
+                            }
+                        }
+                    }
+    
+                    .sousMenu {
+                        display: block;
+                        align-items: center;
+                        background: #FFFFFF;
+                        border: 1px solid #E9E9F0;
+                        box-sizing: border-box;
+                        box-shadow: 0px 1px 1px rgba(48, 48, 60, 0.08), 0px 2px 2px rgba(48, 48, 60, 0.12);
+            
+                        .last_arrival {
+                            display: block;
+                            align-items: center;
+                            padding: 1.5rem;
+                            
+                            span {
+                                margin-left: 1rem;
+                            }
+            
+                            section {
+                                display: flex;
+                                align-items: center;
+                            }
+    
+                            section:hover {
+                               cursor: pointer;
+                            }
+            
+                            .smartphone {
+                                margin-bottom: 1rem;
+                                .smartphoneIcon {
+                                    width: 24px;
+                                    height: 24px;
+                                    background-position: center;
+                                    background-image: url("../../../../assets/icons/phone.png");
+                                    background-size: contain;
+                                    background-repeat: no-repeat;
+                                }
+                            }
+                            .accessoire {
+                                margin-bottom: 1rem;
+            
+                                .accessoireIcon {
+                                    width: 24px;
+                                    height: 24px;
+                                    background-position: center;
+                                    background-image: url("../../../../assets/icons/speaker.png");
+                                    background-size: contain;
+                                    background-repeat: no-repeat;
+                                }
+                            }
+                            .tablet {
+                                margin-bottom: 1rem;
+            
+                                .tabletIcon {
+                                    width: 24px;
+                                    height: 24px;
+                                    background-position: center;
+                                    background-image: url("../../../../assets/icons/tablet.png");
+                                    background-size: contain;
+                                    background-repeat: no-repeat;
+                                }
+                            }
+                            .sale {
+                                .saleIcon {
+                                    width: 24px;
+                                    height: 24px;
+                                    background-position: center;
+                                    background-image: url("../../../../assets/icons/percent.png");
+                                    background-size: contain;
+                                    background-repeat: no-repeat;
+                                }
+                            }
+                        }
+                        .new_arrival {
+                            display: block;
+                            align-items: center;
+                            padding: 1.5rem;
+                            border-top: 1px solid #E9E9F0;
+                            
+                            span {
+                                margin-left: 1rem;
+                            }
+            
+                            section {
+                                display: flex;
+                                align-items: center;
+                            }
+    
+                            section:hover {
+                                cursor: pointer;
+                            }
+    
+                            .android {
+                                margin-bottom: 1rem;
+                                .androidIcon {
+                                    width: 24px;
+                                    height: 24px;
+                                    background-position: center;
+                                    background-image: url("../../../../assets/icons/android.png");
+                                    background-size: contain;
+                                    background-repeat: no-repeat;
+                                }
+                            }
+                            .iPhones {
+                                margin-bottom: 1rem;
+            
+                                .iPhonesIcon {
+                                    width: 24px;
+                                    height: 24px;
+                                    background-position: center;
+                                    background-image: url("../../../../assets/icons/apple.png");
+                                    background-size: contain;
+                                    background-repeat: no-repeat;
+                                }
+                            }
+                        }
+                        .compte {
+                            display: block;
+                            align-items: center;
+                            padding: 1.5rem;
+                            border-top: 1px solid #E9E9F0;
+    
+                            label {
+                                margin-left: 1rem;
+                            }
+            
+                            section {
+                                display: flex;
+                                align-items: center;
+                            }
+    
+                            section:hover {
+                                cursor: pointer;
+                            }
+    
+                            .account {
+                                display: flex;
+                                align-items: center;
+            
+                                section {
+                                    width: 24px;
+                                    height: 24px;
+                                    background: url("../../../../assets/icons/round-account_box-24px.png");
+                                    background-size: contain;
+                                    background-repeat: no-repeat;
+                                }
+                            }
+            
+                            .card {
+                                display: flex;
+                                align-items: center;
+            
+                                section {
+                                    width: 24px;
+                                    height: 24px;
+                                    background: url("../../../../assets/icons/round-shopping_cart-24px.png");
+                                    background-size: contain;
+                                    background-repeat: no-repeat;
+                                }
+                            }
+                        }
+    
+                        .showAccount {
+                            display: none;
+                        }
+                    }
+    
+                    .showMenu {
+                        display: none;
+                    }
+    
+                }
+    
+                .menuWithCatalog:hover .showMenu {
+                    display: block;
+                }
+    
+                .search {
+                    width: 50%;
+                    height: 70%;
+                    display: block;
+                    position: relative;
+    
+                    .search_item {
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        align-items: center;
+    
+                        .input_search {
+                            width: 100%;
+                            height: 100%;
+                            border: 1px solid #7A7A8D;
+                            background: #7A7A8D;
+                            border-radius: 3px;
+                            outline: none;
+                            padding-left: 1rem;
+                            padding-right: 1rem;
+                            color: #F5F5FA;
+                            background-image: url("../../../../assets/icons/round-search-24px.png");
+                            background-position: right;
+                            background-repeat: no-repeat;
+                        }
+    
+                        input::placeholder {
+                            color: #F5F5FA;
+                            opacity: 1;
+                        }
+    
+                        .result_container {
+                            margin-top: auto;
+                            position: relative;
+                            display: flex;
+                            z-index: 3;
+                            opacity: 1;
+                            width: 100%;
+                            
+    
+                            .result_content {
+                                z-index: 3;
+                                margin-top: 1rem;
+                                width: 100%;
+                                display: flex;
+                                justify-content: space-between;
+                                padding: 1rem;
+                                opacity: 1;
+                                background: #FFFFFF;
+                                border: 1px solid #E9E9F0;
+                                box-sizing: border-box;
+                                box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.25), 0px 1px 1px rgba(48, 48, 60, 0.08);
+                                border-radius: 3px;
+    
+                                h2 {
+                                    font-weight: bold;
+                                    font-size: 20px;
+                                    line-height: 28px;
+                                    color: #30303C;                             
+                                }
+    
+                                .result {
+                                    width: 60%;
+                                    section {
+                                        display: flex;
+                                        align-items: center;
+    
+                                        .imageProduit {
+                                            width: 72px;
+                                            height: 72px;
+                                            background: #FFFFFF;
+                                            border: 1px solid #DCDCE4;
+                                            box-sizing: border-box;
+                                            display: flex;
+                                            justify-content: center;
+                                            align-items: center;
+    
+                                            img {
+                                                width: 53.52px;
+                                                height: 65.08px;
+                                            }
+                                        }
+    
+                                        .infoProduit {
+                                            display: block;
+                                            margin-left: 1rem;
+                                            align-items: center;
+    
+                                            h3{
+                                                margin: 0px;
+                                            }
+    
+                                            span {
+                                                font-size: 14px;
+                                                line-height: 20px;
+                                                color: #ED1C24;
+                                            }
+                                        }
+                                    }
+                                }
+                                .research_option {
+                                    width: 40%;
+    
+                                    section span:last-child {
+                                        color: #A0A0B0;
+                                        margin-left: 1rem;
+                                    }
+    
+                                    .smartphone {
+                                        .smartphone_result {
+    
+                                        }
+                                    }
+    
+                                    .smartphoneCover {
+                                        .smartphoneCover_result {
+    
+                                        }
+                                    }
+    
+                                    .protective {
+                                        .protective_result {
+    
+                                        }
+                                    }
+                                }
+                            }
+    
+                        }
+                        .result_container::after {
+                            opacity: 1; 
+                            z-index: 100;
+                        }
+                    }
+                }
+    
+                .accountWithCard {
+                    height: 100%;
+                    width: 20%;
+                    display: flex;
+                    justify-content: space-between;
+                    // justify-content: space-around;
+                    align-items: center;
+    
+                    section:hover, label:hover {
+                        cursor: pointer;
+                    }
+    
+                    section:active {
+                        border-bottom: 2px solid white;
+                    }
+    
+                    label {
+                        font-size: 16px;
+                        line-height: 24px;
+                        color: #F5F5FA;
+                        margin-left: .5rem;
+                    }
+    
+                    .account {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+    
+                        section {
+                            width: 24px;
+                            height: 24px;
+                            background: url("../../../../assets/icons/round-account_box-24px.png");
+                            background-size: contain;
+                            background-repeat: no-repeat;
+                        }
+    
+                        label {
+    
+                        }
+                    }
+    
+                    .card {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+    
+                        section {
+                            width: 24px;
+                            height: 24px;
+                            background: url("../../../../assets/icons/round-shopping_cart-24px.png");
+                            background-size: contain;
+                            background-repeat: no-repeat;
+                        }
+                    }
+                }
+            }
+        }
+
+
+    }
+}
+
+
+@media screen and (max-width: 666px)
+{
+    .container {
+    
+        .content {
+            display: block;
+
+            .onetLogoWithInformation {
+                display: block;
+
+
+                .onetLogo {
+                    margin-top: .5rem;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 930px)
+{
+    .container {
+    
+        .content {
+            .toolbarMenuContent {
+                .toolbarMenu {
+           
+                    .menuWithCatalog {
+                        width: 30%;
+                        .menu {
+                            .boutton_menu {
+                                hr {
+                                    margin-right: .5rem;
+                                }
+                            }
+                        }
+                    }
+    
+                    .search {
+                        width: 45%;
+                        margin-left: auto;
+                        margin-right: auto;
+                    }
+    
+                    .accountWithCard {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 592px)
+{
+    .container {
+    
+        .content {
+            .onetLogoWithInformation {
+
+                .informations {
+                    .number{
+                        h4 {
+                            font-size: 16px;
+                            line-height: 24px;
+                        }
+                    }
+                }
+            }
+            .toolbarMenuContent {
+                .toolbarMenu {
+           
+                    .menuWithCatalog {
+                        width: 40%;
+                        .menu {
+                            .boutton_menu {
+                                hr {
+                                    margin-right: .5rem;
+                                }
+                            }
+                        }
+    
+                        .sousMenu {
+                            .showAccount {
+                                display: block;
+                            }
+                        }
+                    }
+    
+                    .search {
+                        width: 35%;
+                        margin-left: auto;
+                        margin-right: auto;
+                    }
+                    .accountWithCard {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1180px) {
+    .container {
+    
+        .content {
+            .toolbarMenuContent {
+                .toolbarMenu {
+                    .search {
+                        .search_item {
+    
+                            .result_container {
+     
+                                .result_content {
+                                    display: block;
+                                    align-items: center;
+                                    .result {
+                                        margin-bottom: 2rem;
+                                        width: 100%;
+                                    }
+                                    .research_option {
+                                        width: 100%;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+

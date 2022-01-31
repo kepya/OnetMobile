@@ -1,0 +1,322 @@
+*{
+    font-family: Sarabun;
+    font-style: normal;
+    font-weight: normal;
+}
+
+.flex {
+    display: flex;
+    width: 100%;
+}
+
+.margeGauche {
+    margin-left: 1rem;
+}
+
+.margeDroite {
+    margin-right: 1rem;
+}
+
+.margeHaut {
+    margin-top: 1rem;
+}
+
+.margeBas {
+    margin-bottom: 1rem;
+}
+
+.margeHautAuto {
+    margin-top: auto; 
+}
+
+.margeBasAuto {
+    margin-bottom: auto; 
+}
+
+.centerVertical {
+    margin-top: auto; 
+    margin-bottom: auto; 
+}
+
+.centerHorizontal {
+    margin-right: auto; 
+    margin-left: auto; 
+}
+
+.center {
+    margin-right: auto; 
+    margin-left: auto; 
+    margin-top: auto; 
+    margin-bottom: auto; 
+}
+
+//*************************Css pour la ligne des informations et détails
+.block {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+.route {
+    font-size: 14px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    color: #7A7A8D;
+    margin-bottom: 1rem;
+}
+
+.route_d {
+    color: black;
+}
+
+.research {
+    display: flex;
+}
+
+.research {
+    margin-bottom: 1rem;
+}
+
+.research .title{
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 36px;
+    color: #30303C;
+}
+
+.research .subtitle{
+    margin-left: 1rem;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 36px;
+    color: #A0A0B0;
+}
+
+//********************css pour les produits trouvés
+
+.line {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card_categorie {
+    width: 235px;
+    max-height: 200px;
+    background: #FFFFFF;
+    border: 1px solid #E9E9F0;
+    box-sizing: border-box;
+    box-shadow: 0px 1px 1px rgba(48, 48, 60, 0.08), 0px 2px 2px rgba(48, 48, 60, 0.12);
+    border-radius: 3px;
+    padding: 1rem;
+}
+
+.card_categorie .title {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 24px;
+    color: #30303C;
+}
+
+.card_categorie .flex span{
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    color: #30303C;
+}
+.card_categorie .flex .subtitle {
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    color: #A0A0B0;
+}
+
+.checkbox {
+    width: 24px;
+    height: 24px;
+    left: 109px;
+    top: 304px;
+    background: #FFFFFF;
+    border: 1px solid #BBBBCE;
+    box-sizing: border-box;
+    border-radius: 3px;
+}
+
+//*********************css pour les prod
+
+.product {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.product .block {
+    width: 250px;
+    background: #FFFFFF;
+    border: 1px solid #E9E9F0;
+    box-sizing: border-box;
+    box-shadow: 0px 1px 1px rgba(48, 48, 60, 0.08), 0px 2px 2px rgba(48, 48, 60, 0.12);
+    border-radius: 3px;
+    padding: 1rem;
+    height: 371px;
+}
+
+.product .block .image {
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.product .block .content {
+    font-size: 14px;
+    line-height: 20px;
+    color: #30303C;
+    margin-top: 0px;
+    padding-top: 0px;
+}
+
+.product .block .article{
+    display: flex;
+    justify-content: space-between;
+}
+
+.product .block .article .prix{
+    display: flex;
+    flex-direction: column;
+}
+
+.product .block .article .price {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 24px;
+    color: #ED1C24;
+}
+
+.product .block .article .reduit {
+    font-size: 16px;
+    line-height: 24px;
+    text-decoration-line: line-through;
+    color: #7A7A8D;
+}
+
+.product .block .article .percent {
+    width: 57px;
+    height: 32px;
+    background: #FFFFFF;
+    border: 1px solid #ED1C24;
+    box-sizing: border-box;
+    border-radius: 3px;
+    color: #ED1C24;
+}
+
+.product .visuel {
+    display: none;
+}
+
+.product .block:hover {
+    height: 415px;
+    .visuel {
+        display: block;
+        z-index: 100;
+    }
+}
+
+.product .review {
+    font-size: 12px;
+    line-height: 16px;
+    color: #30303C;
+}
+
+.product .buy {
+    width: 97px;
+    height: 32px;
+    background: #ED1C24;
+    border: 1px solid #ED1C24;
+    border-radius: 3px;
+    color: white;
+}
+
+.product .more {
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    color: #5C5C73;
+}
+
+// *************************** Pagination
+.block .pagination {
+
+}
+
+.block .pagination .show_btn {
+    margin-top: .5em;
+    margin-bottom: 2.5em;
+    display: flex;
+    justify-content: center;
+}
+
+.block .pagination .btn_allProduct{
+    width: 280px;
+    height: 56px;
+    background: #ED1C24;
+    border-radius: 3px;
+    border: 1px solid #ED1C24;
+
+    font-size: 18px;
+    line-height: 28px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.pages {
+    margin-bottom: 3rem;
+}
+
+.pages button {
+    width: 56px;
+    height: 56px;
+    border: 1px solid #A0A0B0;
+    box-sizing: border-box;
+    border-radius: 3px;
+    background-color: white;
+
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 28px;
+    text-align: center;
+    color: #7A7A8D;
+
+    margin-right: 1rem;
+}
+
+.pages .start::before {
+    content: "<"; 
+    color: #E9E9F0;
+    opacity: 1;
+    width: 9px;
+    height: 9px;
+}
+
+.pages .end::before {
+    content: ">"; 
+    color: #7A7A8D;
+    width: 10,74px;
+    height: 18,76px;
+}
+
+.pages .select {
+    color: white;
+    background: #A0A0B0;
+}
+
+.pages span {
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 28px;
+    text-align: center;
+    color: #7A7A8D;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+}

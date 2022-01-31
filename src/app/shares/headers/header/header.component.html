@@ -1,0 +1,144 @@
+<section class="container">
+  <section class="content">
+    <section class="onetLogoWithInformation">
+      <section class="onetLogo"></section>
+
+      <section class="informations">
+        <section class="number">
+          <h4>+242 06 908 3535</h4>
+        </section>
+        <section class="langue">
+          <section class="francais" (click)="chooseLanguage('fr')" [ngStyle]="{'border-bottom':langue === 'fr' ? '2px solid #ED1C24' : '0px'}">
+            <section class="logoFrench"></section>
+            <span class="symbol">FR</span>
+          </section>
+          <section class="anglais" (click)="chooseLanguage('en')" [ngStyle]="{'border-bottom':langue === 'en' ? '2px solid #ED1C24' : '0px'}">
+            <section class="logoEnglish"></section>
+            <span class="symbol">EN</span>
+          </section>
+        </section>
+        <section class="localisation">
+          <span>Your location</span>
+          <span>Douala</span>
+        </section>
+      </section>
+    </section>
+
+    <section class="toolbarMenuContent">
+      <section class="toolbarMenu">
+        <section class="menuWithCatalog">
+          <section class="menu">
+            <section class="boutton_menu">
+              <hr>
+              <hr>
+              <hr>
+            </section>
+    
+            <section class="catalog">
+              <h4>Catalog</h4>
+            </section>
+          </section>
+          <section class="showMenu">
+            <section class="sousMenu">
+              <section class="last_arrival">
+                <section class="smartphone">
+                  <section class="smartphoneIcon"></section>
+                  <span>Smartphones</span>
+                </section>
+                <section class="accessoire">
+                    <section class="accessoireIcon"></section>
+                    <span>Accessories</span>
+                </section>
+                <section class="tablet">
+                    <section class="tabletIcon"></section>
+                    <span>Tablets</span>
+                </section>
+                <section class="sale">
+                    <section class="saleIcon"></section>
+                    <span>Sale!</span>
+                </section>
+              </section>
+              <section class="new_arrival">
+                <section class="android">
+                  <section class="androidIcon"></section>
+                  <span>Android phones</span>
+                </section>
+                <section class="iPhones">
+                    <section class="iPhonesIcon"></section>
+                    <span>iPhones</span>
+                </section>
+              </section>
+              <section class="showAccount">
+                <section class="compte">
+                  <section class="account">
+                    <section class="iconAccount"></section>
+                    <label class="accountTitle">Account</label>
+                  </section>
+                  <section class="card">
+                    <section class="iconCard"></section>
+                    <label class="cartTitle">Cart</label>
+                  </section>
+                </section>
+              </section>
+            </section>
+          </section>
+        </section>
+        <section class="search">
+          <section class="search_item">
+            <input type="text" name="" id="" class="input_search" placeholder="Search"
+              name="product" 
+              #search (keyup)='searchProduct(search.value)'
+            >
+          </section>
+          <section class="search_item">
+            <section class="result_container">
+              <section class="result_content" *ngIf="(produits | async)?.length>0">
+                <section class="result">
+                    <h2>Products</h2>
+                    <section *ngFor='let p of produits | async'>
+                        <section class="imageProduit">
+                            <img [src]="p.image" alt="" srcset="">
+                        </section>
+                        <section class="infoProduit">
+                            <h3>{{p.marque}} <strong>{{p.nom}}</strong> {{p.description}}</h3>
+                            <span class="prixReduisProduit">{{p.prixReduis}}  FCFA</span>
+                        </section>
+                    </section>
+                </section>
+                <section class="research_option">
+                    <h2>Categories</h2>
+        
+                    <section class="smartphone">
+                        <span>Smartphones</span>
+                        <span class="smartphone_result">{{countSmart()}} results</span>
+                    </section>
+        
+                    <section class="smartphoneCover">
+                        <span>Smartphone covers</span>
+                        <span class="smartphoneCover_result">{{countSmartCover()}} results</span>
+                    </section>
+        
+                    <section class="protective">
+                        <span>Protective membranes</span>
+                        <span class="protective_result">{{countProtective()}} results</span>
+                    </section>
+                </section>
+              </section>
+  
+            </section>
+          </section>
+        </section>
+        <section class="accountWithCard">
+          <section class="account">
+            <section class="iconAccount"></section>
+            <label class="accountTitle">Account</label>
+          </section>
+          <section class="card">
+            <section class="iconCard"></section>
+            <label class="cartTitle">Cart</label>
+          </section>
+        </section>
+      </section>
+    </section>
+  </section>
+</section>

@@ -1,0 +1,63 @@
+<main class="container">
+    <section class="content">
+        <form [formGroup]="productForm" (ngSubmit)="add()" class="col-6">
+            <section class="form-group">
+                <label>Nom</label>
+                <input type="text" name="" id="" formControlName="nom"  [(ngModel)]="product.nom">
+            </section>
+
+            <section class="form-group">
+                <label for="">Marque</label>
+                <input type="text" name="" id="" formControlName="marque" [(ngModel)]="product.marque">
+            </section>
+
+            <section class="form-group">
+                <label for="">Description</label>
+                <textarea name="" id="" rows="5" formControlName="description" [(ngModel)]="product.description"></textarea>
+            </section>
+
+            <section class="form-group">
+                <label for="">Fonctionnalité</label>
+                <textarea name="" id="" rows="5" formControlName="fonction" [(ngModel)]="product.fonction"></textarea>
+            </section>
+
+            <section class="form-group">
+                <label for="">prixNormal</label>
+                <input type="number" name="" id="" formControlName="prixNormal"  [(ngModel)]="product.prixNormal">
+            </section>
+
+            <section class="form-group">
+                <label for="">Taux reduction</label>
+                <input type="number" name="" id="" formControlName="tauxReduction" [(ngModel)]="product.tauxReduction" value="0">
+            </section>
+            
+            <section class="form-group">
+                <label for="">Nombre Etoile</label>
+                <input type="number" name="" id="" formControlName="nombreEtoile" [(ngModel)]="product.nombreEtoile">
+            </section>
+
+            <section class="form-group">
+                <label for="">Type</label>
+                <select name="" id="" formControlName="type">
+                    <option value="telephone">Smartphone</option>
+                    <option value="smart cover">Smartphone cover</option>
+                    <option value="protective menbrane">Protective menbrane</option>
+                </select>
+            </section>
+
+            <section class="form-group">
+                <label for="">Image</label>
+                <input type="file" name="" id="" formControlName="image" (change)="selectFile($event)">
+            </section>
+
+            <section class="btn_send">
+                <button class="" [disabled]="productForm.invalid">Ajouter</button>
+            </section>
+        </form>
+    </section>
+</main>
+
+
+<!-- <button (click)="compressFile()">Upload and compress Image</button>
+      <img [src]="imgResultBeforeCompression" *ngIf="imgResultBeforeCompression" />
+      <img [src]="imgResultAfterCompression" *ngIf="imgResultAfterCompression"  /> -->

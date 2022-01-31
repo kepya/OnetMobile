@@ -1,0 +1,220 @@
+<section class="line">
+    <section class="column margeHaut margeBas card_info">
+        <section *ngIf="step === 1">
+            <h1>1. Contact</h1>
+
+            <section class="flex content">
+                <span class="margeDroite text background_custo_remove" style="color: #ED1C24;background-color: #FCEDEE;" (click)="checkCustomer(1)" id="newCustomer" *ngIf="formState">I’m a new customer</span>
+                <span class="margeGauche text background_custo_remove" style="color: #5C5C73;background-color: #F5F5FA;" id="existingCustomer" (click)="checkCustomer(2)" *ngIf="formState">I’m existing customer</span>
+
+                <span class="margeDroite text background_custo_remove" style="color: #5C5C73;background-color: #F5F5FA;" (click)="checkCustomer(1)" id="newCustomer" *ngIf="!formState">I’m a new customer</span>
+                <span class="margeGauche text background_custo_remove" style="color: #ED1C24;background-color: #FCEDEE;" id="existingCustomer" (click)="checkCustomer(2)" *ngIf="!formState">I’m existing customer</span>
+           
+            </section>
+    
+            <form id="form1" [formGroup]="form"  *ngIf="customer === 1" (ngSubmit)="addAddress()">
+                <section class="line line1">
+                    <section  class="column">
+                        <label for="">First name</label>
+                        <input type="text" name="" id="" placeholder="" value="Franck" formControlName="firstName" [(ngModel)]="user.firstName">
+                    </section>
+                    <section class="column">
+                        <label for="">Last name</label>
+                        <input type="text" name="" id="" value="Lib|" formControlName="lastName" [(ngModel)]="user.lastName">
+                    </section>
+                </section>
+    
+                <section class="column">
+                    <label for="">Telephone</label>
+                    <input type="text" name="" id="" value="+243 336 364 833" formControlName="phone" [(ngModel)]="user.phone">
+                </section>
+    
+                <section class="column">
+                    <label for="">Email</label>
+                    <input type="email" name="" id="" formControlName="email" [(ngModel)]="user.email">
+                </section>
+    
+                <section class="end">
+                    <button type="submit" [disabled]="form.invalid">Proceed to next step</button>
+                </section>
+            </form>
+    
+            <form id="form2" [formGroup]="userForm" *ngIf="customer === 2" (ngSubmit)="addAddress()">
+                <section class="column">
+                    <label for="">Email</label>
+                    <input type="email" name="" id="" formControlName="email" [(ngModel)]="user.email">
+                </section>
+    
+                <section class="column">
+                    <label for="">Password</label>
+                    <input type="password" name="" id="" formControlName="password">
+                </section>
+    
+                <section class="line login">
+                    <button type="button" class="text" [disabled]="userForm.invalid">Log in</button>
+                    <span type="button" class="forgot"><u>Forgot password</u></span>
+                </section>
+    
+                <section class="trait">
+                    <hr>
+                    <span>or</span>
+                    <hr>
+                </section>
+    
+                <section class="line" class="envoi">
+                    <button type="submit" [disabled]="userForm.invalid">Proceed to next step</button>
+                </section>
+            </form>
+        </section>
+
+        <section *ngIf="step > 1" class="margeBas">
+            <section class="flex contact">
+                <img src="../../../assets/icons/round-check_circle.png" alt="" srcset="" width="24" height="24">
+                <h1 class="passContact">1. Contact</h1>
+            </section>
+            <section class="flex">
+                <span class="text">
+                    {{user.firstName}} {{user.lastName}}, {{user.phone}}, {{user.email}}
+                </span>
+                <span class="margeGauche centerVertical subtitle" (click)="backStep()">
+                    Edit info
+                </span>
+            </section>
+        </section>
+
+        <section id="address" *ngIf="step === 2">
+            <h1 class="">2. Address and delivery</h1>
+
+            <p class="question">
+                How do you want your order delivered?
+            </p>
+            <section class="flex">
+                <input type="radio" name="" id="" checked width="24" height="24" class="margeBas radio">
+                <section class="margeGauche column margeHaut">
+                    <h3>Standard delivery</h3>
+                    <p class="text">Will be delivered between <strong>Tuesday 29 Jan</strong> and <strong> Tuesday 5 Feb</strong></p>
+                    <p class="red">From 3000 FCFA</p>
+                    <form [formGroup]="addressForm" (ngSubmit)="choosePaiement()" id="form3">
+                        <section class="line line1">
+                            <section  class="column">
+                                <label for="">State</label>
+                                <select name="" id="" formControlName="state" required>
+                                    <option value="" disabled selected>Select state</option>
+                                    <option value="cameroun">Camerounais (e)</option>
+                                    <option value="france">Francais (e)</option>
+                                    <option value="canadien">Canadien (e)</option>
+                                </select>
+                            </section>
+                            <section class="margeGauche column">
+                                <label for="">Region</label>
+                          
+                                <select name="" id="" formControlName="region" required>
+                                    <option value="" disabled selected>Select region</option>
+                                    <option value="Littoral">Littoral (e)</option>
+                                    <option value="Centre">Centre (e)</option>
+                                    <option value="Extreme-Nord">Extreme-Nord</option>
+                                </select>
+                            </section>
+                        </section>
+                        <section class="column">
+                            <label for="">Address</label>
+                            <textarea name="" id="" rows="3" formControlName="address" [(ngModel)]="user.address" placeholder="Street name / Building / Appartment No. / Floor"></textarea>
+                        </section>
+    
+                        <section class="end">
+                            <button type="submit" [disabled]="addressForm.invalid">Proceed to next step</button>
+                        </section>
+                    </form>
+                </section>
+            </section>
+        </section>
+
+        <section *ngIf="step > 2" class="margeHaut">
+            <section class="flex contact">
+                <img src="../../../assets/icons/round-check_circle.png" alt="" srcset="" width="24" height="24">
+                <h1 class="passContact">2. Address and delivery</h1>
+            </section>
+            <section class="flex">
+                <span class="text">
+                    {{user.address}}, {{user.region}}, {{user.state}}
+                </span>
+                <span class="margeGauche centerVertical subtitle" (click)="backStep()">
+                    Edit info
+                </span>
+            </section>
+        </section>
+
+        <form  id="form4"  [formGroup]="paiementForm"  (ngSubmit)="buy()"  *ngIf="step >2">
+            <h1 class="">3. Payment</h1>
+
+            <section class="flex">
+                <input type="radio" name="paiement" id="" width="24" height="24" formControlName="paiement" value="cash">
+                <section class="margeGauche flex demiMargeHaut">
+                    <img src="../../../assets/icons/GroupPaie.png" alt="" srcset="" width="32" height="32">
+                    <section class="margeGauche column">
+                        <h3>Cash on delivery</h3>
+                        <span class="text">Pay cash on delivery</span>
+
+                        <ul *ngIf="paiementForm.value.paiement === 'cash'">
+                            <li class="text">In cash, be sure to have the exact amount. Our delivery agents are not provided with change.</li>
+                            <li class="text">By transferring through MTN Mobile Money from the exact amount of the order to the phone number indicated by the agent during delivery.</li>
+                        </ul>
+                    </section>
+                </section>
+            </section>
+    
+            <section class="flex">
+                <input type="radio" name="paiement" id="" width="24" height="24" formControlName="paiement" value="mtn">
+                <section class="margeGauche flex demiMargeHaut">
+                    <img src="../../../assets/icons/GroupPai1.png" alt="" srcset="" width="32" height="32">
+                    <section class="margeGauche column">
+                        <h3>MTM Mobile Money</h3>
+                    </section>
+                </section>
+            </section>
+
+            <section class="end">
+                <button type="submit" [disabled]="paiementForm.invalid">Confirm Order</button>
+            </section>
+        </form>
+    </section>
+    
+    <section class="card_summary">
+        <section class="line">
+            <h3 class="title">Order summary</h3>
+            <h3 class="subtitle">Edit order</h3>
+        </section>
+
+        <section class="line produit">
+            <section class="image margeDroite centerVertical">
+                <img src="../../../assets/images/iphone.png" alt="" srcset="" width="">
+            </section>
+            <section class="column centerVertical">
+                <h3 class="text">Apple iPhone 6 64GB HDD - 12 Months + Cover + Screen Protector Offered</h3>
+                <section class="line">
+                    <h3 class="title1">1 pcs</h3>
+                    <h3 class="subtitle1">159,900  FCFA</h3>
+                </section>
+            </section>
+        </section>
+
+        <section class="line produit">
+            <section class="image margeDroite centerVertical">
+                <img src="../../../assets/images/iphone.png" alt="" srcset="" width="">
+            </section>
+            <section class="column centerVertical">
+                <h3 class="text">Apple iPhone 6 128GB HDD - 12 Months + Cover + Screen Protector Offered</h3>
+                <section class="line">
+                    <h3 class="title1">1 pcs</h3>
+                    <h3 class="subtitle1">199,900  FCFA</h3>
+                </section>
+            </section>
+        </section>
+
+        <section class="line margeBas">
+            <h3 class="title">Total</h3>
+            <h3 class="prix">359,800 FCFA</h3>
+        </section>
+    </section>
+    
+</section>
