@@ -26,6 +26,10 @@ export class ProductService {
     return this.http.get<Products>(this.url + id);
   }
 
+  findByMarque(marque): Observable<Products[]> {
+    return this.http.get<Products[]>(this.url + 'findByMarque/' + marque);
+  }
+
   create(p: Products): Observable<string> {
     return this.http.post<string>(this.url, p);
   }

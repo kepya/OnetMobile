@@ -33,7 +33,7 @@
                 margin-left: 5rem;
                 width: 82.5px;
                 height: 44px;
-                background: url("../../../../assets/logo/onetLogo.png");
+                background-image: url("../../../../assets/logo/onetLogo.png");
                 background-size: contain;
                 background-repeat: no-repeat;
             }
@@ -87,7 +87,7 @@
                             background-position: bottom;
                             width: 14px;
                             height: 14px;
-                            background: url("../../../../assets/icons/🇫🇷.png");
+                            background-image: url("../../../../assets/icons/🇫🇷.png");
                             background-size: contain;
                             background-repeat: no-repeat;
                         }
@@ -105,7 +105,7 @@
                             margin-top: .3rem;
                             width: 14px;
                             height: 14px;
-                            background: url("../../../../assets/logo/en.jpg");
+                            background-image: url("../../../../assets/logo/en.jpg");
                             background-size: contain;
                             background-repeat: no-repeat;
                         }
@@ -194,6 +194,7 @@
                         display: block;
                         align-items: center;
                         background: #FFFFFF;
+                        z-index: 3;
                         border: 1px solid #E9E9F0;
                         box-sizing: border-box;
                         box-shadow: 0px 1px 1px rgba(48, 48, 60, 0.08), 0px 2px 2px rgba(48, 48, 60, 0.12);
@@ -331,7 +332,7 @@
                                 section {
                                     width: 24px;
                                     height: 24px;
-                                    background: url("../../../../assets/icons/round-account_box-24px.png");
+                                    background-image: url("../../../../assets/icons/round-account_box-24px.png");
                                     background-size: contain;
                                     background-repeat: no-repeat;
                                 }
@@ -344,7 +345,7 @@
                                 section {
                                     width: 24px;
                                     height: 24px;
-                                    background: url("../../../../assets/icons/round-shopping_cart-24px.png");
+                                    background-image: url("../../../../assets/icons/round-shopping_cart-24px.png");
                                     background-size: contain;
                                     background-repeat: no-repeat;
                                 }
@@ -534,7 +535,7 @@
                         section {
                             width: 24px;
                             height: 24px;
-                            background: url("../../../../assets/icons/round-account_box-24px.png");
+                            background-image: url("../../../../assets/icons/round-account_box-24px.png");
                             background-size: contain;
                             background-repeat: no-repeat;
                         }
@@ -552,7 +553,7 @@
                         section {
                             width: 24px;
                             height: 24px;
-                            background: url("../../../../assets/icons/round-shopping_cart-24px.png");
+                            background-image: url("../../../../assets/icons/round-shopping_cart-24px.png");
                             background-size: contain;
                             background-repeat: no-repeat;
                         }

@@ -20,7 +20,7 @@
         .onetLogo {
             width: 82.5px;
             height: 44px;
-            background: url("../../../../assets/logo/onetLogo.png");
+            background-image: url("../../../../assets/logo/onetLogo.png");
             background-size: contain;
             background-repeat: no-repeat;
         }
@@ -55,7 +55,7 @@
             .phoneIcon {
                 width: 17.96px;
                 height: 17.96px;
-                background: url("../../../../assets/icons/call.png");
+                background-image: url("../../../../assets/icons/call.png");
                 background-size: contain;
                 background-repeat: no-repeat;
             }
@@ -85,7 +85,7 @@
             .securityIcon {
                 width: 24px;
                 height: 24px;
-                background: url("../../../../assets/icons/round-security-24px.png");
+                background-image: url("../../../../assets/icons/round-security-24px.png");
                 background-size: contain;
                 background-repeat: no-repeat;
             }
@@ -100,7 +100,7 @@
             .returnIcon {
                 width: 24px;
                 height: 24px;
-                background: url("../../../../assets/icons/round-refresh-24px.png");
+                background-image: url("../../../../assets/icons/round-refresh-24px.png");
                 background-size: contain;
                 background-repeat: no-repeat;
             }

@@ -23,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { UploadComponent } from './components/upload/upload.component';
 import {NgxImageCompressService} from "ngx-image-compress";
+import { ReviewComponent } from './components/review/review.component';
 
 
 const materialModules = [
@@ -46,6 +47,7 @@ const materialModules = [
     FooterComponent,
     HomeComponent,
     UploadComponent,
+    ReviewComponent,
     // ModalComponent
   ],
   imports: [

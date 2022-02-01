@@ -25,34 +25,39 @@ main {
         }
 
         .detail {
-            display: flex;
+            display: block;
             align-items: center;
 
             .detail-container {
                 display: flex;
-                align-items: center;
-                border: 1px solid black;
+                border: 1px solid rgb(199, 43, 43);
 
                 .exemplaire {
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
                     align-items: center;
-                    border: 1px solid black;
 
                     .image_produit {
                         width: 100%;
-                        height: 200px;
+                        height: 394px;
                         background-position: center;
                         background-size: contain;
                         background-repeat: no-repeat;
+                        border: 1px solid #DCDCE4;
+                        box-sizing: border-box;
                     }
 
                     .image_exemplaire {
+                        width: 100%;
+                        height: 84px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-around;
+
                         section {
-                            margin-left: 2rem;
-                            width: 100%;
-                            height: 434px;
+                            width: 84px;
+                            height: 100%;
                             background-position: center;
                             background-size: contain;
                             background-repeat: no-repeat;
@@ -61,6 +66,7 @@ main {
                 }
 
                 .information {
+                    margin-left: 3rem;
                     .fiche_technique {
                         border-bottom: 1px solid #38388f;
 
@@ -84,9 +90,8 @@ main {
 
                         .starsWithReview {
                             display: flex;
-                            justify-content: space-between;
                             align-items: center;
-                            margin-top: .5rem;
+                            margin-top: 1rem;
                             margin-bottom: 1rem;
 
                             .stars {
@@ -113,11 +118,37 @@ main {
                             }
 
                             .review {
+                                display: flex;
+                                align-items: center;
                                 margin-left: .8rem;
+
+                                .redColor {
+                                    color: #ED1C24;
+                                }
                                 span {
+                                    font-style: normal;
+                                    font-weight: normal;
+                                    font-size: 16px;
+                                    line-height: 24px;
+                                    color: #30303C;
+                                    margin: 0px;
+                                }
+                                .nbreStars {
+                                    margin: 0px;
                                     font-size: 12px;
                                     line-height: 16px;
                                     color: #30303C;
+                                    font-size: 16px;
+                                    line-height: 24px;
+                                }
+                                .leaveReview {
+                                    margin-left: 2rem;
+                                    font-size: 16px;
+                                    line-height: 24px;
+                                    border-bottom: 2px solid #DCDCE4;
+                                }
+                                .leaveReview:hover {
+                                    cursor: pointer;
                                 }
                             }
                         }
@@ -130,5 +161,75 @@ main {
     .footer {
         width: 100%;
         margin-top: 6em;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    main {
+        .content {
+
+            .route {
+                .route_d {
+                }
+            }
+
+            .detail {
+            
+                .detail-container {
+                    
+                    .exemplaire {
+
+                        .image_produit {
+
+                        }
+
+                        .image_exemplaire {
+
+                            section {
+
+                            }
+                        }
+                    }
+
+                    .information {
+                        margin-left: 0px;
+                        .fiche_technique {
+
+                            h1 {
+            
+                            }
+
+                            span {
+                       
+                            }
+
+                            .starsWithReview {
+
+                                .stars {
+
+                                    .ligth {
+                                      
+                                    }
+                                    .dark {
+
+                                    }
+                                }
+
+                                .review {
+                                    span {
+    
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .footer {
+            width: 100%;
+            margin-top: 6em;
+        }
     }
 }

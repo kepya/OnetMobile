@@ -5,6 +5,7 @@ import { HomeComponent } from './components/home/home.component';
 import { MainComponent } from './components/main/main.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { ProductComponent } from './components/product/product.component';
+import { ReviewComponent } from './components/review/review.component';
 import { SearchComponent } from './components/search/search.component';
 import { UploadComponent } from './components/upload/upload.component';
 import { FooterComponent } from './shares/footer/footer.component';
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'dashboard', component: HomeComponent } ,
   { path: 'product', component: ProductComponent } ,
   { path: 'modal', component: ModalComponent } ,
+  { path: 'review', component: ReviewComponent } ,
   { path: 'search', component: SearchComponent }  ,
   { path: 'checkout', component: CheckoutComponent } ,
   { path: 'header', component: HeaderComponent } ,

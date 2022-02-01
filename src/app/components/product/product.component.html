@@ -7,35 +7,38 @@
         <span class="route">
             Home > Smartphomes > iPhones > <strong class="route_d">{{product.marque}} {{product.nom}} {{communService.parseTextWithLength(product.description, 12)}}</strong>
         </span>
-    </section>
 
-    <section class="detail">
-        <section class="detail-container col-12">
-            <section class="exemplaire col-5">
-                <section class="image_produit" [ngStyle]="{'background-image': 'url(' + product.image + ')'}">
-
-                </section>
-                <section class="image_exemplaire">
-                    <section *ngFor="let p of products" [ngStyle]="{'background-image': 'url(' + p.image + ')'}"></section>
-                </section>
-            </section>
-    
-            <section class="information col-7">
-                <section class="fiche_technique">
-                    <h1>{{product.nom}} {{product.description}}</h1>
-                    <span>By {{product.marque}}</span>
-                    <section class="starsWithReview">
-                        <section class="stars">
-                            <section class="ligth" *ngFor="let s of getStartLigth(product.nombreEtoile)" [ngStyle]="{'background-image': 'url(' + startLigthImg + ')'}"></section>
-                            <section class="dark" *ngFor="let s of getStartDark(product.nombreEtoile)" [ngStyle]="{'background-image': 'url(' + startDartImg + ')'}">22</section>
-                        </section>
-                        <section class="review">
-                            <span>{{product.nombreEtoile}}.0 ({{nombreReview}} reviews)</span>
-                        </section>
+        <section class="detail">
+            <section class="detail-container col-12">
+                <section class="exemplaire col-5">
+                    <section class="image_produit" [ngStyle]="{'background-image': 'url(' + product.image + ')'}">
+                    </section>
+                    <section class="image_exemplaire">
+                        <section *ngFor="let p of products" [ngStyle]="{'background-image': 'url(' + p.image + ')'}"></section>
                     </section>
                 </section>
-                <section class="prixWithReview">
+        
+                <section class="information col-7">
+                    <section class="fiche_technique">
+                        <h1>{{product.nom}} {{product.description}}</h1>
+                        <span>By {{product.marque}}</span>
+                        <section class="starsWithReview">
+                            <section class="stars">
+                                <section class="ligth" *ngFor="let s of getStartLigth(product.nombreEtoile)" [ngStyle]="{'background-image': 'url(' + startLigthImg + ')'}"></section>
+                                <section class="dark" *ngFor="let s of getStartDark(product.nombreEtoile)" [ngStyle]="{'background-image': 'url(' + startDartImg + ')'}"></section>
+                            </section>
+                            <section class="review">
+                                <span class="nbreStars">{{product.nombreEtoile}}.0 (<span class="redColor">{{nombreReview}} reviews</span>)</span>
+                                <span class="redColor leaveReview" routerLink="/review">Leave a review</span>
+                            </section>
+                        </section>
+                        <section class="feature">
 
+                        </section>
+                    </section>
+                    <section class="prixWithReview">
+    
+                    </section>
                 </section>
             </section>
         </section>

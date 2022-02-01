@@ -73,6 +73,7 @@ export class ProductComponent implements OnInit {
       (data) => {
         if (data != null && data.length > 0) {
           this.products = data;
+          console.log('products', data);
         }
       },
       (error) => {
@@ -87,16 +88,29 @@ export class ProductComponent implements OnInit {
 
   getProduct(id) {
     this.productService.find(id).subscribe(
-      (data) => {
+      async (data) => {
         if (data) {
           console.log('product', data);
           this.product = data;
-          let result = this.products.filter(x => x.marque == data.marque);
-          this.products = result;
+          this.getProducts(data.marque);
         }
       }, (error) => {
         console.log('Erreur', error);
         alert('Echec de la Modification\nErreur: ' + error.message);
+      }
+    );
+  }
+
+  getProducts(marque: String) {
+    this.productService.findByMarque(marque).subscribe(
+      (data) => {
+        if (data != null && data.length > 0) {
+          this.products = data;
+          console.log('products', data);
+        }
+      },
+      (error) => {
+        console.log('Error', error);
       }
     );
   }
