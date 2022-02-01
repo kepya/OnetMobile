@@ -28,7 +28,7 @@
                                 <section class="dark" *ngFor="let s of getStartDark(product.nombreEtoile)" [ngStyle]="{'background-image': 'url(' + startDartImg + ')'}"></section>
                             </section>
                             <section class="review">
-                                <span class="nbreStars">{{product.nombreEtoile}}.0 (<span class="redColor">{{nombreReview}} reviews</span>)</span>
+                                <span class="nbreStars">{{product.nombreEtoile}}.0 (<span class="redColor">{{review.get(product._id)}} reviews</span>)</span>
                                 <span class="redColor leaveReview" routerLink="/review">Leave a review</span>
                             </section>
                         </section>
@@ -111,6 +111,47 @@
                 The iSight camera in Apple iPhone 6 64GB HDD Smartphone features an Apple-designed video encoder and image signal processor built into the A8 chip. They support advanced camera and video features, like new Focus Pixels, better face detection, continuous autofocus, and enhanced noise reduction, so it’s easier to shoot higher-quality photos and videos. The perfect phone for a perfect picture.
             </p>
             <section class="image"></section>
+        </section>
+
+        <section class="similarProducts">
+            <h1 class="title">Similar products</h1>
+            <section class="list_products">
+                <section class="item col-3" *ngFor="let p of products">
+                    <section class="product">
+                        <section class="image">
+                            <section [ngStyle]="{'background-image': 'url(' + p.image + ')'}"></section>
+                        </section>
+                        <section class="detail">
+                            <p class="marque">{{p.marque}}</p>
+                            <p class="description" id="description">{{p.nom}} {{communService.parseText(p.description)}}</p>
+                            <section class="prix_vente col-12">
+                                <section class="prix">
+                                    <p class="prix_reduis">{{p.prixReduis | number: ''}} FCFA</p>
+                                    <p class="prix_normal">{{p.prixNormal | number: ''}} FCFA</p>
+                                </section>
+                                <section class="reduction">
+                                    <button class="tauxReduction">{{p.tauxReduction}} %</button>
+                                </section>
+                            </section>
+                            <section class="hide">
+                                <section class="starsWithReview">
+                                    <section class="stars">
+                                        <section class="ligth" *ngFor="let s of getStartLigth(p.nombreEtoile)" [ngStyle]="{'background-image': 'url(' + startLigthImg + ')'}"></section>
+                                        <section class="dark" *ngFor="let s of getStartDark(5 - p.nombreEtoile)" [ngStyle]="{'background-image': 'url(' + startDartImg + ')'}"></section>
+                                    </section>
+                                    <section class="review">
+                                        <span>{{p.nombreEtoile}}.0 ({{review.get(p._id)}} reviews)</span>
+                                    </section>
+                                </section>
+                                <section class="btn_group">
+                                    <button class="btnBuy">Buy Now</button>
+                                    <button class="btnknow" routerLink="/product/p._id">Know Now</button>
+                                </section>
+                            </section>
+                        </section>
+                    </section>
+                </section>
+            </section>
         </section>
     </section>
 

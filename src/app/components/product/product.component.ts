@@ -18,7 +18,7 @@ export class ProductComponent implements OnInit {
   product = new Products();
   startLigthImg: string = '../../../assets/icons/VectorYellow.png';
   startDartImg: string = '../../../assets/icons/Vector.png';
-  nombreReview = 1;
+  review = new Map<string, number>();
   startLigth: any[] = [];
   startDart: any[] = [];
   features: any[] = [];
@@ -77,6 +77,7 @@ export class ProductComponent implements OnInit {
 
   select(p: Products) {
     this.product = p;
+    this.getReview(p._id);
     let split = p.fonction.split("\n");
     this.features = split;
   }
@@ -85,11 +86,15 @@ export class ProductComponent implements OnInit {
     this.reviewService.findByProduct(idProduct).subscribe(
       (data) => {
         if (data != null && data.length > 0) {
-          this.nombreReview = data.length;
+          this.review.set(idProduct, data.length);
+          console.log('review', this.review);
+          
         }
       },
       (error) => {
-        this.nombreReview = 0;
+        this.review.set(idProduct, 0);
+        console.log('review', this.review);
+
         console.log('Error', error);
       }
     );
@@ -129,6 +134,11 @@ export class ProductComponent implements OnInit {
       (data) => {
         if (data != null && data.length > 0) {
           this.products = data;
+          data.forEach(
+            (p) => {
+              this.getReview(p._id);
+            }
+          );
           console.log('products', data);
         }
       },
@@ -161,6 +171,11 @@ export class ProductComponent implements OnInit {
     this.productService.findByMarque(marque).subscribe(
       (data) => {
         if (data != null && data.length > 0) {
+          data.forEach(
+            (p) => {
+              this.getReview(p._id);
+            }
+          );
           this.products = data;
           console.log('products', data);
         }

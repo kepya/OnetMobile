@@ -87,8 +87,8 @@
                         <p class="description" id="description">{{p.nom}} {{communService.parseText(p.description)}}</p>
                         <section class="prix_vente col-12">
                             <section class="prix">
-                                <p class="prix_reduis">{{p.prixReduis}} FCFA</p>
-                                <p class="prix_normal">{{p.prixNormal}} FCFA</p>
+                                <p class="prix_reduis">{{p.prixReduis | number: ''}} FCFA</p>
+                                <p class="prix_normal">{{p.prixNormal | number: ''}} FCFA</p>
                             </section>
                             <section class="reduction">
                                 <button class="tauxReduction">{{p.tauxReduction}} %</button>
@@ -134,8 +134,8 @@
                         <p class="description" id="description">{{p.nom}} {{communService.parseText(p.description)}}</p>
                         <section class="prix_vente col-12">
                             <section class="prix">
-                                <p class="prix_reduis">{{p.prixReduis}} FCFA</p>
-                                <p class="prix_normal">{{p.prixNormal}} FCFA</p>
+                                <p class="prix_reduis">{{p.prixReduis  | number: ''}} FCFA</p>
+                                <p class="prix_normal">{{p.prixNormal  | number: ''}} FCFA</p>
                             </section>
                             <section class="reduction">
                                 <button class="tauxReduction">{{p.tauxReduction}} %</button>
@@ -191,8 +191,8 @@
                         <p class="description" id="description">{{p.nom}} {{communService.parseText(p.description)}}</p>
                         <section class="prix_vente col-12">
                             <section class="prix">
-                                <p class="prix_reduis">{{p.prixReduis}} FCFA</p>
-                                <p class="prix_normal">{{p.prixNormal}} FCFA</p>
+                                <p class="prix_reduis">{{p.prixReduis | number: ''}} FCFA</p>
+                                <p class="prix_normal">{{p.prixNormal | number: ''}} FCFA</p>
                             </section>
                             <section class="reduction">
                                 <button class="tauxReduction">{{p.tauxReduction}} %</button>
