@@ -123,4 +123,8 @@ export class HomeComponent implements OnInit {
       }
     );
   }
+
+  searchByPercent(event) {
+    alert('val: ' + event);
+  }
 }
