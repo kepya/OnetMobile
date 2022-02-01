@@ -3,7 +3,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Products } from 'src/app/models/products';
 import { CommunService } from 'src/app/shares/services/commun.service';
+import { LikeService } from 'src/app/shares/services/like.service';
 import { ProductService } from 'src/app/shares/services/product.service';
+import { ReviewService } from 'src/app/shares/services/review.service';
 
 @Component({
   selector: 'app-product',
@@ -19,8 +21,11 @@ export class ProductComponent implements OnInit {
   nombreReview = 1;
   startLigth: any[] = [];
   startDart: any[] = [];
+  features: any[] = [];
+  titre: string = 'description';
 
-  constructor(private productService: ProductService, private route: ActivatedRoute, public communService: CommunService) { }
+  constructor(private productService: ProductService, private route: ActivatedRoute, public communService: CommunService,
+    private reviewService: ReviewService, private likeService: LikeService) { }
 
   ngOnInit(): void {
     if (this.route.snapshot.params['id']) {
@@ -28,6 +33,30 @@ export class ProductComponent implements OnInit {
     } else {
       this.all();
     }
+  }
+
+  show(t) {
+    this.titre = t;
+  }
+
+  like(p: Products) {
+    let like = {
+      idProduct: p._id,
+      view: 0
+    }
+
+    this.likeService.add(like).subscribe(
+      (data) => {
+        if (data instanceof Error) {
+          alert(JSON.stringify(data));
+        } else {
+          alert(data.message)
+        }
+      },
+      (error) => {
+        console.log('Error', error);
+      }
+    );
   }
 
   showModal: boolean = false;
@@ -42,6 +71,33 @@ export class ProductComponent implements OnInit {
     console.log('Event: ' + event);
   }
 
+  buy(product) {
+    this.showModal = !this.showModal;
+  }
+
+  select(p: Products) {
+    this.product = p;
+    let split = p.fonction.split("\n");
+    this.features = split;
+  }
+
+  getReview(idProduct) {
+    this.reviewService.findByProduct(idProduct).subscribe(
+      (data) => {
+        if (data != null && data.length > 0) {
+          this.nombreReview = data.length;
+        }
+      },
+      (error) => {
+        this.nombreReview = 0;
+        console.log('Error', error);
+      }
+    );
+  }
+
+  getFeatures(feature) {
+    feature.split("\n");
+  }
   
   getStartLigth(nbre: number) {
     if (this.startLigth != null && this.startLigth != undefined && this.startLigth.length > 0) {
@@ -91,7 +147,7 @@ export class ProductComponent implements OnInit {
       async (data) => {
         if (data) {
           console.log('product', data);
-          this.product = data;
+          this.select(data);
           this.getProducts(data.marque);
         }
       }, (error) => {

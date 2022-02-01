@@ -101,7 +101,7 @@
                                     <section class="dark" *ngFor="let s of getStartDark(5 - p.nombreEtoile)" [ngStyle]="{'background-image': 'url(' + startDartImg + ')'}"></section>
                                 </section>
                                 <section class="review">
-                                    <span>{{p.nombreEtoile}}.0 ({{nombreReview}} reviews)</span>
+                                    <span>{{p.nombreEtoile}}.0 ({{review.get(p._id)}} reviews)</span>
                                 </section>
                             </section>
                             <section class="btn_group">
@@ -148,7 +148,7 @@
                                     <section class="dark" *ngFor="let s of getStartDark(5 - p.nombreEtoile)" [ngStyle]="{'background-image': 'url(' + startDartImg + ')'}"></section>
                                 </section>
                                 <section class="review">
-                                    <span>{{p.nombreEtoile}}.0 ({{nombreReview}} reviews)</span>
+                                    <span>{{p.nombreEtoile}}.0 ({{review.get(p._id)}} reviews)</span>
                                 </section>
                             </section>
                             <section class="btn_group">
@@ -205,7 +205,7 @@
                                     <section class="dark" *ngFor="let s of getStartDark(5 - p.nombreEtoile)" [ngStyle]="{'background-image': 'url(' + startDartImg + ')'}"></section>
                                 </section>
                                 <section class="review">
-                                    <span>{{p.nombreEtoile}}.0 ({{nombreReview}} reviews)</span>
+                                    <span>{{p.nombreEtoile}}.0 ({{review.get(p._id)}} reviews)</span>
                                 </section>
                             </section>
                             <section class="btn_group">

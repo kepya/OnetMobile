@@ -437,12 +437,6 @@
 
         .item:hover {
             background-color: rgb(150, 160, 130);
-            /* Le bloque est grossie de 25% */
-            // -webkit-transform:scale(1.25); /* Safari et Chrome */
-            // -moz-transform:scale(1.25); /* Firefox */
-            // -ms-transform:scale(1.25); /* Internet Explorer 9 */
-            // -o-transform:scale(1.25); /* Opera */
-            // transform:scale(1.25);
             transition-property: width, height, background-color;
             transition-duration: 2s;
             transition-delay: .5s;

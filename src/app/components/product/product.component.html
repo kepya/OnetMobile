@@ -14,7 +14,7 @@
                     <section class="image_produit" [ngStyle]="{'background-image': 'url(' + product.image + ')'}">
                     </section>
                     <section class="image_exemplaire">
-                        <section *ngFor="let p of products" [ngStyle]="{'background-image': 'url(' + p.image + ')'}"></section>
+                        <section *ngFor="let p of products" (click)="select(p)" [ngStyle]="{'background-image': 'url(' + p.image + ')'}"></section>
                     </section>
                 </section>
         
@@ -33,14 +33,84 @@
                             </section>
                         </section>
                         <section class="feature">
-
+                            <h1>Key Features</h1>
+                            <ul class="list_feature">
+                                <li class="item" *ngFor="let f of features">
+                                    {{f}}
+                                </li>
+                            </ul>
                         </section>
                     </section>
-                    <section class="prixWithReview">
-    
+                    <section class="prixWithReview col-12">
+                        <section class="prixReview col-6">
+                            <section class="block_item">
+                                <section class="prixReduisWithPercent">
+                                    <section class="prixReduis">
+                                        <span>{{product.prixReduis | number: ''}} FCFA</span>
+                                    </section>
+                                    <section class="percent">
+                                        <button>{{product.tauxReduction}} %</button>
+                                    </section>
+                                </section>
+                                <section class="prixNormal">
+                                    {{product.prixNormal | number: ''}} FCFA
+                                </section>
+                            </section>
+                        </section>
+                        <section class="favoris col-6">
+                            <section class="like" (click)="like(product)">
+                                <section class="coeur"></section>
+                                <span>
+                                    Save for later
+                                </span>
+                            </section>
+
+                            <button (click)="buy(product)">
+                                Buy now
+                            </button>
+                        </section>
                     </section>
                 </section>
             </section>
+        </section>
+
+        <section class="nav col-12">
+            <section class="nav-link" (click)="show('description')" [style.color]="titre === 'description' ? '#ED1C24' : '#30303C'" [style.border-bottom]="titre === 'description' ? '2px solid #ED1C24' : 'none'">
+                <h4>Description</h4>
+            </section>
+            <section class="nav-link" (click)="show('Reviews')" [style.color]="titre === 'Reviews' ? '#ED1C24' : '#30303C'" [style.border-bottom]="titre === 'Reviews' ? '2px solid #ED1C24' : 'none'">
+                <h4>Reviews</h4>
+            </section>
+            <section class="nav-link" (click)="show('Specifications')" [style.color]="titre === 'Specifications' ? '#ED1C24' : '#30303C'" [style.border-bottom]="titre === 'Specifications' ? '2px solid #ED1C24' : 'none'">
+                <h4>Specifications</h4>
+            </section>
+            <section class="nav-link" (click)="show('Return policies')" [style.color]="titre === 'Return policies' ? '#ED1C24' : '#30303C'" [style.border-bottom]="titre === 'Return policies' ? '2px solid #ED1C24' : 'none'">
+                <h4>Return policies</h4>
+            </section>
+        </section>
+
+        <section class="high">
+            <h1 class="title">High Performance A8 Chip</h1>
+            <p class="content">
+                The all-new A8 chip in Apple iPhone 6 64GB HDD Smartphone is designed to be power efficient and the fastest yet. The A8 chip can sustain higher performances so you can play graphics-intensive games or enjoy video at higher frame rates for longer than ever while powering a larger display and incredible new features.
+            </p>
+            <section class="image"></section>
+        </section>
+
+        <section class="touchId">
+            <h1 class="title">Touch ID</h1>
+            <p class="content">
+                Touch the Apple iPhone 6 64GB HDD Smartphone and watch as the surrounding stainless steel ring detects your finger and wakes the capacitive touch sensor.The software then reads the ridges of your fingerprint and finds the match to unlock your phone.
+            </p>
+            <section class="image"></section>
+        </section>
+
+        <section class="iSight">
+            <h1 class="title">iSight camera</h1>
+            <p class="content">
+                The iSight camera in Apple iPhone 6 64GB HDD Smartphone features an Apple-designed video encoder and image signal processor built into the A8 chip. They support advanced camera and video features, like new Focus Pixels, better face detection, continuous autofocus, and enhanced noise reduction, so it’s easier to shoot higher-quality photos and videos. The perfect phone for a perfect picture.
+            </p>
+            <section class="image"></section>
         </section>
     </section>
 

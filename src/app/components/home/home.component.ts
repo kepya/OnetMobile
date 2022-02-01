@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Products } from 'src/app/models/products';
 import { CommunService } from 'src/app/shares/services/commun.service';
 import { ProductService } from 'src/app/shares/services/product.service';
+import { ReviewService } from 'src/app/shares/services/review.service';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,8 @@ import { ProductService } from 'src/app/shares/services/product.service';
 export class HomeComponent implements OnInit {
 
   elementSelectionner: number = 1;
-  nombreReview: number = 36;
+  // nombreReview: number = 0;
+  review = new Map<string, number>();
   listElement: any[] = [];
   imageBackground:string = '../../../assets/images/main.png';
   startLigthImg: string = '../../../assets/icons/VectorYellow.png';
@@ -21,7 +23,7 @@ export class HomeComponent implements OnInit {
   startLigth: any[] = [];
   startDart: any[] = [];
 
-  constructor(private productService: ProductService, public communService: CommunService) { }
+  constructor(private productService: ProductService, public communService: CommunService, private reviewService: ReviewService) { }
 
   ngOnInit(): void {
     this.all();
@@ -106,10 +108,28 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  
+  getReview(idProduct) {
+    this.reviewService.findByProduct(idProduct).subscribe(
+      (data) => {
+        if (data != null && data.length > 0) {
+          this.review.set(idProduct, data.length);
+        }
+      },
+      (error) => {
+        this.review.set(idProduct, 0);
+        console.log('Error', error);
+      }
+    );
+  }
+
   all() {
     this.productService.all().subscribe(
       (data) => {
         if (data != null && data.length > 0) {
+          data.forEach((p) => {
+            this.getReview(p._id);
+          })
           this.products = data;
         }
       },
