@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Commande } from 'src/app/models/commande';
 import { Products } from 'src/app/models/products';
 import { CommunService } from 'src/app/shares/services/commun.service';
 import { LikeService } from 'src/app/shares/services/like.service';
@@ -26,9 +27,10 @@ export class ProductComponent implements OnInit {
   titre: string = 'description';
   quantite: number = 1;
   totaPrice: number = 0;
+  showCart: boolean = false;
 
   constructor(private productService: ProductService, private route: ActivatedRoute, public communService: CommunService,
-    private reviewService: ReviewService, private likeService: LikeService) { }
+    private reviewService: ReviewService, private likeService: LikeService, private router: Router) { }
 
   ngOnInit(): void {
     if (this.route.snapshot.params['id']) {
@@ -62,6 +64,25 @@ export class ProductComponent implements OnInit {
     );
   }
 
+  annuler() {
+    this.totaPrice =0;
+    this.productForBuy = [];
+    this.quantite = 0;
+    this.showCart = !this.showCart;
+  }
+
+  payCommande() {
+    let commande = new Commande();
+    commande.quantite = this.quantite;
+    commande.idProduct = this.productForBuy[0]._id;
+    commande.prix = this.totaPrice;
+    commande.dateCommande = new Date();
+
+    localStorage.setItem('commande', JSON.stringify(commande));
+    this.annuler();
+    this.router.navigate(['/checkout']);
+  }
+
   showModal: boolean = false;
 
   getEvent(event) {
@@ -75,7 +96,7 @@ export class ProductComponent implements OnInit {
   }
 
   buy(product) {
-    this.showModal = !this.showModal;
+    this.showCart = !this.showCart;
     this.productForBuy.push(this.product);
     this.totaPrice+=this.product.prixReduis;
   }

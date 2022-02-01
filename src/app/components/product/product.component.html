@@ -1,7 +1,7 @@
 <header>
     <app-header (modalSearch)="getEvent($event)"></app-header>
-    <!-- *ngIf="showModal" -->
-    <section class="modal" >
+
+    <section class="modal" *ngIf="showCart" >
         <section class="header">
             <h1>Your Cart</h1>
             <span aria-hidden="true" class="close">&times;</span>
@@ -114,7 +114,7 @@
                                 </span>
                             </section>
 
-                            <button (click)="buy(product)">
+                            <button (click)="buy(product)" [disabled]="showCart">
                                 Buy now
                             </button>
                         </section>
