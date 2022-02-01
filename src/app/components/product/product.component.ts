@@ -113,8 +113,6 @@ export class ProductComponent implements OnInit {
 
   select(p: Products) {
     this.product = p;
-    this.productForBuy.push(this.product);
-
     this.getReview(p._id);
     let split = p.fonction.split("\n");
     this.features = split;

@@ -41,7 +41,7 @@
         <section class="footer">
             <section>
                 <span>Total: </span>
-                <span>{{totaPrice | number: ''}}</span>
+                <span>{{totaPrice | number: ''}} FCFA</span>
             </section>
             <section>
                 <button class="continueShoppin" (click)="annuler()">Continue Shopping</button>
@@ -51,7 +51,7 @@
     </section>
 </header>
 
-<main [style.background-color]="showModal ? '#30303C' : 'white'" [style.opacity]="showModal ? 0.3 : 1" [style.z-index]="showModal ? -1 : 1">
+<main [style.background-color]="showModal || showCart ? '#30303C' : 'white'" [style.opacity]="showModal || showCart ? 0.3 : 1" [style.z-index]="showModal ? -1 : 1">
     <section class="content">
         <span class="route">
             Home > Smartphomes > iPhones > <strong class="route_d">{{product.marque}} {{product.nom}} {{communService.parseTextWithLength(product.description, 12)}}</strong>
