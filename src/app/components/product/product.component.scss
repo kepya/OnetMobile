@@ -1,5 +1,202 @@
 @import url('../../app.component.scss');
 
+header {
+    .modal {
+        background: #FFFFFF;
+        border: 1px solid #E9E9F0;
+        box-sizing: border-box;
+        box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.25), 0px 1px 1px rgba(48, 48, 60, 0.08);
+        border-radius: 3px;
+        width: 90%;
+        z-index: 4;
+        position: absolute;
+        top: 35%;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+
+        .header {
+            display: flex;
+            margin: 1rem;
+            justify-content: space-between;
+            align-items: center;
+
+            h1 {
+                font-weight: bold;
+                font-size: 24px;
+                line-height: 36px;
+            }
+            span{
+                font-size: 20px;
+                line-height: 24px;
+                margin: 0px;
+                color: #A0A0B0;
+            }
+        }
+
+        .body {
+            width: 100%;
+            margin-bottom: 1rem;
+            margin-top: 1rem;
+            .body-item {
+                display: flex;
+                justify-content: space-between;
+                border-bottom: 1px solid #DCDCE4;
+            .detail {
+                display: flex;
+                align-items: center;
+                    .phoneImage {
+                        height: 104px;
+                        width: 104px;
+                        background-position: center;
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                    }
+
+                    .phoneDetail {
+                        p {
+                            font-weight: bold;
+                            font-size: 18px;
+                            line-height: 24px;
+                        }
+                        .prix {
+                            span:first-child{
+                                font-size: 16px;
+                                line-height: 24px;
+                                text-decoration-line: line-through;
+                                color: #7A7A8D;
+                            }
+
+                            span:last-child{
+                                font-weight: bold;
+                                font-size: 16px;
+                                line-height: 24px;
+                                margin-left: 2rem;
+                            }
+                        }
+                        .remove {
+                            font-size: 16px;
+                            line-height: 24px;
+                            color: #ED1C24;
+                        }
+                    }
+            }
+
+            .buttons {
+                    box-sizing: border-box;
+                    border-radius: 3px;
+                    display: flex;
+                    justify-content: center;
+                    
+
+                    .add {
+                        height: 50px;
+                        width: 100px;
+                        background: #FFFFFF;
+                        border: 1px solid #BBBBCE;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-weight: bold;
+                        font-size: 16px;
+                        line-height: 24px;
+                    }
+                    .value {
+                        height: 50px;
+                        width: 100px;
+                        background: #FFFFFF;
+                        border: 1px solid #BBBBCE;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-weight: bold;
+                        font-size: 16px;
+                        line-height: 24px;
+                    }
+                    .reduce {
+                        height: 50px;
+                        width: 100px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-weight: bold;
+                        font-size: 16px;
+                        line-height: 24px;
+                        background: #FFFFFF;
+                        border: 1px solid #BBBBCE;
+                    }
+                }
+
+                .final_price {
+                    display: flex;
+                    justify-content: flex-end;
+                    font-weight: bold;
+                    font-size: 20px;
+                    line-height: 28px;
+                    text-align: right;
+                    color: #ED1C24;
+                    padding-right: 1rem;
+                }
+            }
+        }
+        .footer {
+            section:first-child{
+                margin-bottom: .5rem;
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+
+                span:first-child {
+                    font-weight: bold;
+                    font-size: 24px;
+                    line-height: 36px;
+                }
+                span:last-child{
+                    margin-left: 1rem;
+                    padding-right: 1rem;
+                    font-size: 24px;
+                    line-height: 36px;
+                    text-align: right;
+                    color: #ED1C24;
+                }
+            }
+            section:last-child{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding-left: 1rem;
+                padding-right: 1rem;
+                margin-bottom: 1rem;
+                margin-top: 1rem;
+                .continueShoppin {
+                    background: #F5F5FA;
+                    border: 1px solid #F5F5FA;
+                    border-radius: 3px;
+                    width: 211px;
+                    height: 56px;
+                    font-size: 18px;
+                    line-height: 28px;
+                    text-align: center;
+                    color: #5C5C73;
+                }
+                .buy {
+                    background: #ED1C24;
+                    border: 1px solid #ED1C24;
+                    border-radius: 3px;
+                    width: 138px;
+                    height: 56px;
+
+                    font-size: 18px;
+                    line-height: 28px;
+                    text-align: center;
+                    color: #FFFFFF;
+                }
+            }
+        }
+    }
+}
+
 main {
     .content {
         display: block;
@@ -590,8 +787,7 @@ main {
                 }
             }
         }
-    
-    
+        
     }
 
     .footer {

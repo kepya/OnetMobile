@@ -15,6 +15,7 @@ import { ReviewService } from 'src/app/shares/services/review.service';
 export class ProductComponent implements OnInit {
  
   products: Products[] = [];
+  productForBuy: Products[] = [];
   product = new Products();
   startLigthImg: string = '../../../assets/icons/VectorYellow.png';
   startDartImg: string = '../../../assets/icons/Vector.png';
@@ -23,6 +24,8 @@ export class ProductComponent implements OnInit {
   startDart: any[] = [];
   features: any[] = [];
   titre: string = 'description';
+  quantite: number = 1;
+  totaPrice: number = 0;
 
   constructor(private productService: ProductService, private route: ActivatedRoute, public communService: CommunService,
     private reviewService: ReviewService, private likeService: LikeService) { }
@@ -73,10 +76,24 @@ export class ProductComponent implements OnInit {
 
   buy(product) {
     this.showModal = !this.showModal;
+    this.productForBuy.push(this.product);
+    this.totaPrice+=this.product.prixReduis;
+  }
+
+  add(prix) {
+    this.quantite++;
+    this.totaPrice+=prix;
+  }
+
+  reduce(prix) {
+    this.quantite--;
+    this.totaPrice-=prix;
   }
 
   select(p: Products) {
     this.product = p;
+    this.productForBuy.push(this.product);
+
     this.getReview(p._id);
     let split = p.fonction.split("\n");
     this.features = split;
