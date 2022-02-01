@@ -17,26 +17,13 @@ export class HomeComponent implements OnInit {
   startLigthImg: string = '../../../assets/icons/VectorYellow.png';
   startDartImg: string = '../../../assets/icons/Vector.png';
   products: Products[] = [];
+  product_search: Products[] = [];
   startLigth: any[] = [];
   startDart: any[] = [];
 
   constructor(private productService: ProductService, public communService: CommunService) { }
 
   ngOnInit(): void {
-    // let p: Products = {
-    //   _id: '',
-    //   type: 'telephone',
-    //   nom: 'iPhone 6',
-    //   description: '64GB HDD - 12 Months + Cover + Screen...',
-    //   marque: 'Apple',
-    //   prixReduis: 159.900,
-    //   prixNormal: 159.900,
-    //   image: '../../../assets/images/iphone.png',
-    //   nombreEtoile: 3,
-    //   tauxReduction: 20,
-    //   fonction: ''
-    // }
-    // this.products.push(p);
     this.all();
 
     let e = [
@@ -99,7 +86,11 @@ export class HomeComponent implements OnInit {
     if (this.startLigth != null && this.startLigth != undefined && this.startLigth.length > 0) {
       return this.startLigth;
     } else {
-      return Array(nbre).fill(4); // [4,4,4,4,4]
+      if (nbre > 1) {
+        return Array(nbre).fill(4); // [4,4,4,4,4]
+      } else{
+        return [1];
+      }
     }
   }
 
@@ -107,7 +98,11 @@ export class HomeComponent implements OnInit {
     if (this.startLigth != null && this.startDart != undefined && this.startDart.length > 0) {
       return this.startDart;
     } else {
-      return Array(nbre).fill(4); // [4,4,4,4,4]
+      if (nbre > 1) {
+        return Array(nbre).fill(4); // [4,4,4,4,4]
+      } else{
+        return [1];
+      }
     }
   }
 
@@ -125,6 +120,9 @@ export class HomeComponent implements OnInit {
   }
 
   searchByPercent(event) {
-    alert('val: ' + event);
+    this.product_search = this.products;
+    let result = this.products.filter(x => x.tauxReduction === parseInt(event, 10));
+    this.products = result;
+    console.log('result', this.products);
   }
 }

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { HomeComponent } from './components/home/home.component';
 import { MainComponent } from './components/main/main.component';
+import { ModalComponent } from './components/modal/modal.component';
 import { ProductComponent } from './components/product/product.component';
 import { SearchComponent } from './components/search/search.component';
 import { UploadComponent } from './components/upload/upload.component';
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'main', component: MainComponent } ,
   { path: 'dashboard', component: HomeComponent } ,
   { path: 'product', component: ProductComponent } ,
+  { path: 'modal', component: ModalComponent } ,
   { path: 'search', component: SearchComponent }  ,
   { path: 'checkout', component: CheckoutComponent } ,
   { path: 'header', component: HeaderComponent } ,

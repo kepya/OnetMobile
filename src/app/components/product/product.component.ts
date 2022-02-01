@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
 import { Products } from 'src/app/models/products';
+import { CommunService } from 'src/app/shares/services/commun.service';
 import { ProductService } from 'src/app/shares/services/product.service';
 
 @Component({
@@ -11,30 +13,59 @@ import { ProductService } from 'src/app/shares/services/product.service';
 export class ProductComponent implements OnInit {
  
   products: Products[] = [];
+  product = new Products();
+  startLigthImg: string = '../../../assets/icons/VectorYellow.png';
+  startDartImg: string = '../../../assets/icons/Vector.png';
+  nombreReview = 1;
+  startLigth: any[] = [];
+  startDart: any[] = [];
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService, private route: ActivatedRoute, public communService: CommunService) { }
 
   ngOnInit(): void {
-    this.allProduct();
+    if (this.route.snapshot.params['id']) {
+      this.getProduct(this.route.snapshot.params['id']);
+    } else {
+      this.all();
+    }
   }
 
-  allProduct() {
-    // let p: Products = {
-    //   _id: '',
-    //   type: 'telephone',
-    //   nom: 'iPhone 6',
-    //   description: '64GB HDD - 12 Months + Cover + Screen...',
-    //   marque: 'Apple',
-    //   prix: 159.900,
-    //   image: '../../../assets/images/iphone.png',
-    //   nombreEtoile: 3,
-    //   tauxReduction: 20
-    // }
-    // this.add(p);
-    // this.add(p);
-    // this.add(p);
-    // this.add(p);
-    // this.add(p);
+  showModal: boolean = false;
+
+  getEvent(event) {
+    if (event != null && event != '') {
+      this.showModal = true;
+    } else {
+      this.showModal = false;
+    }
+
+    console.log('Event: ' + event);
+  }
+
+  
+  getStartLigth(nbre: number) {
+    if (this.startLigth != null && this.startLigth != undefined && this.startLigth.length > 0) {
+      return this.startLigth;
+    } else {
+      if (nbre > 1) {
+        return Array(nbre).fill(4); // [4,4,4,4,4]
+      } else{
+        return [1];
+      }
+    }
+  }
+
+  getStartDark(nbre: number) {
+    nbre = 5 - nbre;
+    if (this.startLigth != null && this.startDart != undefined && this.startDart.length > 0) {
+      return this.startDart;
+    } else {
+      if (nbre > 1) {
+        return Array(nbre).fill(4); // [4,4,4,4,4]
+      } else{
+        return [1];
+      }
+    }
   }
 
   all() {
@@ -52,5 +83,21 @@ export class ProductComponent implements OnInit {
 
   open() {
     document.getElementById('content').classList.toggle('show')
+  }
+
+  getProduct(id) {
+    this.productService.find(id).subscribe(
+      (data) => {
+        if (data) {
+          console.log('product', data);
+          this.product = data;
+          let result = this.products.filter(x => x.marque == data.marque);
+          this.products = result;
+        }
+      }, (error) => {
+        console.log('Erreur', error);
+        alert('Echec de la Modification\nErreur: ' + error.message);
+      }
+    );
   }
 }

@@ -20,4 +20,17 @@ export class CommunService {
         }
     }
 
+    parseTextWithLength(text: string, taille: number) {
+        // console.log('ok : ' + text.length);
+        let tailleText = text.length;
+        if (tailleText > taille) {
+            return text.substring(0, (taille-3)) + '...';
+        } else {
+            for (let index = tailleText; index < taille; index++) {
+               text = text + " \u00a0";//\u00a0 permet de mettre un espace
+            }
+            return text;
+        }
+    }
+
 }
