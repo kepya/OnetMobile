@@ -1,421 +1,430 @@
-// *{
-//     font-family: Sarabun;
-//     font-style: normal;
-//     font-weight: normal;
+
+main {
+    .content {
+        margin-left: 5rem;
+        margin-right: 5rem;
+    }
+}
+
+*{
+    font-family: Sarabun;
+    font-style: normal;
+    font-weight: normal;
+}
+
+.flex {
+    display: flex;
+    width: 100%;
+}
+
+.line {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+} 
+
+.margeGauche {
+    margin-left: 1rem;
+}
+
+.margeDroite {
+    margin-right: 1rem;
+}
+
+.margeHaut {
+    margin-top: 1rem;
+}
+
+.margeBas {
+    margin-bottom: 1rem;
+}
+
+.margeHautAuto {
+    margin-top: auto; 
+}
+
+.margeBasAuto {
+    margin-bottom: auto; 
+}
+
+.centerVertical {
+    margin-top: auto; 
+    margin-bottom: auto; 
+}
+
+.centerHorizontal {
+    margin-right: auto; 
+    margin-left: auto; 
+}
+
+.center {
+    margin-right: auto; 
+    margin-left: auto; 
+    margin-top: auto; 
+    margin-bottom: auto; 
+}
+
+//**************************css pour le resume de la commande
+.card_summary {
+    margin-top: 2rem;
+    width: 520px;
+    height: 219px;
+    background: #FFFFFF;
+    border: 1px solid #E9E9F0;
+    box-sizing: border-box;
+    box-shadow: 0px 1px 1px rgba(48, 48, 60, 0.08), 0px 2px 2px rgba(48, 48, 60, 0.12);
+    border-radius: 3px;
+    padding: 1rem;
+}
+
+.card_summary .title {
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 28px;
+    color: #30303C;
+}
+
+.subtitle  {
+    font-size: 16px;
+    line-height: 24px;
+    color: #ED1C24;
+    border-bottom: 2px solid #DCDCE4;
+}
+
+.image {
+    width: 72.56px;
+    height: 72px;
+}
+
+.image img {
+    width: 53.93px;
+    height: 65.08px;
+}
+
+.column .text {
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    color: #30303C;
+}
+
+.column .title1 {
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    color: #30303C;
+}
+
+.column .subtitle1  {
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    color: #ED1C24;
+}
+
+.card_summary hr {
+    width: 100%;
+}
+
+.produit {
+    border-bottom: 1px solid #DCDCE4;
+    margin-bottom: 1rem;
+}
+
+.prix {
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 28px;
+    color: #30303C;
+    color: #ED1C24;
+}
+
+//**************************css pour recuperer les in#form1ations des users
+h1 {
+    margin-top: 2rem;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 36px;
+    color: #30303C;
+}
+
+#form1 button:disabled, #form3 button:disabled, #form4 button:disabled {
+    width: 225px;
+    height: 56px;
+    background: #F4A5A8;
+    border-radius: 3px;
+    border: 1px solid #F4A5A8;
+
+    font-size: 18px;
+    line-height: 28px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+#form1 button, #form3 button , #form4 button {
+    width: 225px;
+    height: 56px;
+    background: #ED1C24;
+    border-radius: 3px;
+    border: 1px solid #ED1C24;
+
+    font-size: 18px;
+    line-height: 28px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.card_info {
+    width: 800px;
+}
+
+.text {
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: #30303C;
+}
+
+.card_info .content span {
+    padding: .3rem;
+    margin-bottom: 1.5rem;
+}
+
+.background_custo_remove {
+    background: #F5F5FA;
+    border-radius: 16px;
+    color: #5C5C73;
+    border: 1px solid #F5F5FA;
+}
+
+.background_custo {
+    color: #ED1C24;
+    background-color: #FCEDEE;
+    opacity: 1;
+    border-radius: 16px;
+    border: 1px solid #FCEDEE;
+}
+
+.card_info .content span:first-child:hover, .card_info .content span:last-child:hover {
+    cursor: pointer;
+}
+
+
+.card_info .end {
+    display: flex;
+    justify-content: flex-end;
+}
+
+input ,textarea, select{
+    margin-top: .3rem;
+    margin-bottom: 1rem;
+    background: #FFFFFF;
+    border: 1px solid #BBBBCE;
+    box-sizing: border-box;
+    border-radius: 3px;
+}
+
+input, select {
+    height: 40px;
+}
+
+#form1 .line1 input {
+    width: 390px;
+}
+
+#form3 .line1 select{
+    width: 370px;
+}
+
+input, textarea, select {
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: #30303C;
+    padding-left: 1rem;
+}
+
+input::placeholder, textarea::placeholder {
+    font-size: 16px;
+    line-height: 24px;
+    color: #A0A0B0;
+    opacity: 1;
+}
+
+#form1 label, #form2 label, #form3 label {
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    color: #30303C;
+}
+
+#form2 button:first-child {
+    padding: auto;
+    display: flex;
+    justify-content: center;
+    background: #ED1C24;
+    border: 1px solid #ED1C24;
+    padding: auto;
+    width: 120px;
+    height: 48px;
+    border-radius: 3px;
+    color: #FFFFFF;
+}
+
+#form2 .login button:disabled {
+    padding: auto;
+    display: flex;
+    justify-content: center;
+    background: #F4A5A8;
+    border-radius: 3px;
+    border: 1px solid #F4A5A8;
+
+    padding: auto;
+    width: 120px;
+    height: 48px;
+    color: #FFFFFF;
+}
+
+#form2 .forgot {
+    font-size: 16px;
+    line-height: 24px;
+    color: #ED1C24;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+#form2 u::before {
+    color: #DCDCE4;
+}
+
+#form2 hr {
+    height: 1px;
+    background: #DCDCE4;
+    width: 48%;
+    margin: auto;
+}
+
+.trait {
+    display: flex;
+    justify-content: stretch;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+#form2 .trait span {
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+    color: #A0A0B0;
+    margin: auto;
+}
+
+#form2 .envoi button {
+    background: #3B5998;
+    border-radius: 3px;
+    border: 1px solid #3B5998;
+    width: 100%;
+
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    color: #FFFFFF;
+    margin-top: 2rem;
+    padding-top: .5rem;
+}
+
+#form2 .envoi button:disabled {
+    background: #3B5998;
+    border-radius: 3px;
+    border: 1px solid #3B5998;
+    opacity: 0.5;
+    width: 100%;
+
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    color: #FFFFFF;
+    margin-top: 2rem;
+    padding-top: .5rem;
+}
+
+// .passContact::before {
+//     content: "../../../assets/icons/round-check_circle.png";
 // }
 
-// .flex {
-//     display: flex;
-//     width: 100%;
-// }
-
-// .line {
-//     display: flex;
-//     justify-content: space-between;
-//     width: 100%;
-// }
-
-// .column {
-//     display: flex;
-//     flex-direction: column;
-// } 
-
-// .margeGauche {
-//     margin-left: 1rem;
-// }
-
-// .margeDroite {
-//     margin-right: 1rem;
-// }
-
-// .margeHaut {
-//     margin-top: 1rem;
-// }
-
-// .margeBas {
-//     margin-bottom: 1rem;
-// }
-
-// .margeHautAuto {
-//     margin-top: auto; 
-// }
-
-// .margeBasAuto {
-//     margin-bottom: auto; 
-// }
-
-// .centerVertical {
-//     margin-top: auto; 
-//     margin-bottom: auto; 
-// }
-
-// .centerHorizontal {
-//     margin-right: auto; 
-//     margin-left: auto; 
-// }
-
-// .center {
-//     margin-right: auto; 
-//     margin-left: auto; 
-//     margin-top: auto; 
-//     margin-bottom: auto; 
-// }
-
-// //**************************css pour le resume de la commande
-// .card_summary {
-//     width: 520px;
-//     height: 328px;
-//     background: #FFFFFF;
-//     border: 1px solid #E9E9F0;
-//     box-sizing: border-box;
-//     box-shadow: 0px 1px 1px rgba(48, 48, 60, 0.08), 0px 2px 2px rgba(48, 48, 60, 0.12);
-//     border-radius: 3px;
-//     padding: 1rem;
-// }
-
-// .card_summary .title {
-//     font-weight: bold;
-//     font-size: 20px;
-//     line-height: 28px;
-//     color: #30303C;
-// }
-
-// .subtitle  {
-//     font-size: 16px;
-//     line-height: 24px;
-//     color: #ED1C24;
-//     border-bottom: 2px solid #DCDCE4;
-// }
-
-// .image {
-//     width: 72.56px;
-//     height: 72px;
-// }
-
-// .image img {
-//     width: 53.93px;
-//     height: 65.08px;
-// }
-
-// .column .text {
-//     font-weight: normal;
-//     font-size: 16px;
-//     line-height: 24px;
-//     display: flex;
-//     align-items: center;
-//     color: #30303C;
-// }
-
-// .column .title1 {
-//     font-weight: normal;
-//     font-size: 14px;
-//     line-height: 20px;
-//     color: #30303C;
-// }
-
-// .column .subtitle1  {
-//     font-weight: normal;
-//     font-size: 14px;
-//     line-height: 20px;
-//     color: #ED1C24;
-// }
-
-// .card_summary hr {
-//     width: 100%;
-// }
-
-// .produit {
-//     border-bottom: 1px solid #DCDCE4;
-//     margin-bottom: 1rem;
-// }
-
-// .prix {
-//     font-weight: bold;
-//     font-size: 20px;
-//     line-height: 28px;
-//     color: #30303C;
-//     color: #ED1C24;
-// }
-
-// //**************************css pour recuperer les in#form1ations des users
-// h1 {
-//     margin-top: 2rem;
-//     font-weight: bold;
-//     font-size: 24px;
-//     line-height: 36px;
-//     color: #30303C;
-// }
-
-// #form1 button:disabled, #form3 button:disabled, #form4 button:disabled {
-//     width: 225px;
-//     height: 56px;
-//     background: #F4A5A8;
-//     border-radius: 3px;
-//     border: 1px solid #F4A5A8;
-
-//     font-size: 18px;
-//     line-height: 28px;
-//     text-align: center;
-//     color: #FFFFFF;
-// }
-
-// #form1 button, #form3 button , #form4 button {
-//     width: 225px;
-//     height: 56px;
-//     background: #ED1C24;
-//     border-radius: 3px;
-//     border: 1px solid #ED1C24;
-
-//     font-size: 18px;
-//     line-height: 28px;
-//     text-align: center;
-//     color: #FFFFFF;
-// }
-
-// .card_info {
-//     width: 800px;
-// }
-
-// .text {
-//     font-weight: normal;
-//     font-size: 16px;
-//     line-height: 24px;
-//     color: #30303C;
-// }
-
-// .card_info .content span {
-//     padding: .3rem;
-//     margin-bottom: 1.5rem;
-// }
-
-// .background_custo_remove {
-//     background: #F5F5FA;
-//     border-radius: 16px;
-//     color: #5C5C73;
-//     border: 1px solid #F5F5FA;
-// }
-
-// .background_custo {
-//     color: #ED1C24;
-//     background-color: #FCEDEE;
-//     opacity: 1;
-//     border-radius: 16px;
-//     border: 1px solid #FCEDEE;
-// }
-
-// .card_info .content span:first-child:hover, .card_info .content span:last-child:hover {
-//     cursor: pointer;
-// }
-
-
-// .card_info .end {
-//     display: flex;
-//     justify-content: end;
-// }
-
-// input ,textarea, select{
-//     margin-top: .3rem;
-//     margin-bottom: 1rem;
-//     background: #FFFFFF;
-//     border: 1px solid #BBBBCE;
-//     box-sizing: border-box;
-//     border-radius: 3px;
-// }
-
-// input, select {
-//     height: 40px;
-// }
-
-// #form1 .line1 input {
-//     width: 390px;
-// }
-
-// #form3 .line1 select{
-//     width: 370px;
-// }
-
-// input, textarea, select {
-//     font-weight: normal;
-//     font-size: 16px;
-//     line-height: 24px;
-//     color: #30303C;
-//     padding-left: 1rem;
-// }
-
-// input::placeholder, textarea::placeholder {
-//     font-size: 16px;
-//     line-height: 24px;
-//     color: #A0A0B0;
-//     opacity: 1;
-// }
-
-// #form1 label, #form2 label, #form3 label {
-//     font-weight: normal;
-//     font-size: 14px;
-//     line-height: 20px;
-//     color: #30303C;
-// }
-
-// #form2 button:first-child {
-//     padding: auto;
-//     display: flex;
-//     justify-content: center;
-//     background: #ED1C24;
-//     border: 1px solid #ED1C24;
-//     padding: auto;
-//     width: 120px;
-//     height: 48px;
-//     border-radius: 3px;
-//     color: #FFFFFF;
-// }
-
-// #form2 .login button:disabled {
-//     padding: auto;
-//     display: flex;
-//     justify-content: center;
-//     background: #F4A5A8;
-//     border-radius: 3px;
-//     border: 1px solid #F4A5A8;
-
-//     padding: auto;
-//     width: 120px;
-//     height: 48px;
-//     color: #FFFFFF;
-// }
-
-// #form2 .forgot {
-//     font-size: 16px;
-//     line-height: 24px;
-//     color: #ED1C24;
-//     margin-top: auto;
-//     margin-bottom: auto;
-// }
-
-// #form2 u::before {
-//     color: #DCDCE4;
-// }
-
-// #form2 hr {
-//     height: 1px;
-//     background: #DCDCE4;
-//     width: 48%;
-//     margin: auto;
-// }
-
-// .trait {
-//     display: flex;
-//     justify-content: stretch;
-//     width: 100%;
-//     margin-top: 2rem;
-// }
-
-// #form2 .trait span {
-//     font-size: 12px;
-//     line-height: 16px;
-//     text-align: center;
-//     color: #A0A0B0;
-//     margin: auto;
-// }
-
-// #form2 .envoi button {
-//     background: #3B5998;
-//     border-radius: 3px;
-//     border: 1px solid #3B5998;
-//     width: 100%;
-
-//     font-size: 16px;
-//     line-height: 24px;
-//     text-align: center;
-//     color: #FFFFFF;
-//     margin-top: 2rem;
-//     padding-top: .5rem;
-// }
-
-// #form2 .envoi button:disabled {
-//     background: #3B5998;
-//     border-radius: 3px;
-//     border: 1px solid #3B5998;
-//     opacity: 0.5;
-//     width: 100%;
-
-//     font-size: 16px;
-//     line-height: 24px;
-//     text-align: center;
-//     color: #FFFFFF;
-//     margin-top: 2rem;
-//     padding-top: .5rem;
-// }
-
-// // .passContact::before {
-// //     content: "../../../assets/icons/round-check_circle.png";
-// // }
-
-// .passContact{
-//     font-weight: bold;
-//     font-size: 24px;
-//     line-height: 36px;
-//     color: #14CB04;
-//     margin-top: auto;
-//     margin-bottom: auto;
-// }
-
-// .contact img {
-//     margin-top: auto;
-//     margin-bottom: auto;
-// }
-
-// #address .question {
-//     font-weight: bold;
-//     font-size: 20px;
-//     line-height: 28px;
-//     color: #30303C;
-// }
-// #address h3 {
-//     font-weight: bold;
-//     font-size: 18px;
-//     line-height: 24px;
-//     color: #30303C;
-// }
-
-// #address strong {
-//     font-weight: bold;
-//     margin-left: 5px;
-//     margin-right: 5px;
-// }
-
-// .red {
-//     font-weight: bold;
-//     font-size: 18px;
-//     line-height: 24px;
-//     color: #ED1C24;
-//     color: #ED1C24;
-// }
-
-// .demiMargeHaut {
-//     margin-top: .5rem;
-// }
-
-// .demiMargeHaut h3 {
-//     margin: 0px;
-//     font-weight: bold;
-//     font-size: 18px;
-//     line-height: 24px;
-//     color: #30303C;
-// }
-
-// ul {
-//     list-style: none;
-// }
-
-// li::before {
-//     content: "•"; 
-//     color: #ED1C24;
-//     width: 12px;
-//     height: 12px;
-//     margin-right: 5px;
-// }
-
-// li {
-//     margin-bottom: 1rem;
-// }
-// // .address 
+.passContact{
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 36px;
+    color: #14CB04;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.contact img {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+#address .question {
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 28px;
+    color: #30303C;
+}
+#address h3 {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 24px;
+    color: #30303C;
+}
+
+#address strong {
+    font-weight: bold;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.red {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 24px;
+    color: #ED1C24;
+    color: #ED1C24;
+}
+
+.demiMargeHaut {
+    margin-top: .5rem;
+}
+
+.demiMargeHaut h3 {
+    margin: 0px;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 24px;
+    color: #30303C;
+}
+
+ul {
+    list-style: none;
+}
+
+li::before {
+    content: "•"; 
+    color: #ED1C24;
+    width: 12px;
+    height: 12px;
+    margin-right: 5px;
+}
+
+li {
+    margin-bottom: 1rem;
+}
+// .address 

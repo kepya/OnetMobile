@@ -6,4 +6,5 @@ export class User {
     region: String;
     state: string;
     address: string;
+    password: string;
 }

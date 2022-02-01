@@ -1,6 +1,10 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Commande } from 'src/app/models/commande';
+import { Products } from 'src/app/models/products';
 import { User } from 'src/app/models/user';
+import { AuthService } from 'src/app/shares/services/auth.service';
+import { ProductService } from 'src/app/shares/services/product.service';
 
 @Component({
   selector: 'app-checkout',
@@ -20,20 +24,46 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
   step: number = 1;
 
   user = new User();
+  commande = new Commande();
+  product = new Products();
+  log: boolean = false;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private productService: ProductService, private authService: AuthService) { }
 
   ngAfterViewInit(): void {
     this.checkCustomer(1);
   }
 
   ngOnInit(): void {
+    this.getCommande();
     this.user.email = "franck@gmail.com";
     this.user.firstName = "Franck";
     this.user.lastName = "Libam";
     this.user.phone = "+243 336 364 833";
     this.formState = true;
     this.initForm();
+  }
+
+  getCommande() {
+    let value = localStorage.getItem('commande');
+    if (value!=null && value != undefined) {
+      this.commande = JSON.parse(value);
+      this.getProduct(this.commande.idProduct);
+    }
+  }
+
+  getProduct(id) {
+    this.productService.find(id).subscribe(
+      async (data) => {
+        if (data) {
+          console.log('product', data);
+          this.product = data;
+        }
+      }, (error) => {
+        console.log('Erreur', error);
+        alert('Echec de la Modification\nErreur: ' + error.message);
+      }
+    );
   }
 
   initForm() {
@@ -72,11 +102,32 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
   }
 
   login() {
-    let value = this.form.value;
+    let value = this.userForm.value;
     this.user.email = value.email;
     let password = value.password;
     console.log('Value', value);
 
+    this.authService.login(this.user.email, password).subscribe(
+      (data) => {
+        if(!(data instanceof Error)) {
+          console.log('result', data);
+          sessionStorage.setItem('token', data.token);
+          sessionStorage.setItem('idUser', data.userId);
+          this.log = true;
+          alert('Authentification reussie');
+        } else {
+          alert('Echec d\'authentification');
+        }
+      },
+      (error) => {
+        console.log('Error', error);
+      }
+    );
+
+  }
+
+  next() {
+    this.step++;
   }
 
   addAddress() {
@@ -109,5 +160,17 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
     let paiement = value.paiement;
     console.log('Value', value);
 
+  }
+
+  showModal: boolean = false;
+
+  getEvent(event) {
+    if (event != null && event != '') {
+      this.showModal = true;
+    } else {
+      this.showModal = false;
+    }
+
+    console.log('Event: ' + event);
   }
 }
