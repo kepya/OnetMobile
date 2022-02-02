@@ -36,20 +36,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.langue = 'fr';
     this.all();
-
-    // let p: Products = {
-    //   _id: '',
-    //   nom: 'iPhone 6',
-    //   description: '64GB HDD - 12 Months + Cover + Screen...',
-    //   marque: 'Apple',
-    //   prix: 159.900,
-    //   type: 'telephone',
-    //   image: '../../../assets/images/iphone.png',
-    //   nombreEtoile: 3,
-    //   tauxReduction: 20
-    // }
-    // this.products.push(p);
-    // this.products.push(p);
   }
 
   searchProduct(term: string): void {

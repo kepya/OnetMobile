@@ -7,21 +7,22 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class UserService {
 
-  url = environment.url + 'auth/';
+  url = environment.url + 'user/';
 
   constructor(private http: HttpClient) { }
 
-  login(email: string, password: string): Observable<any> {
-    return this.http.post<any>(this.url + 'login', {
-        email: email,
-        password: password
-    });
+  all(): Observable<User[]> {
+    return this.http.get<User[]>(this.url);
   }
 
-  signup(p: User): Observable<any> {
-    return this.http.post<any>(this.url + 'signup', p);
+  find(id: string): Observable<User> {
+    return this.http.get<User>(this.url + 'findById/' + id);
+  }
+
+  findByEmail(email): Observable<User> {
+    return this.http.get<User>(this.url + 'findByEmail/' + email);
   }
 
 }

@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Commande } from 'src/app/models/commande';
 import { Products } from 'src/app/models/products';
+import { CommandeService } from 'src/app/shares/services/commande.service';
 import { CommunService } from 'src/app/shares/services/commun.service';
 import { LikeService } from 'src/app/shares/services/like.service';
 import { ProductService } from 'src/app/shares/services/product.service';
@@ -30,7 +31,7 @@ export class ProductComponent implements OnInit {
   showCart: boolean = false;
 
   constructor(private productService: ProductService, private route: ActivatedRoute, public communService: CommunService,
-    private reviewService: ReviewService, private likeService: LikeService, private router: Router) { }
+    private reviewService: ReviewService, private likeService: LikeService, private router: Router, private commandeService: CommandeService) { }
 
   ngOnInit(): void {
     if (this.route.snapshot.params['id']) {
@@ -79,8 +80,18 @@ export class ProductComponent implements OnInit {
     commande.dateCommande = new Date();
 
     localStorage.setItem('commande', JSON.stringify(commande));
-    this.annuler();
-    this.router.navigate(['/checkout']);
+    this.commandeService.create(commande).subscribe(
+      (data) => {
+        this.annuler();
+        this.router.navigateByUrl('/checkout');
+      },
+      (error) => {
+        this.annuler();
+        alert('Votre commande n\'a pas été prise en compte ressayer plus tard')
+        console.log('Error', error);
+      }
+    );
+    
   }
 
   showModal: boolean = false;
@@ -97,8 +108,8 @@ export class ProductComponent implements OnInit {
 
   buy(product) {
     this.showCart = !this.showCart;
-    this.productForBuy.push(this.product);
-    this.totaPrice+=this.product.prixReduis;
+    this.productForBuy.push(product);
+    this.totaPrice+=product.prixReduis;
   }
 
   add(prix) {

@@ -1,4 +1,8 @@
+@import url('../../app.component.scss');
 
+header{
+    margin-bottom: 1.5rem;
+}
 main {
     .content {
         margin-left: 5rem;
@@ -72,7 +76,7 @@ main {
 //**************************css pour le resume de la commande
 .card_summary {
     margin-top: 2rem;
-    width: 520px;
+    // width: 520px;
     height: 219px;
     background: #FFFFFF;
     border: 1px solid #E9E9F0;

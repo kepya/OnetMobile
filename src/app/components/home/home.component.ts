@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Commande } from 'src/app/models/commande';
 import { Products } from 'src/app/models/products';
+import { CommandeService } from 'src/app/shares/services/commande.service';
 import { CommunService } from 'src/app/shares/services/commun.service';
 import { ProductService } from 'src/app/shares/services/product.service';
 import { ReviewService } from 'src/app/shares/services/review.service';
@@ -23,7 +26,8 @@ export class HomeComponent implements OnInit {
   startLigth: any[] = [];
   startDart: any[] = [];
 
-  constructor(private productService: ProductService, public communService: CommunService, private reviewService: ReviewService) { }
+  constructor(private productService: ProductService, public communService: CommunService, private reviewService: ReviewService,
+    private commandeService: CommandeService, private router: Router) { }
 
   ngOnInit(): void {
     this.all();
@@ -82,6 +86,57 @@ export class HomeComponent implements OnInit {
     }
     this.imageBackground = this.listElement[this.elementSelectionner - 1].url;
     console.log('next');
+  }
+
+  titre: string = 'description';
+  quantite: number = 1;
+  totaPrice: number = 0;
+  showCart: boolean = false;
+  productForBuy: Products[] = [];
+
+  annuler() {
+    this.totaPrice =0;
+    this.productForBuy = [];
+    this.quantite = 0;
+    this.showCart = !this.showCart;
+  }
+
+  buy(product) {
+    this.showCart = !this.showCart;
+    this.productForBuy.push(product);
+    this.totaPrice+=product.prixReduis;
+  }
+
+  add(prix) {
+    this.quantite++;
+    this.totaPrice+=prix;
+  }
+
+  reduce(prix) {
+    this.quantite--;
+    this.totaPrice-=prix;
+  }
+
+  payCommande() {
+    let commande = new Commande();
+    commande.quantite = this.quantite;
+    commande.idProduct = this.productForBuy[0]._id;
+    commande.prix = this.totaPrice;
+    commande.dateCommande = new Date();
+
+    localStorage.setItem('commande', JSON.stringify(commande));
+    this.commandeService.create(commande).subscribe(
+      (data) => {
+        this.annuler();
+        this.router.navigateByUrl('/checkout');
+      },
+      (error) => {
+        this.annuler();
+        alert('Votre commande n\'a pas été prise en compte ressayer plus tard')
+        console.log('Error', error);
+      }
+    );
+    
   }
 
   getStartLigth(nbre: number) {

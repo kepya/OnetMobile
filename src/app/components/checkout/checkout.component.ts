@@ -1,10 +1,14 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Commande } from 'src/app/models/commande';
+import { Paiement } from 'src/app/models/paiment';
 import { Products } from 'src/app/models/products';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/shares/services/auth.service';
+import { Paiementervice } from 'src/app/shares/services/paiement.service';
 import { ProductService } from 'src/app/shares/services/product.service';
+import { UserService } from 'src/app/shares/services/user.service';
 
 @Component({
   selector: 'app-checkout',
@@ -27,8 +31,11 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
   commande = new Commande();
   product = new Products();
   log: boolean = false;
+  dateLivraisonLaPlusProche: Date = new Date();
+  dateLivraisonLaPlusLointaine: Date;
 
-  constructor(private formBuilder: FormBuilder, private productService: ProductService, private authService: AuthService) { }
+  constructor(private formBuilder: FormBuilder, private productService: ProductService, private authService: AuthService,
+    private userService: UserService, private paiementService: Paiementervice, private router: Router) { }
 
   ngAfterViewInit(): void {
     this.checkCustomer(1);
@@ -42,6 +49,17 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
     this.user.phone = "+243 336 364 833";
     this.formState = true;
     this.initForm();
+    this.dateLivraisonLaPlusLointaine = new Date(this.dateLivraisonLaPlusProche.getFullYear() + '-' + (this.dateLivraisonLaPlusProche.getMonth() + 1) + '-' + (this.dateLivraisonLaPlusProche.getDate() + 7));
+    // this.dateLivraisonLaPlusLointaine.setDate(this.dateLivraisonLaPlusProche.getDate() + 7);
+    let token = sessionStorage.getItem('token');
+    if (token) {
+      this.customer = 2;
+      this.findById(sessionStorage.getItem('idUser'));
+      this.log = true;
+      this.next();
+      this.next();
+    }
+
   }
 
   getCommande() {
@@ -114,6 +132,7 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
           sessionStorage.setItem('token', data.token);
           sessionStorage.setItem('idUser', data.userId);
           this.log = true;
+          this.findByEmail(this.user.email);
           alert('Authentification reussie');
         } else {
           alert('Echec d\'authentification');
@@ -126,6 +145,42 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
 
   }
 
+  findByEmail(email) {
+    this.userService.findByEmail(email).subscribe(
+      (data) => {
+        if (data) {
+          this.user = data;
+          console.log('user', data);
+        }
+      },
+      (error) => {
+        console.log('Error', error);
+      }
+    );
+  }
+
+  findById(id) {
+    this.userService.find(id).subscribe(
+      (data) => {
+        if (data) {
+          this.user = data;
+          console.log('user', data);
+        }
+      },
+      (error) => {
+        console.log('Error', error);
+      }
+    );
+  }
+
+  signup() {
+    let value = this.form.value;
+    this.user.lastName = value.lastName;
+    this.user.firstName = value.firstName;
+    this.user.email = value.email;
+    this.user.phone = value.phone;
+  }
+
   next() {
     this.step++;
   }
@@ -136,9 +191,8 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
     this.user.firstName = value.firstName;
     this.user.email = value.email;
     this.user.phone = value.phone;
-    console.log('Value', value);
-
-    this.step++;
+    
+    this.next();
   }
 
   choosePaiement() {
@@ -148,7 +202,19 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
     this.user.state = value.state;
     console.log('Value', value);
     
-    this.step++;
+    this.authService.signup(this.user).subscribe(
+      (data) => {
+        if(data instanceof Error) {
+          alert("Erreur de création");
+        } else {
+          this.findByEmail(this.user.email);
+          this.next();
+        }
+      },
+      (error) => {
+        console.log('Error', error);
+      }
+    );
   }
 
   backStep() {
@@ -157,9 +223,30 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
 
   buy() {
     let value = this.paiementForm.value;
-    let paiement = value.paiement;
-    console.log('Value', value);
+    let modePaiement = value.paiement;
+    
+    let paiement:Paiement = {
+      idCommande: this.commande._id,
+      datePaiement: new Date(),
+      prix: this.commande.prix,
+      modePaiement: modePaiement,
+      _id: '',
+      idUser: this.user._id
+    }
 
+    this.paiementService.create(paiement).subscribe(
+      (data) => {
+        if (data) {
+          alert('Paiement effectué avec success');
+          localStorage.removeItem('commande');
+          this.router.navigateByUrl('/dashboard');
+        }
+      },
+      (error) => {
+        alert('Erreur dans le paiement');
+        console.log('Error', error);
+      }
+    );
   }
 
   showModal: boolean = false;

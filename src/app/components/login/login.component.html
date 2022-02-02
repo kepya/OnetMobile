@@ -1,0 +1,16 @@
+<div id="container">
+    <!-- zone de connexion -->
+    
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <h1>Connexion</h1>
+        
+        <label><b>Email</b></label>
+        <input type="email" placeholder="Entrer l'email" name="eamil" required formControlName="email" [(ngModel)]="user.email">
+
+        <label><b>Mot de passe</b></label>
+        <input type="password" placeholder="Entrer le mot de passe" name="password" required  formControlName="password">
+
+        <input type="submit" id='submit' value='LOGIN' [disabled]="loginForm.invalid">
+        <span>si vous n'avez pas de compte cliquez <a href="http://localhost:4200/register">ici</a></span>
+    </form>
+</div>

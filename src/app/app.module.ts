@@ -24,6 +24,8 @@ import { HomeComponent } from './components/home/home.component';
 import { UploadComponent } from './components/upload/upload.component';
 import {NgxImageCompressService} from "ngx-image-compress";
 import { ReviewComponent } from './components/review/review.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 
 const materialModules = [
@@ -48,6 +50,8 @@ const materialModules = [
     HomeComponent,
     UploadComponent,
     ReviewComponent,
+    LoginComponent,
+    RegisterComponent,
     // ModalComponent
   ],
   imports: [

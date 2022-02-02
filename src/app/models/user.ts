@@ -7,4 +7,6 @@ export class User {
     state: string;
     address: string;
     password: string;
+    _id: string;
+    type: string;
 }

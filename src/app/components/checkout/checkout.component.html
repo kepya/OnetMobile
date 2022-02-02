@@ -1,11 +1,11 @@
 <header>
-    <app-header (modalSearch)="getEvent($event)"></app-header>
+    <app-header-paiement></app-header-paiement>
 </header>
 
 <main>
     <section class="content">
-        <section class="line">
-            <section class="column margeHaut margeBas card_info">
+        <section class="line col-12">
+            <section class="col-7 column margeHaut margeBas card_info">
                 <section *ngIf="step === 1">
                     <h1>1. Contact</h1>
         
@@ -68,7 +68,7 @@
                         </section>
             
                         <section class="line" class="envoi">
-                            <button type="button" [disabled]="!login" (click)="next()">Proceed to next step</button>
+                            <button type="button" [disabled]="!log" (click)="next()">Proceed to next step</button>
                         </section>
                     </form>
                 </section>
@@ -79,10 +79,13 @@
                         <h1 class="passContact">1. Contact</h1>
                     </section>
                     <section class="flex">
-                        <span class="text">
+                        <span class="text" *ngIf="customer === 1">
                             {{user.firstName}} {{user.lastName}}, {{user.phone}}, {{user.email}}
                         </span>
-                        <span class="margeGauche centerVertical subtitle" (click)="backStep()">
+                        <span class="text"*ngIf="customer === 2">
+                            Utilisateur authentifié
+                        </span>
+                        <span class="margeGauche centerVertical subtitle" (click)="backStep()" *ngIf="customer === 1">
                             Edit info
                         </span>
                     </section>
@@ -98,15 +101,15 @@
                         <input type="radio" name="" id="" checked width="24" height="24" class="margeBas radio">
                         <section class="margeGauche column margeHaut">
                             <h3>Standard delivery</h3>
-                            <p class="text">Will be delivered between <strong>Tuesday 29 Jan</strong> and <strong> Tuesday 5 Feb</strong></p>
-                            <p class="red">From 3000 FCFA</p>
+                            <p class="text">Will be delivered between <strong>{{dateLivraisonLaPlusProche | date: 'EEEE dd MMMM yyyy'}}</strong> and <strong> {{dateLivraisonLaPlusLointaine | date: 'EEEE dd MMMM yyyy'}}</strong></p>
+                            <p class="red">From {{commande.prix | number: ''}} FCFA</p>
                             <form [formGroup]="addressForm" (ngSubmit)="choosePaiement()" id="form3">
                                 <section class="line line1">
                                     <section  class="column">
                                         <label for="">State</label>
-                                        <select name="" id="" formControlName="state" required>
+                                        <select name="" id="" formControlName="state" required [(ngModel)]="user.state">
                                             <option value="" disabled selected>Select state</option>
-                                            <option value="cameroun">Camerounais (e)</option>
+                                            <option value="Cameroun">Camerounais (e)</option>
                                             <option value="france">Francais (e)</option>
                                             <option value="canadien">Canadien (e)</option>
                                         </select>
@@ -114,7 +117,7 @@
                                     <section class="margeGauche column">
                                         <label for="">Region</label>
                                   
-                                        <select name="" id="" formControlName="region" required>
+                                        <select name="" id="" formControlName="region" required [(ngModel)]="user.region">
                                             <option value="" disabled selected>Select region</option>
                                             <option value="Littoral">Littoral (e)</option>
                                             <option value="Centre">Centre (e)</option>
@@ -124,7 +127,7 @@
                                 </section>
                                 <section class="column">
                                     <label for="">Address</label>
-                                    <textarea name="" id="" rows="3" formControlName="address" [(ngModel)]="user.address" placeholder="Street name / Building / Appartment No. / Floor"></textarea>
+                                    <textarea name="" id="" rows="3" [(ngModel)]="user.address" formControlName="address" [(ngModel)]="user.address" placeholder="Street name / Building / Appartment No. / Floor"></textarea>
                                 </section>
             
                                 <section class="end">
@@ -185,7 +188,7 @@
                 </form>
             </section>
             
-            <section class="card_summary">
+            <section class="col-4 card_summary">
                 <section class="line">
                     <h3 class="title">Order summary</h3>
                     <h3 class="subtitle">Edit order</h3>

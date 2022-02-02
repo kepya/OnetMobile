@@ -1,0 +1,43 @@
+<div id="container">
+    <!-- zone de connexion -->
+    <form [formGroup]="signupForm" (ngSubmit)="signup()">
+        <h1>register</h1>
+        
+        <label><b>Nom</b></label>
+        <input type="text" placeholder="Entrer le nom" name="eamil" formControlName="lastName" [(ngModel)]="user.lastName" required>
+
+        <label><b>Prenom</b></label>
+        <input type="text" formControlName="firstName" [(ngModel)]="user.firstName" placeholder="Entrer le prenom" name="eamil" required>
+
+        <label><b>Phone</b></label>
+        <input type="text" placeholder="Entrer le numero de telephone" name="eamil" formControlName="phone" [(ngModel)]="user.phone" required>
+
+        <label><b>Email</b></label>
+        <input type="email" placeholder="Entrer l'email" name="eamil" id="" formControlName="email" [(ngModel)]="user.email">
+
+        <label><b>Mot de passe</b></label>
+        <input type="password" placeholder="Entrer le mot de passe" name="password" required  formControlName="password">
+
+        <label><b>State</b></label>
+        <select name="" id="" formControlName="state" required [(ngModel)]="user.state">
+            <option value="" disabled selected>Select state</option>
+            <option value="Cameroun">Camerounais (e)</option>
+            <option value="france">Francais (e)</option>
+            <option value="canadien">Canadien (e)</option>
+        </select>
+
+        <label><b>Region</b></label>
+        <select name="" id="" formControlName="region" required [(ngModel)]="user.region">
+            <option value="" disabled selected>Select region</option>
+            <option value="Littoral">Littoral (e)</option>
+            <option value="Centre">Centre (e)</option>
+            <option value="Extreme-Nord">Extreme-Nord</option>
+        </select>
+
+        <label><b>Address</b></label>
+        <input type="text" placeholder="Entrer l'address" name="eamil" id="" [(ngModel)]="user.address" formControlName="address">
+
+        <input type="submit" id='submit' value='REGISTER' [disabled]="signupForm.invalid">
+        <span>vous avez un compte cliquez <a href="http://localhost:4200/login">ici</a></span>
+    </form>
+</div>
