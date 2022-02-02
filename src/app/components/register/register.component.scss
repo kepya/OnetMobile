@@ -1,16 +1,27 @@
+@import url('../../app.component.scss');
+
 #container{
-    width:600px;
+    width:80%;
     margin:0 auto;
     margin-top:3%;
 }
 /* Bordered form */
 form {
-    margin-bottom: 1rem;
+    margin-bottom: 3%;
     width:100%;
     padding: 30px;
     border: 1px solid #f1f1f1;
     background: #fff;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+
+    .form-group {
+        display: flex;
+        justify-content: space-between;
+        section:first-child {
+            margin-right: 1.5rem;
+        }
+    }
+    
 }
 #container h1{
     width: 38%;

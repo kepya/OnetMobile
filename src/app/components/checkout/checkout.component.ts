@@ -122,10 +122,10 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
   login() {
     let value = this.userForm.value;
     this.user.email = value.email;
-    let password = value.password;
+    this.user.password = value.password;
     console.log('Value', value);
 
-    this.authService.login(this.user.email, password).subscribe(
+    this.authService.login(this.user.email, this.user.password).subscribe(
       (data) => {
         if(!(data instanceof Error)) {
           console.log('result', data);
@@ -173,14 +173,6 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
     );
   }
 
-  signup() {
-    let value = this.form.value;
-    this.user.lastName = value.lastName;
-    this.user.firstName = value.firstName;
-    this.user.email = value.email;
-    this.user.phone = value.phone;
-  }
-
   next() {
     this.step++;
   }
@@ -200,6 +192,7 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
     this.user.region = value.region;
     this.user.address = value.address;
     this.user.state = value.state;
+    this.user.type = 'utilisateur';
     console.log('Value', value);
     
     this.authService.signup(this.user).subscribe(

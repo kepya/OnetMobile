@@ -1,0 +1,35 @@
+<header>
+    <section class="userSymbol">
+        {{user.lastName[0]}} {{user.firstName[0]}}
+    </section>
+    <section class="nav">
+        <span class="nav-item" (click)="setView('paiement')" [style.border-bottom]="view === 'paiement' ? '5px solid #DCDCE4': 'none'">Mes Paiements</span>
+        <span class="nav-item" (click)="setView('commande')" [style.border-bottom]="view === 'commande' ? '5px solid #DCDCE4': 'none'">Mes Commandes</span>
+        <span class="nav-item" (click)="setView('review')" [style.border-bottom]="view === 'review' ? '5px solid #DCDCE4': 'none'">Mes Reviews</span>
+        <span class="nav-item" (click)="setView('favoris')" [style.border-bottom]="view === 'favoris' ? '5px solid #DCDCE4': 'none'">Mes Favoris</span>
+        <span class="nav-item" (click)="setView('profil')" [style.border-bottom]="view === 'profil' ? '5px solid #DCDCE4': 'none'">Mon Profil</span>
+    </section>
+</header>
+
+<main>
+    <section *ngIf="view === 'paiement'">
+
+    </section>
+    <section *ngIf="view === 'commande'">
+
+    </section>
+    <section *ngIf="view === 'review'">
+
+    </section>
+    <section *ngIf="view === 'favoris'">
+
+    </section>
+    <section *ngIf="view === 'profil'">
+        <app-register></app-register>
+    </section>
+</main>
+
+<footer> 
+    <span>Déconnexion</span>
+    <div class="logOutImg" (click)="logout()"></div>
+</footer>

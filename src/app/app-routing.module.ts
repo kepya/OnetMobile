@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminAccountComponent } from './components/admin-account/admin-account.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
@@ -10,6 +11,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { ReviewComponent } from './components/review/review.component';
 import { SearchComponent } from './components/search/search.component';
 import { UploadComponent } from './components/upload/upload.component';
+import { UserAccountComponent } from './components/user-account/user-account.component';
 import { FooterComponent } from './shares/footer/footer.component';
 import { HeaderPaiementComponent } from './shares/headers/header-paiement/header-paiement.component';
 import { HeaderComponent } from './shares/headers/header/header.component';
@@ -23,8 +25,8 @@ const routes: Routes = [
   { path: 'review', component: ReviewComponent } ,
   // { path: 'search', component: SearchComponent }  ,
   { path: 'checkout', component: CheckoutComponent } ,
-  // { path: 'header', component: HeaderComponent } ,
-  // { path: 'header-paiement', component: HeaderPaiementComponent } ,
+  { path: 'user-account', component: UserAccountComponent } ,
+  { path: 'admin-account', component: AdminAccountComponent } ,
   // { path: 'footer', component: FooterComponent }  ,
   { path: 'produit-manager', component: UploadComponent } ,
   { path: 'produit-manager/:id', component: UploadComponent } ,

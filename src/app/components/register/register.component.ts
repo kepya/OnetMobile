@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/shares/services/auth.service';
 import { UserService } from 'src/app/shares/services/user.service';
@@ -15,7 +16,7 @@ export class RegisterComponent implements OnInit {
   loginForm: FormGroup;
   signupForm: FormGroup;
 
-  constructor(private service: AuthService, private userService: UserService, private formBuilder: FormBuilder) { }
+  constructor(private service: AuthService, private userService: UserService, private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -52,7 +53,7 @@ export class RegisterComponent implements OnInit {
         if(data instanceof Error) {
           alert("Erreur de création");
         } else {
-          this.findByEmail(this.user.email);
+          sessionStorage.setItem('user', JSON.stringify(data));
         }
       },
       (error) => {
@@ -84,12 +85,23 @@ export class RegisterComponent implements OnInit {
     this.user.region = value.region;
     this.user.address = value.address;
     this.user.state = value.state;
+    this.user.password = value.password;
+    this.user.type = 'utilisateur';
+
     console.log('Value', value);
     
     this.service.signup(this.user).subscribe(
       (data) => {
         this.findByEmail(this.user.email);
+        console.log('result', data);
         alert('Utilisateur Crée');
+        this.initForm();
+        this.user = new User();
+        if (data.typeUser === 'utilisateur') {
+          this.router.navigateByUrl('/user-account');
+        } else {
+          this.router.navigateByUrl('/admin-account');
+        }
       },
       (error) => {
         console.log('Error', error);
@@ -106,6 +118,7 @@ export class RegisterComponent implements OnInit {
       state: ['', Validators.required],
       region: ['', Validators.required],
       address: ['', Validators.required],
+      password: ['', Validators.required]
     });
 
     this.loginForm = this.formBuilder.group({
