@@ -20,7 +20,16 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
+    this.getUser();
   }
+
+  getUser() {
+    let value = sessionStorage.getItem('user');
+    if (value) {
+      this.user = JSON.parse(value); 
+    }
+  }
+
 
   login() {
     let value = this.loginForm.value;

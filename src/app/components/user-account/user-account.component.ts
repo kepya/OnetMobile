@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Like } from 'src/app/models/like';
+import { Products } from 'src/app/models/products';
 import { User } from 'src/app/models/user';
+import { LikeService } from 'src/app/shares/services/like.service';
 
 @Component({
   selector: 'app-user-account',
@@ -10,7 +13,10 @@ export class UserAccountComponent implements OnInit {
 
   user = new User();
   view: string = 'paiement';
-  constructor() { }
+  likes: Like[] = [];
+  products: Products[] = [];
+
+  constructor(private likeService: LikeService) { }
 
   ngOnInit(): void {
     // this.getUser();
@@ -22,9 +28,10 @@ export class UserAccountComponent implements OnInit {
 
   getUser() {
     let value = sessionStorage.getItem('user');
-    this.user = JSON.parse(value);
+    if (value) {
+      this.user = JSON.parse(value); 
+    }
   }
-
   logout() {
     sessionStorage.clear();
     localStorage.clear();
@@ -32,5 +39,25 @@ export class UserAccountComponent implements OnInit {
 
   setView(el) {
     this.view = el;
+  }
+
+  getLike() {
+    this.likeService.allByUser(this.user._id).subscribe(
+      (data) => {
+        this.likes = data;
+      }, (error) => {
+        console.log('Erreur', error);
+      }
+    )
+  }
+
+  getProductByLike() {
+    this.likeService.allProductByUser(this.user._id).subscribe(
+      (data) => {
+        this.products = data;
+      }, (error) => {
+        console.log('Erreur', error);
+      }
+    )
   }
 }

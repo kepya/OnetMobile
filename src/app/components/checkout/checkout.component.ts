@@ -198,6 +198,7 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
     this.authService.signup(this.user).subscribe(
       (data) => {
         if(data instanceof Error) {
+          this.next();
           alert("Erreur de création");
         } else {
           this.findByEmail(this.user.email);
@@ -206,6 +207,7 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
       },
       (error) => {
         console.log('Error', error);
+        this.next();
       }
     );
   }

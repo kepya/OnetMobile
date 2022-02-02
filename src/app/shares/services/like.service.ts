@@ -2,6 +2,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Like } from 'src/app/models/like';
+import { Products } from 'src/app/models/products';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -21,12 +22,16 @@ export class LikeService {
     return this.http.get<Like>(this.url + id);
   }
 
-  findByUser(idUser): Observable<Like> {
-    return this.http.get<Like>(this.url + 'findByUser/' + idUser);
+  allByUser(idUser): Observable<Like[]> {
+    return this.http.get<Like[]>(this.url + 'allByUser/' + idUser);
   }
 
-  findByProduct(idProduct): Observable<Like[]> {
-    return this.http.get<Like[]>(this.url + 'findByProduct/' + idProduct);
+  allByProduct(idProduct): Observable<Like[]> {
+    return this.http.get<Like[]>(this.url + 'allByProduct/' + idProduct);
+  }
+
+  allProductByUser(idUser): Observable<Products[]> {
+    return this.http.get<Products[]>(this.url + 'allProductByUser/' + idUser);
   }
 
   add(l: any): Observable<any> {

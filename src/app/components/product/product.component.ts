@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Commande } from 'src/app/models/commande';
+import { Like } from 'src/app/models/like';
 import { Products } from 'src/app/models/products';
 import { CommandeService } from 'src/app/shares/services/commande.service';
 import { CommunService } from 'src/app/shares/services/commun.service';
@@ -46,23 +47,28 @@ export class ProductComponent implements OnInit {
   }
 
   like(p: Products) {
-    let like = {
-      idProduct: p._id,
-      view: 0
-    }
-
-    this.likeService.add(like).subscribe(
-      (data) => {
-        if (data instanceof Error) {
-          alert(JSON.stringify(data));
-        } else {
-          alert(data.message)
-        }
-      },
-      (error) => {
-        console.log('Error', error);
+    let id = sessionStorage.getItem('idUser');
+    if (id) {
+      let like:Like = {
+        idProduct: p._id,
+        idUser: id
       }
-    );
+  
+      this.likeService.add(like).subscribe(
+        (data) => {
+          if (data instanceof Error) {
+            alert(JSON.stringify(data));
+          } else {
+            alert(data.message)
+          }
+        },
+        (error) => {
+          console.log('Error', error);
+        }
+      );
+    } else {
+      alert('Veuillez vous connectez afin de liker');
+    }
   }
 
   annuler() {

@@ -1,19 +1,40 @@
 @import url('../../app.component.scss');
 
 #container{
-    width:80%;
-    margin:0 auto;
-    margin-top:3%;
+    width:100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+
+    font-family: Sarabun;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 28px;
+    /* or 156% */
+
+
+    color: #000000;
+
 }
 /* Bordered form */
 form {
-    margin-bottom: 3%;
-    width:100%;
+    // margin-bottom: 3%;
+    margin: auto;
+    width:80%;
     padding: 30px;
     border: 1px solid #f1f1f1;
     background: #fff;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 
+    h1 {
+        text-align: center;
+        font-family: Sarabun;
+        font-weight: bold;
+    }
     .form-group {
         display: flex;
         justify-content: space-between;
@@ -28,7 +49,11 @@ form {
     margin: 0 auto;
     padding-bottom: 10px;
 }
-
+input {
+    font-size: 18px;
+    font-family: Sarabun;
+    line-height: 28px;
+}
 /* Full-width inputs */
 input[type=text], input[type=password], select, input[type=email] {
     width: 100%;
