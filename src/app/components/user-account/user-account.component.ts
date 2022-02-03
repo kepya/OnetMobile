@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Favoris } from 'src/app/models/favoris';
 import { Like } from 'src/app/models/like';
 import { Products } from 'src/app/models/products';
 import { User } from 'src/app/models/user';
 import { LikeService } from 'src/app/shares/services/like.service';
+import { UserService } from 'src/app/shares/services/user.service';
 
 @Component({
   selector: 'app-user-account',
@@ -13,10 +15,10 @@ export class UserAccountComponent implements OnInit {
 
   user = new User();
   view: string = 'paiement';
-  likes: Like[] = [];
+  like = new Favoris();
   products: Products[] = [];
 
-  constructor(private likeService: LikeService) { }
+  constructor(private likeService: LikeService, private userService: UserService) { }
 
   ngOnInit(): void {
     // this.getUser();
@@ -24,6 +26,8 @@ export class UserAccountComponent implements OnInit {
     this.user.firstName = "Franck";
     this.user.lastName = "Libam";
     this.user.phone = "+243 336 364 833";
+    this.user._id = "61f762c791358cbd89c09d66"
+    this.getLike();
   }
 
   getUser() {
@@ -41,10 +45,21 @@ export class UserAccountComponent implements OnInit {
     this.view = el;
   }
 
+  findUser() {
+    this.userService.find(this.user._id).subscribe(
+      (data) => {
+        this.user = data;
+      }, (error) => {
+        console.log('Erreur', error);
+      }
+    )
+  }
+
   getLike() {
     this.likeService.allByUser(this.user._id).subscribe(
       (data) => {
-        this.likes = data;
+        this.like = data;
+        console.log("data", data);
       }, (error) => {
         console.log('Erreur', error);
       }

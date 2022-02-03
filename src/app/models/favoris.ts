@@ -1,4 +1,6 @@
-export class Like {
-    idProduct: string;
+import { Products } from "./products";
+
+export class Favoris {
+    products: Products[];
     idUser: string;
 }

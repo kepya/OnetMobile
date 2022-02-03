@@ -29,6 +29,10 @@ export class ReviewService {
     return this.http.get<Review[]>(this.url + 'findByProduct/' + idProduct);
   }
 
+  findNumberByProduct(idProduct): Observable<number> {
+    return this.http.get<number>(this.url + 'findNumberByProduct/' + idProduct);
+  }
+
   create(p: Review): Observable<string> {
     return this.http.post<string>(this.url, p);
   }

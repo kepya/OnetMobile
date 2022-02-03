@@ -31,7 +31,7 @@ const routes: Routes = [
   { path: 'produit-manager', component: UploadComponent } ,
   { path: 'produit-manager/:id', component: UploadComponent } ,
   { path: 'product/:id', component: ProductComponent } ,
-
+  { path: '*', redirectTo: 'dashboard', pathMatch: 'full'}
 ]; 
 
 @NgModule({

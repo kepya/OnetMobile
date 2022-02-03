@@ -1,0 +1,206 @@
+@import url('../../app.component.scss');
+
+header {
+
+}
+
+main {
+    .list_product {
+        // height: 563px;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        margin-left: 5rem;
+        margin-right: 5rem;
+        display: flex;
+        flex-wrap: wrap;
+        display: flex;
+
+        .item {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 2rem;
+            min-width: 230px;
+
+            .product {
+                display: block;
+                justify-content: center;
+                align-items: center;
+                padding: 1rem;
+                width: 85%;
+                border: 1px solid #E9E9F0;
+                box-sizing: border-box;
+                box-shadow: 0px 1px 1px rgba(48, 48, 60, 0.08), 0px 2px 2px rgba(48, 48, 60, 0.12);
+                border-radius: 3px;
+
+                .image {
+                    height: 203px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-bottom: .5rem;
+
+                    section {
+                        margin-left: auto;
+                        margin-right: auto;
+                        width: 100%;
+                        height: 100%;
+                        background-position: center;
+                        // background-image: url('../../../assets/images/main.png');
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                    }
+                }
+
+                .detail {
+                    .marque {
+                        font-weight: normal;
+                        font-size: 12px;
+                        line-height: 16px;
+                        color: #30303C;
+                    }
+
+                    .description {
+                        min-height: 100px;
+                    }
+
+                    .prix_vente {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+
+                        .prix {
+                            display: block;
+                            flex-direction: column;
+                            justify-content: center;
+                            align-items: center;
+
+                            .prix_reduis {
+                                font-weight: bold;
+                                font-size: 18px;
+                                line-height: 24px;
+                                color: #ED1C24;
+                            }
+                            .prix_normal {
+                                font-size: 16px;
+                                line-height: 24px;
+                                text-decoration-line: line-through;
+                                color: #7A7A8D;                                
+                            }
+                        }
+
+                        .reduction {
+                            
+                            .tauxReduction {
+                                background: #FFFFFF;
+                                border: 1px solid #ED1C24;
+                                box-sizing: border-box;
+                                border-radius: 3px;
+    
+                                font-weight: normal;
+                                font-size: 14px;
+                                line-height: 20px;
+                                color: #ED1C24;
+                            }
+                        }
+
+                    }
+
+                    .hide {
+                        display: none;
+                    }
+                }
+            }
+
+            .product:hover {
+                background-color: rgb(150, 160, 130);
+                transition-property: width, height, background-color;
+                transition-duration: 2s;
+                transition-delay: .5s;
+    
+                .detail {
+
+                    .hide {
+                        transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+                        display: block;
+                        .starsWithReview {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            margin-top: .5rem;
+                            margin-bottom: 1rem;
+
+                            .stars {
+                                display: flex;
+                                align-items: center;
+                                justify-content: space-between;
+
+                                .ligth {
+                                    width: 16.78px;
+                                    height: 16px;
+                                    background-position: center;
+                                    // background-image: url('../../../assets/images/main.png');
+                                    background-size: contain;
+                                    background-repeat: no-repeat;
+                                }
+                                .dark {
+                                    width: 16.78px;
+                                    height: 16px;
+                                    background-position: center;
+                                    // background-image: url('../../../assets/images/main.png');
+                                    background-size: contain;
+                                    background-repeat: no-repeat;
+                                }
+                            }
+
+                            .review {
+                                margin-left: .8rem;
+                                span {
+                                    font-size: 12px;
+                                    line-height: 16px;
+                                    color: #30303C;
+                                }
+                            }
+                        }
+
+                        .btn_group {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            margin-bottom: 0px;
+                            .btnBuy {      
+                                width: 97px;
+                                height: 32px;                          
+                                background: #ED1C24;
+                                border: 1px solid #ED1C24;
+                                border-radius: 3px;
+
+                                font-size: 14px;
+                                line-height: 20px;
+                                text-align: center;
+                                color: #FFFFFF;
+                            }
+
+                            .btnknow {
+                                margin-left: 1rem;
+                                width: 97px;
+                                height: 32px;
+                                background: #F5F5FA;
+                                border: 1px solid #F5F5FA;
+                                border-radius: 3px;
+
+                                font-size: 14px;
+                                line-height: 20px;
+                                text-align: center;
+                                color: #5C5C73;
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+
+    }
+}

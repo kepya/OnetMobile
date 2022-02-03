@@ -22,7 +22,7 @@
 
     </section>
     <section *ngIf="view === 'favoris'">
-
+        <app-article [articles]="like.products"></app-article>
     </section>
     <section *ngIf="view === 'profil'">
         <app-register></app-register>

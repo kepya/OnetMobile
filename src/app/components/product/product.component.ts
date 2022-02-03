@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Commande } from 'src/app/models/commande';
+import { Favoris } from 'src/app/models/favoris';
 import { Like } from 'src/app/models/like';
 import { Products } from 'src/app/models/products';
 import { CommandeService } from 'src/app/shares/services/commande.service';
@@ -30,7 +31,7 @@ export class ProductComponent implements OnInit {
   quantite: number = 1;
   totaPrice: number = 0;
   showCart: boolean = false;
-
+  favoris = new Favoris();
   constructor(private productService: ProductService, private route: ActivatedRoute, public communService: CommunService,
     private reviewService: ReviewService, private likeService: LikeService, private router: Router, private commandeService: CommandeService) { }
 
@@ -131,10 +132,23 @@ export class ProductComponent implements OnInit {
   select(p: Products) {
     this.product = p;
     this.getReview(p._id);
+    this.getFavoris(p._id);
     let split = p.fonction.split("\n");
     this.features = split;
   }
 
+  getFavoris(id: string) {
+    this.likeService.find(id).subscribe(
+      (data) => {
+        if (data) {
+          this.favoris = data;
+        }
+      },
+      (error) => {
+        console.log('Error', error);
+      }
+    );
+  }
   getReview(idProduct) {
     this.reviewService.findByProduct(idProduct).subscribe(
       (data) => {
