@@ -2,7 +2,7 @@
 
 </header>
 <main>
-    <section class="list_product">
+    <section class="list_product" *ngIf="articles != undefined ? articles.length > 0 : false">
         <section class="item col-3" *ngFor="let p of articles">
             <section class="product">
                 <section class="image">
@@ -38,6 +38,9 @@
                 </section>
             </section>
         </section>
+    </section>
+    <section *ngIf="articles != undefined ? articles.length < 0 : true" class="connection">
+        <section class="connection_error"></section>
     </section>
 </main>
 <footer>

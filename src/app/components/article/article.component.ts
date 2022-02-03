@@ -23,7 +23,7 @@ export class ArticleComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('article', this.articles);
-    if (this.articles.length > 0) {
+    if (this.articles != undefined ? this.articles.length > 0 : false) {
       this.getStarsAndReview();
     }
     this.all();
