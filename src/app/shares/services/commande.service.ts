@@ -41,4 +41,8 @@ export class CommandeService {
   removeProduct(userId: string, idProduct: string): Observable<string> {
     return this.http.delete<string>(this.url + 'user/' + userId + 'product/' + idProduct);
   }
+
+  delete(id): Observable<string> {
+    return this.http.delete<string>(this.url + id);
+  }
 }

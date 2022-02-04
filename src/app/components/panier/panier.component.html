@@ -37,36 +37,36 @@
                 <h1>My Cart</h1>
                 <span aria-hidden="true" class="close" (click)="close()">&times;</span>
             </section>
-            <section class="body" *ngIf="products.length > 0">
-                <section class="body-item"  *ngFor="let p of products">
+            <section class="body" *ngIf="commandes.length > 0">
+                <section class="body-item"  *ngFor="let commande of commandes">
                     <section class="detail">
-                        <section class="phoneImage" [ngStyle]="{'background-image': 'url(' + p.image + ')'}">
+                        <section class="phoneImage" [ngStyle]="{'background-image': 'url(' + commande?.product?.image + ')'}">
                         </section>
                         <section class="phoneDetail">
-                            <p>{{p.marque}} {{p.nom}} {{p.description}}</p>
+                            <p>{{commande?.product?.marque}} {{commande?.product?.nom}} {{commande?.product?.description}}</p>
                             <section class="prix">
-                                <span class="normal" *ngIf="p.tauxReduction > 0">{{p.prixNormal | number: ''}} FCFA</span>
-                                <span class="reduis">{{p.prixReduis | number: ''}} FCFA</span>
+                                <span class="normal" *ngIf="commande?.product?.tauxReduction > 0">{{commande?.product?.prixNormal | number: ''}} FCFA</span>
+                                <span class="reduis">{{commande?.product?.prixReduis | number: ''}} FCFA</span>
                             </section>
-                            <section class="remove" (click)='remove(p)'>
+                            <section class="remove" (click)="remove(commande)">
                                 Remove From Cart
                             </section>
                         </section>
                     </section>
                     <section class="interaction">
                         <section class="buttons">
-                            <button class="add" (click)="add(p)">
+                            <button class="add" (click)="add(commande)">
                                 +
                             </button>
                             <button class="value">
-                                {{quantite.get(p._id)}}
+                                {{commande.quantite}}
                             </button>
-                            <button class="reduce" (click)="reduce(p)">
+                            <button class="reduce" (click)="reduce(commande)">
                                 -
                             </button>
                         </section>
                         <section class="final_price">
-                            <span>{{p.prixReduis | number: ''}} FCFA</span>
+                            <span>{{commande?.product?.prixReduis | number: ''}} FCFA</span>
                         </section>
                     </section>
                 </section>
@@ -77,7 +77,7 @@
                     <span>{{prixTotal | number: ''}} FCFA</span>
                 </section>
                 <section>
-                    <button class="continueShoppin" (click)="annuler()">Continue Shopping</button>
+                    <button class="continueShoppin" (click)="close()">Continue Shopping</button>
                     <button class="buy" (click)="buy()">Checkout</button>
                 </section>
             </section>

@@ -32,7 +32,7 @@ export class PanierComponent implements OnInit {
       this.getCommandeByUser();
 
       if (this.product._id) {
-        this.addCommande();
+        this.addCommande(this.product);
       }
     } else {
       this.router.navigateByUrl('/login');
@@ -46,13 +46,9 @@ export class PanierComponent implements OnInit {
     this.service.findByUser(userId).subscribe(
       (data) => {
         if (data && data.length > 0) {
-          console.log('data', data);
           this.commandes = data;
-          let products = data.map(x => x.product);
-          this.addProducts(products);
           let prix = data.map(x => x.prix);
           this.prixTotal = prix.reduce((x, y) => x + y);
-          console.log('commande',this.commandes);
         }
       },
       (error) => {
@@ -62,116 +58,85 @@ export class PanierComponent implements OnInit {
     );
   }
 
-  addCommande() {
+  addCommande(product: Products) {
     this.commande.quantite = 1;
-    this.commande.product = this.product;
-    this.commande.idProduct = this.product._id;
+    this.commande.product = product;
+    this.commande.idProduct = product._id;
     let userId = this.user._id ? this.user._id : sessionStorage.getItem('idUser');
     this.commande.idUser = userId;
-    this.commande.prix = this.product.prixReduis;
+    this.commande.prix = product.prixReduis;
     this.commande.dateCommande = new Date();
 
-    if (this.commande._id) {
-      this.service.update(this.commande._id, this.commande).subscribe(
-        (data) => {
-          if (data) {
-            this.getCommandeByUser();
-            this.addProduct();
-            alert(data);
-          }
-        },
-        (error) => {
-          alert(error.error);
-          console.log('Error', error);
+    this.service.create(this.commande).subscribe(
+      (data) => {
+        if (data) {
+          alert(data);
+          this.getCommandeByUser();
+          this.commande  = new Commande();
         }
-      );
-    } else {
-      this.service.create(this.commande).subscribe(
-        (data) => {
-          if (data) {
-            alert(data);
-            this.getCommandeByUser();
-            this.addProduct();
-          }
-        },
-        (error) => {
-          alert(error.error);
-          console.log('Error', error);
-        }
-      );
-    }
+      },
+      (error) => {
+        alert(error.error);
+        console.log('Error', error);
+      }
+    );
   }
 
-  addProduct() {
-    let v = new Set<Products>(this.products);
-    v.add(this.product);
-    this.products = [...v];
-    this.quantite.set('' + this.product._id, this.commande.quantite)
-  }
-  
-  addProducts(p: Products[]) {
-    let v = new Set<Products>(p);
-    v = new Set<Products>(this.products.concat(p));
-    this.products = [...v];
-    this.quantite.set('' + this.product._id, this.commande.quantite)
+  updateCommande(commande: Commande) {
+    this.service.update(commande._id, commande).subscribe(
+      (data) => {
+        if (data) {
+          this.commande  = new Commande();
+          this.getCommandeByUser();
+          alert(data);
+        }
+      },
+      (error) => {
+        alert(error.error);
+        console.log('Error', error);
+      }
+    );
   }
 
   editer() {
     this.action = 'add';
   }
 
-  remove(p: Products) {
-    let userId = this.user._id ? this.user._id : sessionStorage.getItem('idUser');
-
-    this.service.removeProduct(userId, p._id).subscribe(
+  remove(p: Commande) {
+    this.service.delete(p._id).subscribe(
       (data) => {
-        if (data) {
-          let index = this.products.findIndex(x => x._id === p._id);
-          this.products.splice(index,1);
-          alert(data);
-        }
+        alert(data);
+        let index = this.commandes.indexOf(p);
+        this.commandes.splice(index, 1);
       },
       (error) => {
+        alert(error.error);
         console.log('Error', error);
       }
     );
   }
 
-  add(p: Products) {
-    let commande = this.commandes.find(x => x.product._id === p._id);
-    console.log('commande', commande);
-    
-    this.commande = commande;
-    let q = this.quantite.get(p._id);
-    this.quantite.set(p._id, q+1);
-    console.log('prix', q);
-    
-    this.commande.prix = (q + 1) * p.prixReduis;
-    this.addCommande();
+  add(commande: Commande) {
+    commande.quantite++;
+    commande.prix += commande.product.prixReduis;
+    this.prixTotal += commande.product.prixReduis;
+    this.updateCommande(commande);
   }
 
-  reduce(p: Products) {
+  reduce(commande: Commande) {
+    if (commande.quantite > 1) {
+      commande.quantite--;
+      commande.prix -= commande.product.prixReduis;
+      this.prixTotal -= commande.product.prixReduis;
+      this.updateCommande(commande);
 
-    let commande = this.commandes.find(x => x.product._id = p._id);
-    this.commande = commande;
-    let q = this.quantite.get(p._id);
- 
-    if (q != 1 && q > 1) {
-      q--;
-      this.quantite.set(p._id, q);
-      this.commande.prix = q * this.product.prixReduis;
-      this.addCommande();
+    } else {
+      alert('Nous ne pouvons pas aller au dessous de 1');
     }
   }
 
   close() {
     this.out.emit('close');
-  }
-
-  annuler() {
-    this.prixTotal =0;
-    this.products = [];
-    this.quantite = new Map<any, number>();
   }
 
   continue() {
