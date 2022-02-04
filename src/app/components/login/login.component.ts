@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/shares/services/auth.service';
 import { UserService } from 'src/app/shares/services/user.service';
@@ -15,10 +16,23 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   signupForm: FormGroup;
 
-  constructor(private service: AuthService, private userService: UserService, private formBuilder: FormBuilder) { }
+  constructor(private service: AuthService, private userService: UserService, private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
+    this.checkConnection();
     this.initForm();
+  }
+
+  checkConnection() {
+    let id = sessionStorage.getItem('idUser');
+    if (id) {
+      let role = sessionStorage.getItem('role');
+      if (role === 'admin') {
+        this.router.navigateByUrl('/user-account');
+      } else {
+        this.router.navigateByUrl('/user-account');
+      }
+    }
   }
 
   login() {
@@ -32,6 +46,7 @@ export class LoginComponent implements OnInit {
         if(!(data instanceof Error)) {
           console.log('result', data);
           sessionStorage.setItem('token', data.token);
+          sessionStorage.setItem('role', data.role);
           sessionStorage.setItem('idUser', data.userId);
           this.findByEmail(this.user.email);
           alert('Authentification reussie');
@@ -51,7 +66,11 @@ export class LoginComponent implements OnInit {
       (data) => {
         if (data) {
           this.user = data;
-          console.log('user', data);
+          if (this.user.type === 'admin') {
+            this.router.navigateByUrl('/user-account');
+          } else {
+            this.router.navigateByUrl('/user-account');
+          }
         }
       },
       (error) => {

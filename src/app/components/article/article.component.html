@@ -40,7 +40,10 @@
         </section>
     </section>
     <section *ngIf="articles != undefined ? articles.length < 0 : true" class="connection">
-        <section class="connection_error"></section>
+        <h1>Aucun Article Favoris</h1>
+        <p>
+            Désolé mais nous n'avons récuperer aucune données de la base. Veuillez vérifier connection au serveur en de presence de données en base
+        </p>
     </section>
 </main>
 <footer>

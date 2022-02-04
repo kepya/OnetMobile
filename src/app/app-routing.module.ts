@@ -6,6 +6,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { MainComponent } from './components/main/main.component';
 import { ModalComponent } from './components/modal/modal.component';
+import { PanierComponent } from './components/panier/panier.component';
 import { ProductComponent } from './components/product/product.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ReviewComponent } from './components/review/review.component';
@@ -23,7 +24,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent } ,
   { path: 'login', component: LoginComponent } ,
   { path: 'review', component: ReviewComponent } ,
-  // { path: 'search', component: SearchComponent }  ,
+  { path: 'panier', component: PanierComponent }  ,
   { path: 'checkout', component: CheckoutComponent } ,
   { path: 'user-account', component: UserAccountComponent } ,
   { path: 'admin-account', component: AdminAccountComponent } ,
@@ -31,7 +32,7 @@ const routes: Routes = [
   { path: 'produit-manager', component: UploadComponent } ,
   { path: 'produit-manager/:id', component: UploadComponent } ,
   { path: 'product/:id', component: ProductComponent } ,
-  { path: '*', redirectTo: 'dashboard', pathMatch: 'full'}
+  { path: '**', redirectTo: 'dashboard', pathMatch: 'full'}
 ]; 
 
 @NgModule({

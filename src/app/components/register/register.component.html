@@ -1,7 +1,7 @@
 <div id="container">
     <!-- zone de connexion -->
     <form [formGroup]="signupForm" (ngSubmit)="signup()">
-        <h1>register</h1>
+        <h1>{{title}}</h1>
         <section class="form-group">
             <section class="col-6">
                 <label><b>Nom</b></label>
@@ -41,7 +41,7 @@
         
             </section>
         </section>
-        <input type="submit" id='submit' value='REGISTER' [disabled]="signupForm.invalid">
-        <span>vous avez un compte cliquez <a href="http://localhost:4200/login">ici</a></span>
+        <input type="submit" id='submit' [value]="title != 'Register' ? 'Modifier Mes Informations' : 'REGISTER'" [disabled]="signupForm.invalid">
+        <span *ngIf="title === 'Register'">vous avez un compte cliquez <a href="http://localhost:4200/login">ici</a></span>
     </form>
 </div>

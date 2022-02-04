@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit {
   product_search: Products[] = [];
   startLigth: any[] = [];
   startDart: any[] = [];
+  product = new Products();
 
   constructor(private productService: ProductService, public communService: CommunService, private reviewService: ReviewService,
     private commandeService: CommandeService, private router: Router) { }
@@ -102,6 +103,7 @@ export class HomeComponent implements OnInit {
   }
 
   buy(product) {
+    this.product = product;
     this.showCart = !this.showCart;
     this.productForBuy.push(product);
     this.totaPrice+=product.prixReduis;
@@ -194,6 +196,9 @@ export class HomeComponent implements OnInit {
     );
   }
 
+  close() {
+    this.showCart = false;
+  }
   searchByPercent(event) {
     this.product_search = this.products;
     let result = this.products.filter(x => x.tauxReduction === parseInt(event, 10));

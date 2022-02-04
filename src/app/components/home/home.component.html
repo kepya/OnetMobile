@@ -2,52 +2,7 @@
     <app-header (modalSearch)="getEvent($event)"></app-header>
 
     <section class="modal" *ngIf="showCart" >
-        <section class="header">
-            <h1>Your Cart</h1>
-            <span aria-hidden="true" class="close">&times;</span>
-        </section>
-        <section class="body">
-            <section class="body-item"  *ngFor="let p of productForBuy">
-                <section class="detail col-6">
-                    <section class="phoneImage" [ngStyle]="{'background-image': 'url(' + p.image + ')'}">
-                    </section>
-                    <section class="phoneDetail">
-                        <p>{{p.marque}} {{p.nom}} {{p.description}}</p>
-                        <section class="prix">
-                            <span class="normal">{{p.prixNormal | number: ''}} FCFA</span>
-                            <span class="reduis">{{p.prixReduis | number: ''}} FCFA</span>
-                        </section>
-                        <section class="remove">
-                            Remove From Cart
-                        </section>
-                    </section>
-                </section>
-                <section class="buttons col-3">
-                    <button class="add" (click)="add(p.prixReduis)">
-                        +
-                    </button>
-                    <button class="value">
-                        {{quantite}}
-                    </button>
-                    <button class="reduce" (click)="reduce(p.prixReduis)">
-                        -
-                    </button>
-                </section>
-                <section class="final_price col-3">
-                    <span>{{p.prixReduis | number: ''}} FCFA</span>
-                </section>
-            </section>
-        </section>
-        <section class="footer">
-            <section>
-                <span>Total: </span>
-                <span>{{totaPrice | number: ''}} FCFA</span>
-            </section>
-            <section>
-                <button class="continueShoppin" (click)="annuler()">Continue Shopping</button>
-                <button class="buy" (click)="payCommande()">Checkout</button>
-            </section>
-        </section>
+        <app-panier [action]="'add'" [product]="product"  (out)="close()"></app-panier>
     </section>
 </header>
 

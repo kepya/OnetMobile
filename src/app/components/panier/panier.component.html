@@ -1,0 +1,86 @@
+<section class="container">
+    <header>
+        <h1>Mon Panier</h1>
+        <p>Bienvenu dans votre panier l'endroit où nous vous présentons la liste de vos achats et de vos commandes</p>
+    </header>
+    <main>
+        <section class="show_paner" *ngIf="action === 'show'">
+            <section class="list_commandes" *ngIf="commandes != undefined ? commandes.length > 0 : false">
+                <section class="header">
+                    <h2>Mes Commandes</h2>
+                    <span (click)="editer()">Editer</span>
+                </section>
+                <section class="item" *ngFor="let commande of commandes">
+                    <section class="image" [ngStyle]="{'background-image': 'url(' + commande?.product?.image + ')'}"></section>
+                    <section class="detailProduit">
+                        <span class="description">{{commande?.product?.marque}} {{commande?.product?.nom}} {{commande?.product?.description}}</span>
+                        <section class="detailPaiement">
+                            <span class="quantite">{{commande?.quantite}} pcs</span>
+                            <span class="prix">{{commande?.product?.prixReduis | number: ''}} FCFA</span>
+                        </section>
+                    </section>
+                </section>
+                <section class="footer">
+                    <span class="title">Total:</span>
+                    <span class="prix">{{prixTotal | number: ''}} FCFA</span>
+                </section>
+            </section>
+            <section *ngIf="commandes != undefined ? commandes.length === 0 : true" class="connection">
+                <h1>Panier Vide</h1>
+                <p>
+                    Désolé mais vous n'avez aucune commande dans votre panier. Veuillez vérifier si c'est la connection au serveur en cas de presence de commande en base
+                </p>
+            </section>
+        </section>
+        <section class="add_paner" *ngIf="action === 'add'">
+            <section class="header">
+                <h1>My Cart</h1>
+                <span aria-hidden="true" class="close" (click)="close()">&times;</span>
+            </section>
+            <section class="body" *ngIf="products.length > 0">
+                <section class="body-item"  *ngFor="let p of products">
+                    <section class="detail">
+                        <section class="phoneImage" [ngStyle]="{'background-image': 'url(' + p.image + ')'}">
+                        </section>
+                        <section class="phoneDetail">
+                            <p>{{p.marque}} {{p.nom}} {{p.description}}</p>
+                            <section class="prix">
+                                <span class="normal" *ngIf="p.tauxReduction > 0">{{p.prixNormal | number: ''}} FCFA</span>
+                                <span class="reduis">{{p.prixReduis | number: ''}} FCFA</span>
+                            </section>
+                            <section class="remove" (click)='remove(p)'>
+                                Remove From Cart
+                            </section>
+                        </section>
+                    </section>
+                    <section class="interaction">
+                        <section class="buttons">
+                            <button class="add" (click)="add(p)">
+                                +
+                            </button>
+                            <button class="value">
+                                {{quantite.get(p._id)}}
+                            </button>
+                            <button class="reduce" (click)="reduce(p)">
+                                -
+                            </button>
+                        </section>
+                        <section class="final_price">
+                            <span>{{p.prixReduis | number: ''}} FCFA</span>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="footer">
+                <section>
+                    <span>Total: </span>
+                    <span>{{prixTotal | number: ''}} FCFA</span>
+                </section>
+                <section>
+                    <button class="continueShoppin" (click)="annuler()">Continue Shopping</button>
+                    <button class="buy" (click)="buy()">Checkout</button>
+                </section>
+            </section>
+        </section>
+    </main>
+</section>

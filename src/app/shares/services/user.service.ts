@@ -25,4 +25,8 @@ export class UserService {
     return this.http.get<User>(this.url + 'findByEmail/' + email);
   }
 
+  update(id:string, p: User): Observable<string> {
+    return this.http.put<string>(this.url + id, p);
+  }
+
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Favoris } from 'src/app/models/favoris';
 import { Like } from 'src/app/models/like';
 import { Products } from 'src/app/models/products';
@@ -18,35 +19,36 @@ export class UserAccountComponent implements OnInit {
   like = new Favoris();
   products: Products[] = [];
 
-  constructor(private likeService: LikeService, private userService: UserService) { }
+  constructor(private likeService: LikeService, private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
-    // this.getUser();
-    this.user.email = "franck@gmail.com";
-    this.user.firstName = "Franck";
-    this.user.lastName = "Libam";
-    this.user.phone = "+243 336 364 833";
-    this.user._id = "61f762c791358cbd89c09d66"
-    this.getLike();
+    let userId = sessionStorage.getItem('idUser');
+    this.getUser(userId);
+    this.getLike(userId);
   }
 
-  getUser() {
-    let value = sessionStorage.getItem('user');
-    if (value) {
-      this.user = JSON.parse(value); 
+  getUser(userId) {
+    this.user.firstName ='';
+    this.user.lastName = '';
+    if (userId) {
+      this.findUser(userId);
+    } else {
+      this.router.navigateByUrl('/login');
     }
   }
+
   logout() {
     sessionStorage.clear();
     localStorage.clear();
+    this.router.navigateByUrl('/login');
   }
 
   setView(el) {
     this.view = el;
   }
 
-  findUser() {
-    this.userService.find(this.user._id).subscribe(
+  findUser(id) {
+    this.userService.find(id).subscribe(
       (data) => {
         this.user = data;
       }, (error) => {
@@ -55,8 +57,9 @@ export class UserAccountComponent implements OnInit {
     )
   }
 
-  getLike() {
-    this.likeService.allByUser(this.user._id).subscribe(
+  getLike(id) {
+    let userId = this.user._id ? this.user._id : id;
+    this.likeService.allByUser(userId).subscribe(
       (data) => {
         this.like = data;
         console.log("data", data);

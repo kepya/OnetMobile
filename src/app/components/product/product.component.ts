@@ -82,11 +82,11 @@ export class ProductComponent implements OnInit {
   payCommande() {
     let commande = new Commande();
     commande.quantite = this.quantite;
-    commande.idProduct = this.productForBuy[0]._id;
+    commande.product = this.productForBuy[0];
+    commande.idProduct = commande.product._id;
     commande.prix = this.totaPrice;
     commande.dateCommande = new Date();
 
-    localStorage.setItem('commande', JSON.stringify(commande));
     this.commandeService.create(commande).subscribe(
       (data) => {
         this.annuler();

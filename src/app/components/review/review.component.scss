@@ -1,0 +1,194 @@
+.container {
+    background: #FFFFFF;
+    border: 1px solid #E9E9F0;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.25), 0px 1px 1px rgba(48, 48, 60, 0.08);
+    border-radius: 3px;
+    font-family: Sarabun;
+    font-style: normal;
+    font-weight: normal;
+    padding: 1.3rem;
+
+    header {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid rgba(0, 0, 0, 0.25);
+        margin-bottom: 2rem;
+        h1 {
+            margin: 0px;
+            font-size: 30px;
+            line-height: 36px;
+            font-weight: bold;
+        }
+    
+        span {
+            border-radius: 3px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #F5F5FA;
+            border: 1px solid #F5F5FA;
+            border-radius: 3px;
+            width: 143px;
+            height: 47px;
+            font-size: 20px;
+            line-height: 28px;
+            text-align: center;
+            color: #5C5C73;
+        }
+    }
+    main {
+        .list_review {
+            .item {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                .heureWithUpdate {
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-items: center;
+                    justify-content: space-between;
+
+                    h2 {
+                        font-weight: bold;
+                        margin: 0px;
+                    }
+
+                    span {
+                        font-size: 18px;
+                        border-bottom: 5px solid #DCDCE4;
+                    }
+                    span:hover {
+                        color: green;
+                        cursor: pointer;
+                    }
+                }
+                .content {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    margin-left: 2em;
+
+                    h3 {
+                        margin: 0px;
+                    }
+
+                    p {
+                        
+                    } 
+                }
+            }
+            .connection {
+                h1 {
+                    font-family: Sarabun;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 30px;
+                    line-height: 36px;
+                    font-weight: bold;
+                    color: #ED1C24;
+                }
+        
+                p {
+                    font-family: Sarabun;
+                    font-style: normal;
+                    font-weight: normal;
+                }
+            }
+        }
+        .nouvel_review {
+            .btn_add {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: flex-end;
+                align-items: center;
+
+                button {
+                    border-radius: 3px;
+                    text-align: center;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: #F5F5FA;
+                    border: 1px solid #F5F5FA;
+                    border-radius: 3px;
+                    width: 143px;
+                    height: 47px;
+                    font-size: 20px;
+                    line-height: 28px;
+                    text-align: center;
+                    color: #5C5C73;
+                }
+            }
+            form {
+                margin-top: 1rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                width: 100%;
+                border-radius: 3px;
+                
+                .article {
+                    margin-bottom: 1rem;
+                }
+                .form-group {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+
+                    label {
+                        font-size: 20px;
+                        font-family: Sarabun;
+                        line-height: 28px;
+                        font-weight: bold;
+                    }
+                    textarea, select {
+                        font-size: 18px;
+                        font-family: Sarabun;
+                        line-height: 28px;
+                        padding: 12px 20px;
+                        display: inline-block;
+                        border: 1px solid #ccc;
+                        box-sizing: border-box;
+                        border-radius: 3px;
+                    }
+                }
+
+                input[type=submit] {
+                    background-color: #53af57;
+                    color: white;
+                    padding: 14px 20px;
+                    margin: 8px 0;
+                    border: none;
+                    cursor: pointer;
+                    width: 100%;
+                }
+                input[type=submit]:hover {
+                    background-color: white;
+                    color: #53af57;
+                    border: 1px solid #53af57;
+                }
+
+                input[type=button] {
+                    background-color: white;
+                    color: #53af57;
+                    border: 1px solid #53af57;
+                    padding: 14px 20px;
+                    margin: 8px 0;
+                    cursor: pointer;
+                    width: 100%;
+                }
+                input[type=button]:hover {
+                    background-color: #53af57;
+                    color: white;
+                }
+                
+            }
+        }
+    }
+}

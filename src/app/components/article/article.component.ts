@@ -26,20 +26,6 @@ export class ArticleComponent implements OnInit {
     if (this.articles != undefined ? this.articles.length > 0 : false) {
       this.getStarsAndReview();
     }
-    this.all();
-  }
-
-  all() {
-    this.productService.all().subscribe(
-      (data) => {
-        if (data != null && data.length > 0) {
-          this.articles = data;
-        }
-      },
-      (error) => {
-        console.log('Error', error);
-      }
-    );
   }
 
   getStarsAndReview() {
@@ -60,9 +46,6 @@ export class ArticleComponent implements OnInit {
         this.getNumberReview(article._id);
       }
     );
-    console.log('ligth', this.starsLigth);
-    console.log('dark', this.starsDark);
-    console.log('review', this.review);
   }
  
   getNumberReview(idProduct) {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
@@ -12,7 +12,8 @@ import { UserService } from 'src/app/shares/services/user.service';
 })
 export class RegisterComponent implements OnInit {
 
-  user = new User();
+  @Input() title='Register';
+  @Input() user = new User();
   loginForm: FormGroup;
   signupForm: FormGroup;
 
@@ -20,16 +21,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
-    this.getUser();
   }
-
-  getUser() {
-    let value = sessionStorage.getItem('user');
-    if (value) {
-      this.user = JSON.parse(value); 
-    }
-  }
-
 
   login() {
     let value = this.loginForm.value;
@@ -43,7 +35,6 @@ export class RegisterComponent implements OnInit {
           console.log('result', data);
           sessionStorage.setItem('token', data.token);
           sessionStorage.setItem('idUser', data.userId);
-          this.findByEmail(this.user.email);
           alert('Authentification reussie');
         } else {
           alert('Echec d\'authentification');
@@ -54,21 +45,6 @@ export class RegisterComponent implements OnInit {
       }
     );
 
-  }
-
-  findByEmail(email) {
-    this.userService.findByEmail(email).subscribe(
-      (data) => {
-        if(data instanceof Error) {
-          alert("Erreur de création");
-        } else {
-          sessionStorage.setItem('user', JSON.stringify(data));
-        }
-      },
-      (error) => {
-        console.log('Error', error);
-      }
-    );
   }
 
   findById(id) {
@@ -99,23 +75,34 @@ export class RegisterComponent implements OnInit {
 
     console.log('Value', value);
     
-    this.service.signup(this.user).subscribe(
-      (data) => {
-        this.findByEmail(this.user.email);
-        console.log('result', data);
-        alert('Utilisateur Crée');
-        this.initForm();
-        this.user = new User();
-        if (data.typeUser === 'utilisateur') {
-          this.router.navigateByUrl('/user-account');
-        } else {
-          this.router.navigateByUrl('/admin-account');
+    if (this.user._id) {
+      this.userService.update(this.user._id, this.user).subscribe(
+        (data) => {
+          alert('Utilisateur Crée avec success');
+          this.initForm();
+          this.user = new User();
+        },
+        (error) => {
+          console.log('Error', error);
         }
-      },
-      (error) => {
-        console.log('Error', error);
-      }
-    );
+      );
+    } else {
+      this.service.signup(this.user).subscribe(
+        (data) => {
+          alert('Utilisateur Crée avec success');
+          this.initForm();
+          this.user = new User();
+          if (data.typeUser === 'utilisateur') {
+            this.router.navigateByUrl('/user-account');
+          } else {
+            this.router.navigateByUrl('/admin-account');
+          }
+        },
+        (error) => {
+          console.log('Error', error);
+        }
+      );
+    }
   }
 
   initForm() {

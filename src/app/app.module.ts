@@ -29,6 +29,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { AdminAccountComponent } from './components/admin-account/admin-account.component';
 import { UserAccountComponent } from './components/user-account/user-account.component';
 import { ArticleComponent } from './components/article/article.component';
+import { PanierComponent } from './components/panier/panier.component';
 
 
 const materialModules = [
@@ -58,6 +59,7 @@ const materialModules = [
     AdminAccountComponent,
     UserAccountComponent,
     ArticleComponent,
+    PanierComponent,
     // ModalComponent
   ],
   imports: [

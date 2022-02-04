@@ -21,8 +21,8 @@ export class ReviewService {
     return this.http.get<Review>(this.url + id);
   }
 
-  findByUser(idUser): Observable<Review> {
-    return this.http.get<Review>(this.url + 'findByUser/' + idUser);
+  findByUser(idUser): Observable<Review[]> {
+    return this.http.get<Review[]>(this.url + 'findByUser/' + idUser);
   }
 
   findByProduct(idProduct): Observable<Review[]> {

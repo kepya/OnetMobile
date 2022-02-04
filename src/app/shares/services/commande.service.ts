@@ -4,15 +4,11 @@ import { Observable } from 'rxjs';
 import { Commande } from 'src/app/models/commande';
 import { environment } from 'src/environments/environment';
 
-// const headers = new Headers();
-// headers.append('Access-Control-Allow-Headers', 'Content-Type');
-// headers.append('Access-Control-Allow-Methods', 'GET');
-// headers.append('Access-Control-Allow-Origin', '*');
-
 @Injectable({
   providedIn: 'root'
 })
 export class CommandeService {
+
 
   url = environment.url + 'commande/';
 
@@ -30,6 +26,10 @@ export class CommandeService {
     return this.http.get<Commande[]>(this.url + 'findByProduct/' + idProduct);
   }
 
+  findByUser(idUser): Observable<Commande[]> {
+    return this.http.get<Commande[]>(this.url + 'findByUser/' + idUser);
+  }
+
   create(p: Commande): Observable<string> {
     return this.http.post<string>(this.url, p);
   }
@@ -38,4 +38,7 @@ export class CommandeService {
     return this.http.put<string>(this.url + id, p);
   }
 
+  removeProduct(userId: string, idProduct: string): Observable<string> {
+    return this.http.delete<string>(this.url + 'user/' + userId + 'product/' + idProduct);
+  }
 }

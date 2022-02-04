@@ -1,1 +1,44 @@
-<p>review works!</p>
+<section class="container">
+    <header>
+        <h1>Reviews</h1>
+        <span (click)="addComment()">Nouvel</span>
+    </header>
+    <main>
+        <section class="list_review" *ngIf="add == false">
+            <section class="item" *ngFor="let r of reviews">
+                <section class="heureWithUpdate">
+                    <h2>{{r?.dateEnvoi | date: 'EEEE dd MMMM yyy, H:mm:ss'}}</h2>
+                    <span (click)="updateComment(r)">Modifier</span>
+                </section>
+                <section class="content">
+                    <h3>Produit: <strong>{{r?.product?.nom}} ({{r?.product?.marque}})</strong></h3>
+                    <p>{{r?.comment}}</p>
+                </section>
+            </section>
+            <section *ngIf="reviews.length == 0" class="connection">
+                <h1>Aucun Commentaires réalisés</h1>
+                <p>
+                    Désolé mais nous n'avons récuperer aucune données de la base. Veuillez vérifier connection au serveur en de presence de données en base
+                </p>
+            </section>
+        </section>
+        <section class="nouvel_review" *ngIf="add">
+            <form action="" [formGroup]="reviewForm" (ngSubmit)="send()">
+                <section class="form-group article">
+                    <label>Article</label>
+                    <select formControlName="article" [(ngModel)]="idArticle">
+                        <option *ngFor="let p of articles" value="{{p._id}}">{{p.nom}} ({{p.marque}})</option>
+                    </select>
+                </section>
+
+                <section class="form-group">
+                    <label>Commentaire</label>
+                    <textarea type="text" formControlName="comment" [(ngModel)]="review.comment" rows="5"></textarea>
+                </section>
+
+                <input type="submit" id='submit' value="Envoyer" [disabled]="reviewForm.invalid">
+                <input type="button" value="Annuler" (click)="annuler()">
+            </form>
+        </section>
+    </main>
+</section>
