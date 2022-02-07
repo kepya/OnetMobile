@@ -31,7 +31,8 @@ import { UserAccountComponent } from './components/user-account/user-account.com
 import { ArticleComponent } from './components/article/article.component';
 import { PanierComponent } from './components/panier/panier.component';
 import { PaiementUserComponent } from './components/paiement-user/paiement-user.component';
-
+import { NbThemeModule, NbLayoutModule, NbDialogService, NbDialogModule } from '@nebular/theme';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 const materialModules = [
   MatButtonModule,
@@ -72,9 +73,13 @@ const materialModules = [
     CommonModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    ...materialModules
+    NbDialogModule.forRoot(),
+    ...materialModules,
+    NbThemeModule.forRoot({ name: 'default' }),
+    NbLayoutModule,
+    NbEvaIconsModule
   ],
-  providers: [NgxImageCompressService],
+  providers: [NgxImageCompressService, NbDialogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

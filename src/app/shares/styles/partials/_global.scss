@@ -1,0 +1,18 @@
+
+nb-layout .layout .layout-container .content .columns nb-layout-column {
+    padding: 0px !important;
+}
+
+nb-layout-header.fixed ~ .layout-container {
+    padding-top: 0px !important;
+    min-height: 0px !important;
+}
+
+nb-layout-header nav {
+    height: 0px !important;
+    padding: 0px !important;
+}
+
+nb-layout .layout {
+    background-color: white;
+}

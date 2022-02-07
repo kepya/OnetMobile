@@ -12,6 +12,8 @@ import { LikeService } from 'src/app/shares/services/like.service';
 import { ProductService } from 'src/app/shares/services/product.service';
 import { ReviewService } from 'src/app/shares/services/review.service';
 import { Location } from '@angular/common';
+import { NbDialogService } from '@nebular/theme';
+import { PanierComponent } from '../panier/panier.component';
 
 @Component({
   selector: 'app-product',
@@ -35,8 +37,13 @@ export class ProductComponent implements OnInit {
   totaPrice: number = 0;
   showCart: boolean = false;
   favoris = new Favoris();
+
+  dialogRef: any;
+
   constructor(private productService: ProductService, private route: ActivatedRoute, public communService: CommunService,
-    private reviewService: ReviewService, private likeService: LikeService, private router: Router, private commandeService: CommandeService,private Location:Location) {
+    private reviewService: ReviewService, private likeService: LikeService,
+    private router: Router, private commandeService: CommandeService,
+    private Location:Location, private dialogService: NbDialogService) {
   }
 
   ngOnInit(): void {
@@ -45,6 +52,19 @@ export class ProductComponent implements OnInit {
     } else {
       this.all();
     }
+  }
+
+  open() {
+    this.dialogRef = this.dialogService.open(PanierComponent, {
+      context: {
+        action: 'show'
+      },
+    });
+    
+  }
+
+  close() {
+    this.dialogRef.close();
   }
 
   show(t) {
@@ -108,13 +128,13 @@ export class ProductComponent implements OnInit {
   showModal: boolean = false;
 
   getEvent(event) {
-    if (event != null && event != '') {
-      this.showModal = true;
-    } else {
-      this.showModal = false;
-    }
+    // if (event != null && event != '') {
+    //   this.showModal = true;
+    // } else {
+    //   this.showModal = false;
+    // }
 
-    console.log('Event: ' + event);
+    alert('Event: ' + event);
   }
 
   buy(product) {
@@ -219,9 +239,9 @@ export class ProductComponent implements OnInit {
     );
   }
 
-  open() {
-    document.getElementById('content').classList.toggle('show')
-  }
+  // open() {
+  //   document.getElementById('content').classList.toggle('show')
+  // }
 
   getProduct(id) {
     this.productService.find(id).subscribe(

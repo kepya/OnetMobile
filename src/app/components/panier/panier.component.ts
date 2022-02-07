@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { NbDialogRef, NbDialogService } from '@nebular/theme';
 import { Commande } from 'src/app/models/commande';
 import { Panier } from 'src/app/models/panier';
 import { Products } from 'src/app/models/products';
@@ -18,26 +19,20 @@ export class PanierComponent implements OnInit {
   commandes: Commande[] = [];
   commande = new Commande();
   prixTotal = 0;
-  @Input() action: string = 'show';
+  @Input() action: string = 'add';
   products: Products[] = [];
   quantite= new Map<any, number>();
   @Input() product = new Products();
   @Output() out = new EventEmitter<string>();
   
-  constructor(private service: CommandeService, private router: Router) { }
+  constructor(private service: CommandeService, private router: Router, protected dialogRef: NbDialogRef<PanierComponent>) { }
 
   ngOnInit(): void {
-    let userId = sessionStorage.getItem('idUser');
-    if (userId) {
-      this.getCommandeByUser();
+    this.getCommandeByUser();
 
-      if (this.product._id) {
-        this.addCommande(this.product);
-      }
-    } else {
-      this.router.navigateByUrl('/login');
+    if (this.product._id) {
+      this.addCommande(this.product);
     }
-
   }
 
   getCommandeByUser() {
@@ -136,7 +131,9 @@ export class PanierComponent implements OnInit {
   }
 
   close() {
+    this.dialogRef.close('ok');
     this.out.emit('close');
+
   }
 
   continue() {
