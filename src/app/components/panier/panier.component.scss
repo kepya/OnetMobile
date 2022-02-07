@@ -80,6 +80,7 @@
                 }
 
                 .item {
+                    margin-top: 1rem;
                     display: flex;
                     border-bottom: 2px solid black;
                     margin-bottom: 1.5rem;
@@ -114,6 +115,11 @@
                             }
                         }
                     }
+                }
+
+                .item:hover {
+                    background-color: rgba(48, 48, 60, 0.08);
+                    cursor: pointer;
                 }
 
                 .footer {

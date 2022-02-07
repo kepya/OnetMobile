@@ -50,6 +50,12 @@
         }
     }
     
+    .modal {
+        position: absolute;
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
     main {
         // min-height: 725px;
         display: flex;
@@ -110,6 +116,10 @@
             background-image: url('../../../assets/images/log-out-outline.png');
             background-size: contain;
             background-repeat: no-repeat;
+        }
+
+        .logOutImg:hover {
+            cursor: pointer;
         }
     }
 }

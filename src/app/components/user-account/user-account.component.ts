@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Favoris } from 'src/app/models/favoris';
 import { Like } from 'src/app/models/like';
 import { Products } from 'src/app/models/products';
@@ -18,13 +18,32 @@ export class UserAccountComponent implements OnInit {
   view: string = 'paiement';
   like = new Favoris();
   products: Products[] = [];
+  showCart: boolean = false;
 
-  constructor(private likeService: LikeService, private userService: UserService, private router: Router) { }
+  constructor(private likeService: LikeService, private userService: UserService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    if (this.route.snapshot.params['page']) {
+      this.view = this.route.snapshot.params['page'];
+    }
+    
     let userId = sessionStorage.getItem('idUser');
     this.getUser(userId);
     this.getLike(userId);
+  }
+
+  close() {
+    this.showCart = false;
+  }
+
+  getEvent(event) {
+    if (event != null && event != '') {
+      this.showCart = true;
+    } else {
+      this.showCart = false;
+    }
+
+    console.log('Event: ' + event);
   }
 
   getUser(userId) {

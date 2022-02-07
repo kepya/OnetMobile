@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, NavigationStart, Router, RouterEvent } from '@angular/router';
+import { filter } from 'rxjs';
 import { Commande } from 'src/app/models/commande';
 import { Favoris } from 'src/app/models/favoris';
 import { Like } from 'src/app/models/like';
@@ -10,6 +11,7 @@ import { CommunService } from 'src/app/shares/services/commun.service';
 import { LikeService } from 'src/app/shares/services/like.service';
 import { ProductService } from 'src/app/shares/services/product.service';
 import { ReviewService } from 'src/app/shares/services/review.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-product',
@@ -21,6 +23,7 @@ export class ProductComponent implements OnInit {
   products: Products[] = [];
   productForBuy: Products[] = [];
   product = new Products();
+  
   startLigthImg: string = '../../../assets/icons/VectorYellow.png';
   startDartImg: string = '../../../assets/icons/Vector.png';
   review = new Map<string, number>();
@@ -33,7 +36,8 @@ export class ProductComponent implements OnInit {
   showCart: boolean = false;
   favoris = new Favoris();
   constructor(private productService: ProductService, private route: ActivatedRoute, public communService: CommunService,
-    private reviewService: ReviewService, private likeService: LikeService, private router: Router, private commandeService: CommandeService) { }
+    private reviewService: ReviewService, private likeService: LikeService, private router: Router, private commandeService: CommandeService,private Location:Location) {
+  }
 
   ngOnInit(): void {
     if (this.route.snapshot.params['id']) {
@@ -251,5 +255,11 @@ export class ProductComponent implements OnInit {
         console.log('Error', error);
       }
     );
+  }
+
+  leaveReview() {
+    sessionStorage.setItem('route', this.Location.path())
+    sessionStorage.setItem('route', '/user-account/review')
+    this.router.navigateByUrl('/user-account/review');
   }
 }

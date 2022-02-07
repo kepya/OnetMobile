@@ -14,7 +14,7 @@
                     <section class="phoneDetail">
                         <p>{{p.marque}} {{p.nom}} {{p.description}}</p>
                         <section class="prix">
-                            <span class="normal">{{p.prixNormal | number: ''}} FCFA</span>
+                            <span class="normal" *ngIf="p.tauxReduction != 0">{{p.prixNormal | number: ''}} FCFA</span>
                             <span class="reduis">{{p.prixReduis | number: ''}} FCFA</span>
                         </section>
                         <section class="remove">
@@ -63,7 +63,7 @@
                     <section class="image_produit" [ngStyle]="{'background-image': 'url(' + product.image + ')'}">
                     </section>
                     <section class="image_exemplaire">
-                        <section *ngFor="let p of products" (click)="select(p)" [ngStyle]="{'background-image': 'url(' + p.image + ')'}"></section>
+                        <section *ngFor="let p of products" (click)="select(p)" [ngStyle]="{'background-image': 'url(' + p.image + ')'}" [style.border]="product._id === p._id ? '1px solid black': 'none'"></section>
                     </section>
                 </section>
         
@@ -78,12 +78,12 @@
                             </section>
                             <section class="review">
                                 <span class="nbreStars">{{product.nombreEtoile}}.0 (<span class="redColor">{{review.get(product._id)}} reviews</span>)</span>
-                                <span class="redColor leaveReview" routerLink="/review">Leave a review</span>
+                                <span class="redColor leaveReview" (click)="leaveReview()">Leave a review</span>
                             </section>
                         </section>
                         <section class="feature">
                             <h1>Key Features</h1>
-                            <ul class="list_feature">
+                            <ul class="list_feature" *ngIf="features != null && features != undefined ? features.length > 1 && features[0] != '' : false">
                                 <li class="item" *ngFor="let f of features">
                                     {{f}}
                                 </li>
@@ -97,11 +97,11 @@
                                     <section class="prixReduis">
                                         <span>{{product.prixReduis | number: ''}} FCFA</span>
                                     </section>
-                                    <section class="percent">
+                                    <section class="percent" *ngIf="product.tauxReduction != 0">
                                         <button>{{product.tauxReduction}} %</button>
                                     </section>
                                 </section>
-                                <section class="prixNormal">
+                                <section class="prixNormal" *ngIf="product.tauxReduction != 0">
                                     {{product.prixNormal | number: ''}} FCFA
                                 </section>
                             </section>

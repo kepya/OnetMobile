@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   langue: string = '';
   product = new Products();
   products:Products[] = [];
-
+  showModal: boolean = false;
   resultPhone = 0;
   resultPhoneCover = 0;
   resultProtectiveMembrane = 0;
@@ -25,13 +25,13 @@ export class HeaderComponent implements OnInit {
   produits: Observable<readonly Products[]>;
 
   search: OperatorFunction<string, readonly Products[]> = (text$: Observable<string>) => text$.pipe(
-    debounceTime(200),
+    debounceTime(2),
     distinctUntilChanged(),
     filter(term => term.length >= 1),
     map(term => this.products.filter(product => new RegExp(term, 'mi').test(product.nom + ' ' + product.marque + ' ' + product.description)).slice(0, 10))
   );
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService, private router: Router) { }
 
   ngOnInit(): void {
     this.langue = 'fr';
@@ -40,21 +40,27 @@ export class HeaderComponent implements OnInit {
 
   searchProduct(term: string): void {
     this.modalSearch.emit(term);
+    if(term.length > 0) {
+      this.showModal = true;
+    } else {
+      this.showModal = false;
+    }
   
     const value = new Observable<string>((observer) => {
       observer.next(term);
     });
 
     let result = this.search(value);
-    this.produits = result;
-
-    result.subscribe(
-      (v) => {
-        console.log('ligne', v);
-      }
-    );
-    console.log('result', result);    
-  }  
+    this.produits = result; 
+  } 
+  
+  userAccount(page) {
+    if (page === 'home') {
+      this.router.navigateByUrl('/user-account');
+    } else {
+      this.router.navigateByUrl('/user-account/' + page);
+    }
+  }
 
   chooseLanguage(langue: string) {
     this.langue = langue;

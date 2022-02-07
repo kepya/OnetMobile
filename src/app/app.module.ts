@@ -30,6 +30,7 @@ import { AdminAccountComponent } from './components/admin-account/admin-account.
 import { UserAccountComponent } from './components/user-account/user-account.component';
 import { ArticleComponent } from './components/article/article.component';
 import { PanierComponent } from './components/panier/panier.component';
+import { PaiementUserComponent } from './components/paiement-user/paiement-user.component';
 
 
 const materialModules = [
@@ -60,6 +61,7 @@ const materialModules = [
     UserAccountComponent,
     ArticleComponent,
     PanierComponent,
+    PaiementUserComponent,
     // ModalComponent
   ],
   imports: [

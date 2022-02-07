@@ -6,24 +6,22 @@
     </section>
 </header>
 
-<main [style.background-color]="showModal || showCart ? '#30303C' : 'white'" [style.opacity]="showModal || showCart ? 0.3 : 1" [style.z-index]="showModal ? -1 : 1">
+<main [style.background-color]="showCart ? '#30303C' : 'white'" [style.opacity]="showCart ? 0.3 : 1" [style.z-index]="showCart ? -1 : 1">
     <section class="content">
         <section class="banner">
             <section class="scrollerWithShopInfo">
-                <section class="scroller-container" id="scroller-container" [ngStyle]="{'background-image': 'url(' + imageBackground + ')'}">
-                    <section class="scroller-content">
-                        <section class="btn_group">
-                            <button class="nav-button" (click)="previous()">
-                                <
-                            </button>
-                            <button class="nav-button" (click)="next()">
-                                >
-                            </button>
-                        </section>
-    
-                        <section class="list_item">
-                            <section class="item" *ngFor="let e of listElement" [style.background-color]="e.id === elementSelectionner ? '#3e8e41' : 'white'"></section>
-                        </section>
+                <section class="scroller-container" id="scroller-container" >
+                    <img [src]="listElement[elementSelectionner].url" alt="" srcset="" width="696" height="313">
+                    <section class="btn_group">
+                        <button class="nav-button" (click)="previous()">
+                            <
+                        </button>
+                        <button class="nav-button" (click)="next()">
+                            >
+                        </button>
+                    </section>
+                    <section class="list_item">
+                        <section class="item" *ngFor="let e of listElement" [style.background-color]="e.id === elementSelectionner ? '#3e8e41' : '#e7dede'"></section>
                     </section>
                 </section>
                 <section class="shopInfo">
@@ -80,42 +78,8 @@
             <span>All best sellers</span>
         </section>
 
-        <section class="list_best_product">
-            <section class="item col-3" *ngFor="let p of products">
-                <section class="product">
-                    <section class="image">
-                        <section [ngStyle]="{'background-image': 'url(' + p.image + ')'}"></section>
-                    </section>
-                    <section class="detail">
-                        <p class="marque">{{p.marque}}</p>
-                        <p class="description" id="description">{{p.nom}} {{communService.parseText(p.description)}}</p>
-                        <section class="prix_vente col-12">
-                            <section class="prix">
-                                <p class="prix_reduis">{{p.prixReduis | number: ''}} FCFA</p>
-                                <p class="prix_normal">{{p.prixNormal | number: ''}} FCFA</p>
-                            </section>
-                            <section class="reduction">
-                                <button class="tauxReduction">{{p.tauxReduction}} %</button>
-                            </section>
-                        </section>
-                        <section class="hide">
-                            <section class="starsWithReview">
-                                <section class="stars">
-                                    <section class="ligth" *ngFor="let s of getStartLigth(p.nombreEtoile)" [ngStyle]="{'background-image': 'url(' + startLigthImg + ')'}"></section>
-                                    <section class="dark" *ngFor="let s of getStartDark(5 - p.nombreEtoile)" [ngStyle]="{'background-image': 'url(' + startDartImg + ')'}"></section>
-                                </section>
-                                <section class="review">
-                                    <span>{{p.nombreEtoile}}.0 ({{review.get(p._id)}} reviews)</span>
-                                </section>
-                            </section>
-                            <section class="btn_group">
-                                <button class="btnBuy" (click)="buy(p)" [disabled]="showCart">Buy Now</button>
-                                <button class="btnknow" routerLink="/product/{{p._id}}">Know Now</button>
-                            </section>
-                        </section>
-                    </section>
-                </section>
-            </section>
+        <section class="article">
+            <app-article [articles]="bestProduct" [favorisProduct]="false" (addProductToPaner)="getEvent($event)"></app-article>
         </section>
 
         <section class="bannerAfterListOfBest">
@@ -127,42 +91,8 @@
             <span>All on sale</span>
         </section>
 
-        <section class="list_on_sale">
-            <section class="item col-3" *ngFor="let p of products">
-                <section class="product">
-                    <section class="image">
-                        <section [ngStyle]="{'background-image': 'url(' + p.image + ')'}"></section>
-                    </section>
-                    <section class="detail">
-                        <p class="marque">{{p.marque}}</p>
-                        <p class="description" id="description">{{p.nom}} {{communService.parseText(p.description)}}</p>
-                        <section class="prix_vente col-12">
-                            <section class="prix">
-                                <p class="prix_reduis">{{p.prixReduis  | number: ''}} FCFA</p>
-                                <p class="prix_normal">{{p.prixNormal  | number: ''}} FCFA</p>
-                            </section>
-                            <section class="reduction">
-                                <button class="tauxReduction">{{p.tauxReduction}} %</button>
-                            </section>
-                        </section>
-                        <section class="hide">
-                            <section class="starsWithReview">
-                                <section class="stars">
-                                    <section class="ligth" *ngFor="let s of getStartLigth(p.nombreEtoile)" [ngStyle]="{'background-image': 'url(' + startLigthImg + ')'}"></section>
-                                    <section class="dark" *ngFor="let s of getStartDark(5 - p.nombreEtoile)" [ngStyle]="{'background-image': 'url(' + startDartImg + ')'}"></section>
-                                </section>
-                                <section class="review">
-                                    <span>{{p.nombreEtoile}}.0 ({{review.get(p._id)}} reviews)</span>
-                                </section>
-                            </section>
-                            <section class="btn_group">
-                                <button class="btnBuy" (click)="buy(p)" [disabled]="showCart">Buy Now</button>
-                                <button class="btnknow" routerLink="/product/{{p._id}}">Know Now</button>
-                            </section>
-                        </section>
-                    </section>
-                </section>
-            </section>
+        <section class="article">
+            <app-article [articles]="onSaleProduct" [favorisProduct]="false" (addProductToPaner)="getEvent($event)"></app-article>
         </section>
 
         <section class="searchByPercent">
@@ -184,42 +114,8 @@
             <span>All new arrivals</span>
         </section>
 
-        <section class="list_new_arrival">
-            <section class="item col-3" *ngFor="let p of products">
-                <section class="product">
-                    <section class="image">
-                        <section [ngStyle]="{'background-image': 'url(' + p.image + ')'}"></section>
-                    </section>
-                    <section class="detail">
-                        <p class="marque">{{p.marque}}</p>
-                        <p class="description" id="description">{{p.nom}} {{communService.parseText(p.description)}}</p>
-                        <section class="prix_vente col-12">
-                            <section class="prix">
-                                <p class="prix_reduis">{{p.prixReduis | number: ''}} FCFA</p>
-                                <p class="prix_normal">{{p.prixNormal | number: ''}} FCFA</p>
-                            </section>
-                            <section class="reduction">
-                                <button class="tauxReduction">{{p.tauxReduction}} %</button>
-                            </section>
-                        </section>
-                        <section class="hide">
-                            <section class="starsWithReview">
-                                <section class="stars">
-                                    <section class="ligth" *ngFor="let s of getStartLigth(p.nombreEtoile)" [ngStyle]="{'background-image': 'url(' + startLigthImg + ')'}"></section>
-                                    <section class="dark" *ngFor="let s of getStartDark(5 - p.nombreEtoile)" [ngStyle]="{'background-image': 'url(' + startDartImg + ')'}"></section>
-                                </section>
-                                <section class="review">
-                                    <span>{{p.nombreEtoile}}.0 ({{review.get(p._id)}} reviews)</span>
-                                </section>
-                            </section>
-                            <section class="btn_group">
-                                <button class="btnBuy" (click)="buy(p)" [disabled]="showCart">Buy Now</button>
-                                <button class="btnknow" routerLink="/product/{{p._id}}">Know Now</button>
-                            </section>
-                        </section>
-                    </section>
-                </section>
-            </section>
+        <section  class="article">
+            <app-article [articles]="newArrivalProduct" [favorisProduct]="false" (addProductToPaner)="getEvent($event)"></app-article>
         </section>
 
         <section class="service">

@@ -221,81 +221,78 @@ header {
         width: 100%;
 
         .scrollerWithShopInfo {
+            min-height: 335px;
+            width: 100%;
             margin-left: 5rem;
             margin-right: 5rem;
             position: relative;
             display: flex;
             align-items: center;
             justify-content: flex-end;
-            width: 100%;
-            // margin-top: -1.5rem;
+            // width: 100%;
             margin-bottom: 0px;
             padding-top: 0px;
             padding-bottom: 0px;
-            // margin-top: -2rem;
 
             .scroller-container {
-
                 position: relative;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                width: 50%;
-                height: 434px;
                 background-position: center;
-                // background-image: url('../../../assets/images/main.png');
                 background-size: contain;
                 background-repeat: no-repeat;
                 margin-right: 4.5rem;
                 margin-bottom: 0px;
                 margin-top: 0px;
-
-                .scroller-content {
+                height: 100%;
+                
+                .btn_group {
                     width: 100%;
-                    height: 313px;
-                    position: relative;
-                    display: block;
-                    align-content: space-between;
+                    position: absolute;
+                    display: flex;
+                    justify-content: space-between;
 
-                    .btn_group {
-                        height: 100%;
-                        padding-top: auto;
+                    .nav-button {
                         position: relative;
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: center;
+                        width: 44px;
+                        height: 56px;
         
-                        .nav-button {
-                            position: relative;
-                            width: 44px;
-                            height: 56px;
-            
-                            background: #F5F5FA;
-                            border: 1px solid #F5F5FA;
-                            opacity: 0.8;
-                            color: #5C5C73;
-                            font-size: 25px;
-                            border-radius: 3px;
-                        }
+                        background: #F5F5FA;
+                        border: 1px solid #F5F5FA;
+                        opacity: 0.8;
+                        color: #5C5C73;
+                        font-size: 25px;
                     }
 
-                    .list_item {
+                    .nav-button:first-child {
+                        border-bottom-right-radius: 3px;
+                        border-top-right-radius: 3px;
+                    }
+
+                    .nav-button:last-child {
+                        border-bottom-left-radius: 3px;
+                        border-top-left-radius: 3px;
+                    }
+                }
+                .list_item {
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: center;
+                    margin-right: 2rem;
+                    position: absolute;
+                    bottom: 1.5rem;
+                    right: 1rem;
+
+                    .item {
                         position: relative;
-                        display: flex;
-                        justify-content: flex-end;
-                        align-items: center;
-                        margin-right: 2rem;
-                        
-                        .item {
-                            position: relative;
-                            background: #FFFFFF;
-                            opacity: 0.7;
-                            box-shadow: 0px 0px 1px rgba(48, 48, 60, 0.32);
-                            width: 56px;
-                            height: 4px;
-                            margin-left: .5rem;
-                            border-radius: 5px;
-                        }
+                        background: #e7dede;
+                        opacity: 0.7;
+                        box-shadow: 0px 0px 1px rgba(48, 48, 60, 0.32);
+                        width: 56px;
+                        height: 4px;
+                        margin-left: .5rem;
+                        border-radius: 5px;
                     }
                 }
             }
@@ -304,6 +301,7 @@ header {
                 display: block;
                 align-items: center;
                 width: 20%;
+                height: 100%;
                 align-items: center;
                 background: #FFFFFF;
                 border: 1px solid #E9E9F0;
@@ -322,7 +320,7 @@ header {
                 .shopInfoItem {
                     display: block;
                     align-items: center;
-                    padding: 1.5rem;
+                    padding: 1rem;
                     
                     span {
                         margin-left: 1rem;
@@ -382,11 +380,15 @@ header {
 
                     }
 
+                    .item:last-child {
+                        margin-bottom: 0px;
+                    }
+
                 }
                 .trending {
                     display: block;
                     align-items: center;
-                    padding: 1.5rem;
+                    padding: 1rem;
                     border-top: 1px solid #E9E9F0;
 
                     h3 {
@@ -504,6 +506,11 @@ header {
         font-size: 24px;
         line-height: 36px;
         color: #30303C;
+    }
+
+    .article {
+        z-index: 2;
+        position: relative;
     }
 
     .best_seller, .on_sale, .new_arrival, .seoText {
@@ -949,22 +956,6 @@ header {
         width: 100%;
         margin-top: 6em;
     }
-}
-
-*::-webkit-scrollbar {
-    height: 8px;
-    background-color: darkgrey;
-    outline: 1px solid slategrey;
-}
-   
-*::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-}
-   
-*::-webkit-scrollbar-thumb {
-    width: 8px;
-    background-color: rgb(28, 28, 29);
-    outline: 1px solid rgb(28, 28, 29);
 }
 
 @media screen and (max-width: 930px)

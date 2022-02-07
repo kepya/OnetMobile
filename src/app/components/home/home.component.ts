@@ -27,6 +27,10 @@ export class HomeComponent implements OnInit {
   startDart: any[] = [];
   product = new Products();
 
+  bestProduct: Products[] = [];
+  onSaleProduct: Products[] = [];
+  newArrivalProduct: Products[] = [];
+
   constructor(private productService: ProductService, public communService: CommunService, private reviewService: ReviewService,
     private commandeService: CommandeService, private router: Router) { }
 
@@ -54,20 +58,25 @@ export class HomeComponent implements OnInit {
       }
     ];
     this.listElement = e;
+    // this.getResolution();
   }
 
-  showModal: boolean = false;
+
 
   getEvent(event) {
+    sessionStorage.setItem('route', '/');
     if (event != null && event != '') {
-      this.showModal = true;
+      this.showCart = true;
     } else {
-      this.showModal = false;
+      this.showCart = false;
     }
 
     console.log('Event: ' + event);
   }
 
+  getResolution() {
+    alert("Votre résolutio est sur x : " + screen.width + ' votre résolution sur y : ' + screen.height)
+  }
   previous() {
     if (this.elementSelectionner > 1) {
       this.elementSelectionner--;
@@ -188,6 +197,14 @@ export class HomeComponent implements OnInit {
             this.getReview(p._id);
           })
           this.products = data;
+          this.bestProduct = data.slice(0, 5);
+          this.onSaleProduct = data.slice(5, 10);
+          this.newArrivalProduct = data.slice(10, 15);
+          if (this.newArrivalProduct.length==0) {
+            this.newArrivalProduct = data.slice(0, 5);
+          }
+          console.log('best', this.bestProduct);
+          
         }
       },
       (error) => {

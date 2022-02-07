@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Products } from 'src/app/models/products';
 import { CommunService } from 'src/app/shares/services/commun.service';
 import { ProductService } from 'src/app/shares/services/product.service';
@@ -17,7 +17,9 @@ export class ArticleComponent implements OnInit {
   starsLigth = new Map<string, string[]>();
   starsDark = new Map<string, string[]>();
   @Input() articles: Products[];
+  @Input() favorisProduct: boolean = true;
   showCart: boolean = false;
+  @Output() addProductToPaner = new EventEmitter<string>();
 
   constructor(public communService: CommunService, private reviewService: ReviewService, private productService: ProductService) { }
 
@@ -66,6 +68,7 @@ export class ArticleComponent implements OnInit {
 
   buy(product) {
     this.showCart = !this.showCart;
+    this.addProductToPaner.emit(this.showCart + '');
   }
 
 }

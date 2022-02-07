@@ -182,34 +182,34 @@
                         </section>
                     </section>
         
-                    <section class="end">
+                    <section class="end" *ngIf="commande._id != null && commande._id != undefined">
                         <button type="submit" [disabled]="paiementForm.invalid">Confirm Order</button>
                     </section>
                 </form>
             </section>
             
-            <section class="col-4 card_summary">
+            <section class="col-4 card_summary" *ngIf="commandes != null && commandes != undefined ? commandes.length > 0 : false ">
                 <section class="line">
                     <h3 class="title">Order summary</h3>
                     <h3 class="subtitle">Edit order</h3>
                 </section>
         
-                <section class="line produit">
+                <section class="line produit" *ngFor="let commande of commandes">
                     <section class="image margeDroite centerVertical">
-                        <img [src]="product.image" alt="" srcset="" width="">
+                        <img [src]="commande.product.image" alt="" srcset="" width="">
                     </section>
                     <section class="column centerVertical">
-                        <h3 class="text">{{product.marque}} {{product.nom}} {{product.description}}</h3>
+                        <h3 class="text">{{commande.product.marque}} {{commande.product.nom}} {{commande.product.description}}</h3>
                         <section class="line">
                             <h3 class="title1">{{commande.quantite}} pcs</h3>
-                            <h3 class="subtitle1">{{product.prixReduis | number: ''}} FCFA</h3>
+                            <h3 class="subtitle1">{{commande.product.prixReduis | number: ''}} FCFA</h3>
                         </section>
                     </section>
                 </section>
         
                 <section class="line margeBas">
                     <h3 class="title">Total</h3>
-                    <h3 class="prix">{{commande.prix | number: ''}} FCFA</h3>
+                    <h3 class="prix">{{prixTotal | number: ''}} FCFA</h3>
                 </section>
             </section>
             

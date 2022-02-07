@@ -1,7 +1,7 @@
 <section class="container">
   <section class="content">
     <section class="onetLogoWithInformation">
-      <section class="onetLogo"></section>
+      <section class="onetLogo" routerLink=""></section>
 
       <section class="informations">
         <section class="number">
@@ -59,6 +59,7 @@
                 </section>
               </section>
               <section class="new_arrival">
+                <h3>New Arrival</h3>
                 <section class="android">
                   <section class="androidIcon"></section>
                   <span>Android phones</span>
@@ -72,11 +73,11 @@
                 <section class="compte">
                   <section class="account">
                     <section class="iconAccount"></section>
-                    <label class="accountTitle">Account</label>
+                    <span class="accountTitle"  (click)="userAccount('home')">Account</span>
                   </section>
                   <section class="card">
                     <section class="iconCard"></section>
-                    <label class="cartTitle">Cart</label>
+                    <label class="cartTitle" (click)="userAccount('commande')">Cart</label>
                   </section>
                 </section>
               </section>
@@ -131,14 +132,17 @@
         <section class="accountWithCard">
           <section class="account">
             <section class="iconAccount"></section>
-            <label class="accountTitle">Account</label>
+            <label class="accountTitle" (click)="userAccount('home')">Account</label>
           </section>
           <section class="card">
             <section class="iconCard"></section>
-            <label class="cartTitle">Cart</label>
+            <label class="cartTitle" (click)="userAccount('commande')">Cart</label>
           </section>
         </section>
       </section>
     </section>
   </section>
 </section>
+<main [style.background-color]="showModal ? '#30303C' : 'white'" [style.opacity]="showModal ? 0.3 : 1" [style.z-index]="showModal ? -1 : 1">
+  <router-outlet></router-outlet> 
+</main>

@@ -1,0 +1,29 @@
+<section class="container">
+    <header>
+        <h1>Mes Paiements</h1>
+        <p>Présentation des paiements effectués au sein de l'école</p>
+    </header>
+    
+    <main>
+        <section class="list_paiement">
+            <section class="paiement" *ngFor="let p of paiements">
+                <h2>{{p?.commande?.product?.nom}} ({{p?.commande?.product?.marque}})</h2>
+                <ul>
+                    <li>Mode Paiement: <strong>{{p?.modePaiement}}</strong></li>
+                    <li>Prix: <strong>{{p?.commande?.prix | number: ''}} FCFA</strong></li>
+                    <li>Date Paiement: <strong>{{p?.datePaiement | date: 'EEEE dd MMMM yyyy'}}</strong></li>
+                </ul>
+            </section>
+        </section>
+        <section *ngIf="paiements != null && paiements != undefined ? paiements.length == 0 : true" class="connection">
+            <h1>Aucun Paiements réalisés</h1>
+            <p>
+                Désolé mais vous n'avez pas encore réaliser de paiements.Si c'est la cas alors veuillez vérifier connection au serveur
+            </p>
+        </section>
+    </main>
+    
+    <footer>
+    
+    </footer>
+</section>

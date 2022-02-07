@@ -1,11 +1,12 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Commande } from 'src/app/models/commande';
 import { Paiement } from 'src/app/models/paiment';
 import { Products } from 'src/app/models/products';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/shares/services/auth.service';
+import { CommandeService } from 'src/app/shares/services/commande.service';
 import { Paiementervice } from 'src/app/shares/services/paiement.service';
 import { ProductService } from 'src/app/shares/services/product.service';
 import { UserService } from 'src/app/shares/services/user.service';
@@ -29,13 +30,16 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
 
   user = new User();
   commande = new Commande();
+  commandes: Commande[] = [];
   product = new Products();
   log: boolean = false;
+  prixTotal: number = 0;
   dateLivraisonLaPlusProche: Date = new Date();
   dateLivraisonLaPlusLointaine: Date;
 
   constructor(private formBuilder: FormBuilder, private productService: ProductService, private authService: AuthService,
-    private userService: UserService, private paiementService: Paiementervice, private router: Router) { }
+    private userService: UserService, private paiementService: Paiementervice, private router: Router,
+    private route: ActivatedRoute, private commandeService: CommandeService) { }
 
   ngAfterViewInit(): void {
     this.checkCustomer(1);
@@ -43,14 +47,9 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.getCommande();
-    this.user.email = "franck@gmail.com";
-    this.user.firstName = "Franck";
-    this.user.lastName = "Libam";
-    this.user.phone = "+243 336 364 833";
     this.formState = true;
     this.initForm();
     this.dateLivraisonLaPlusLointaine = new Date(this.dateLivraisonLaPlusProche.getFullYear() + '-' + (this.dateLivraisonLaPlusProche.getMonth() + 1) + '-' + (this.dateLivraisonLaPlusProche.getDate() + 7));
-    // this.dateLivraisonLaPlusLointaine.setDate(this.dateLivraisonLaPlusProche.getDate() + 7);
     let token = sessionStorage.getItem('token');
     if (token) {
       this.customer = 2;
@@ -63,10 +62,39 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
   }
 
   getCommande() {
-    let value = localStorage.getItem('commande');
-    if (value!=null && value != undefined) {
-      this.commande = JSON.parse(value);
-      this.getProduct(this.commande.idProduct);
+    if (this.route.snapshot.params['idCommande']) {
+      this.commandeService.find(this.route.snapshot.params['idCommande']).subscribe(
+        (result) => {
+          this.commande = result;
+          this.commandes.push(result);
+          this.prixTotal = result.prix;
+        },
+        (error) => {
+          console.log('error', error);
+        }
+      )
+    } else {
+      if (sessionStorage.getItem('idUser')) {
+        alert('ok' + sessionStorage.getItem('idUser'))
+        this.commandeService.findByUser(sessionStorage.getItem('idUser')).subscribe(
+          (result) => {
+            if (result != null && result != undefined) {
+              this.commandes = result;
+              let prix = result.map(x => x.prix);
+              this.prixTotal = prix.reduce((x, y) => x + y);
+            } else {
+              this.commandes = [];
+              this.prixTotal = 0;
+            }
+          },
+          (error) => {
+            console.log('error', error);
+          }
+        )
+      } else {
+        let c = sessionStorage.getItem('commandes');
+        this.commandes = JSON.parse(c);
+      }
     }
   }
 
@@ -164,6 +192,7 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
       (data) => {
         if (data) {
           this.user = data;
+          this.user._id = id;
           console.log('user', data);
         }
       },
@@ -222,26 +251,31 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
     
     let paiement:Paiement = {
       idCommande: this.commande._id,
+      commande: this.commande,
       datePaiement: new Date(),
       prix: this.commande.prix,
       modePaiement: modePaiement,
       _id: '',
-      idUser: this.user._id
+      idUser: this.user._id != null && this.user._id != undefined ? this.user._id : sessionStorage.getItem('idUser'), 
     }
 
-    this.paiementService.create(paiement).subscribe(
-      (data) => {
-        if (data) {
-          alert('Paiement effectué avec success');
-          localStorage.removeItem('commande');
-          this.router.navigateByUrl('/dashboard');
+    if (sessionStorage.getItem('token')) {
+      this.paiementService.create(paiement).subscribe(
+        (data) => {
+          if (data) {
+            alert('Paiement effectué avec success');
+            localStorage.removeItem('commande');
+            this.router.navigateByUrl('/dashboard');
+          }
+        },
+        (error) => {
+          alert('Erreur dans le paiement');
+          console.log('Error', error);
         }
-      },
-      (error) => {
-        alert('Erreur dans le paiement');
-        console.log('Error', error);
-      }
-    );
+      );
+    } else {
+      alert('Paiement non éffectué');
+    }
   }
 
   showModal: boolean = false;

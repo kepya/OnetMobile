@@ -10,7 +10,7 @@ header {
 
 }
 
-main {
+.favorisProduct {
     .list_product {
         margin-top: 2rem;
         margin-bottom: 2rem;
@@ -18,21 +18,21 @@ main {
         margin-right: 5rem;
         display: flex;
         flex-wrap: wrap;
-        display: flex;
 
         .item {
             height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-width: 230px;
-
+            min-width: 259px;
+            margin-bottom: 1rem;;
             .product {
                 display: block;
                 justify-content: center;
                 align-items: center;
                 padding: 1rem;
                 width: 85%;
+                min-height: 460px;
                 border: 1px solid #E9E9F0;
                 box-sizing: border-box;
                 box-shadow: 0px 1px 1px rgba(48, 48, 60, 0.08), 0px 2px 2px rgba(48, 48, 60, 0.12);
@@ -206,6 +206,240 @@ main {
 
         }
 
+        .item:first-child{
+            margin-left: 0px;
+        }
+    }
+
+    .connection {
+        background: #FFFFFF;
+        border: 1px solid #E9E9F0;
+        box-sizing: border-box;
+        box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.25), 0px 1px 1px rgba(48, 48, 60, 0.08);
+        border-radius: 3px;
+        width: 100%;
+        padding: 1.3rem;
+        h1 {
+            font-family: Sarabun;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 30px;
+            line-height: 36px;
+            font-weight: bold;
+            color: #ED1C24;
+        }
+
+        p {
+            font-family: Sarabun;
+            font-style: normal;
+            font-weight: normal;
+        }
+    }
+}
+
+.noFavorisProduct {
+    position: relative;
+    height: 476px;
+
+    .list_product {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        margin-left: 5rem;
+        margin-right: 5rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        .item {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 259px;
+            // margin-left: 1rem;
+            margin-bottom: 1rem;;
+            .product {
+                display: block;
+                justify-content: center;
+                align-items: center;
+                padding: 1rem;
+                min-height: 460px;
+                border: 1px solid #E9E9F0;
+                box-sizing: border-box;
+                box-shadow: 0px 1px 1px rgba(48, 48, 60, 0.08), 0px 2px 2px rgba(48, 48, 60, 0.12);
+                border-radius: 3px;
+
+                .image {
+                    height: 203px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-bottom: .5rem;
+
+                    section {
+                        margin-left: auto;
+                        margin-right: auto;
+                        width: 100%;
+                        height: 100%;
+                        background-position: center;
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                    }
+                }
+
+                .detail {
+                    .marque {
+                        font-weight: normal;
+                        font-size: 12px;
+                        line-height: 16px;
+                        color: #30303C;
+                    }
+
+                    .description {
+                        min-height: 100px;
+                    }
+
+                    .prix_vente {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+
+                        .prix {
+                            display: block;
+                            flex-direction: column;
+                            justify-content: center;
+                            align-items: center;
+
+                            .prix_reduis {
+                                font-weight: bold;
+                                font-size: 18px;
+                                line-height: 24px;
+                                color: #ED1C24;
+                            }
+                            .prix_normal {
+                                font-size: 16px;
+                                line-height: 24px;
+                                text-decoration-line: line-through;
+                                color: #7A7A8D;                                
+                            }
+                        }
+
+                        .reduction {
+                            
+                            .tauxReduction {
+                                background: #FFFFFF;
+                                border: 1px solid #ED1C24;
+                                box-sizing: border-box;
+                                border-radius: 3px;
+    
+                                font-weight: normal;
+                                font-size: 14px;
+                                line-height: 20px;
+                                color: #ED1C24;
+                            }
+                        }
+
+                    }
+
+                    .hide {
+                        height: 0px;
+                        transition: opacity 4s ease-out, height 2s;
+                        opacity: 0;
+                        overflow: hidden;
+                        .starsWithReview {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            margin-top: .5rem;
+                            margin-bottom: 1rem;
+
+                            .stars {
+                                display: flex;
+                                align-items: center;
+                                justify-content: space-between;
+
+                                .ligth {
+                                    width: 16.78px;
+                                    height: 16px;
+                                    background-position: center;
+                                    background-size: contain;
+                                    background-repeat: no-repeat;
+                                }
+                                .dark {
+                                    width: 16.78px;
+                                    height: 16px;
+                                    background-position: center;
+                                    background-size: contain;
+                                    background-repeat: no-repeat;
+                                }
+                            }
+
+                            .review {
+                                margin-left: .8rem;
+                                span {
+                                    font-size: 12px;
+                                    line-height: 16px;
+                                    color: #30303C;
+                                }
+                            }
+                        }
+
+                        .btn_group {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            margin-bottom: 0px;
+                            .btnBuy {      
+                                width: 97px;
+                                height: 32px;                          
+                                background: #ED1C24;
+                                border: 1px solid #ED1C24;
+                                border-radius: 3px;
+
+                                font-size: 14px;
+                                line-height: 20px;
+                                text-align: center;
+                                color: #FFFFFF;
+                            }
+
+                            .btnknow {
+                                margin-left: 1rem;
+                                width: 97px;
+                                height: 32px;
+                                background: #F5F5FA;
+                                border: 1px solid #F5F5FA;
+                                border-radius: 3px;
+
+                                font-size: 14px;
+                                line-height: 20px;
+                                text-align: center;
+                                color: #5C5C73;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .product:hover {
+                background-color: rgb(150, 160, 130);
+                transition-property: background-color, visibility;
+                transition-duration: 2s;
+                transition-delay: .5s;
+    
+                .detail {
+
+                    .hide {
+                        opacity: 1;
+                        height: 78px;
+                    }
+                }
+            }
+
+        }
+
+        .item:first-child{
+            margin-left: 0px;
+        }
     }
 
     .connection {

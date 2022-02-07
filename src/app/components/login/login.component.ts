@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/shares/services/auth.service';
 import { UserService } from 'src/app/shares/services/user.service';
+import {Event, RouterEvent, Router} from '@angular/router';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -16,9 +17,19 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   signupForm: FormGroup;
 
-  constructor(private service: AuthService, private userService: UserService, private formBuilder: FormBuilder, private router: Router) { }
+  constructor(private service: AuthService, private userService: UserService, private formBuilder: FormBuilder, private router: Router) {
+    router.events.pipe(
+              filter((e: Event): e is RouterEvent => e instanceof RouterEvent)
+           ).subscribe((e: RouterEvent) => {
+             console.log('ev: ', e);
+             
+    });
+   }
 
   ngOnInit(): void {
+    let va = this.router.getCurrentNavigation();
+    console.log('val', va);
+    
     this.checkConnection();
     this.initForm();
   }
@@ -26,11 +37,17 @@ export class LoginComponent implements OnInit {
   checkConnection() {
     let id = sessionStorage.getItem('idUser');
     if (id) {
-      let role = sessionStorage.getItem('role');
-      if (role === 'admin') {
-        this.router.navigateByUrl('/user-account');
+      let route = sessionStorage.getItem('route');
+
+      if (route != null && route != undefined) {
+        this.router.navigateByUrl('' + route);
       } else {
-        this.router.navigateByUrl('/user-account');
+        let role = sessionStorage.getItem('role');
+        if (role === 'admin') {
+          this.router.navigateByUrl('/user-account');
+        } else {
+          this.router.navigateByUrl('/user-account');
+        }
       }
     }
   }
@@ -66,10 +83,15 @@ export class LoginComponent implements OnInit {
       (data) => {
         if (data) {
           this.user = data;
-          if (this.user.type === 'admin') {
-            this.router.navigateByUrl('/user-account');
+          let route = sessionStorage.getItem('route');
+          if (route != null && route != undefined) {
+            this.router.navigateByUrl('' + route);
           } else {
-            this.router.navigateByUrl('/user-account');
+            if (this.user.type === 'admin') {
+              this.router.navigateByUrl('/user-account');
+            } else {
+              this.router.navigateByUrl('/user-account');
+            }
           }
         }
       },

@@ -1,0 +1,78 @@
+.container {
+    background: #FFFFFF;
+    border: 1px solid #E9E9F0;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.25), 0px 1px 1px rgba(48, 48, 60, 0.08);
+    border-radius: 3px;
+    font-family: Sarabun;
+    font-style: normal;
+    font-weight: normal;
+    padding: 1.3rem;
+
+    header {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 111px;
+        border-bottom: 2px solid rgba(0, 0, 0, 0.25);
+
+        h1 {
+            margin: 0px;
+            font-size: 30px;
+            line-height: 36px;
+            font-weight: bold;
+            text-align: center;
+        }
+    
+        span {
+            border-radius: 3px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #F5F5FA;
+            border: 1px solid #F5F5FA;
+            border-radius: 3px;
+            font-size: 20px;
+            line-height: 28px;
+            text-align: center;
+            color: #5C5C73;
+        }
+    }
+    main {
+        margin-top: 1.5rem;
+        .list_paiement {
+            .paiement {
+                h2 {
+                    font-family: Sarabun;
+                    font-style: normal;
+                    margin: 0px;
+                    font-weight: bold;
+                }
+                border-bottom: 2px solid black;
+            }
+            .paiement:last-child {
+                border: none;
+                background-color: re;
+            }
+        }
+        .connection {
+            h1 {
+                font-family: Sarabun;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 30px;
+                line-height: 36px;
+                font-weight: bold;
+                color: #ED1C24;
+            }
+    
+            p {
+                font-family: Sarabun;
+                font-style: normal;
+                font-weight: normal;
+            }
+        }
+    }
+}

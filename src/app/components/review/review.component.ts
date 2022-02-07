@@ -77,6 +77,7 @@ export class ReviewComponent implements OnInit {
     let value = this.reviewForm.value;
     this.review.comment = value.comment;
     this.review.idProduct = value.article;
+    this.review.dateEnvoi = new Date();
     this.review.product = this.articles.find(x => x._id === value.article);
     this.review.idUser = sessionStorage.getItem('idUser');
 
@@ -127,9 +128,13 @@ export class ReviewComponent implements OnInit {
   }
 
   addReview(r: Review) {
-    let result = this.reviews.find(x => x._id === r._id);
-    if (result._id === null || result._id === undefined) {
+    if (r._id === null || r._id === undefined) {
       this.reviews.push(r);
+    } else{
+      let result = this.reviews.find(x => x._id === r._id);
+      if (result._id === null || result._id === undefined) {
+        this.reviews.push(r);
+      }
     }
   }
 }

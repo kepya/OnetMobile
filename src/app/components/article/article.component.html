@@ -1,7 +1,7 @@
 <header>
 
 </header>
-<main>
+<main *ngIf="favorisProduct" class="favorisProduct">
     <section class="list_product" *ngIf="articles != undefined ? articles.length > 0 : false">
         <section class="item col-3" *ngFor="let p of articles">
             <section class="product">
@@ -14,9 +14,9 @@
                     <section class="prix_vente col-12">
                         <section class="prix">
                             <p class="prix_reduis">{{p.prixReduis | number: ''}} FCFA</p>
-                            <p class="prix_normal" *ngIf="p.tauxReduction > 0">{{p.prixNormal | number: ''}} FCFA</p>
+                            <p class="prix_normal" *ngIf="p.tauxReduction != 0">{{p.prixNormal | number: ''}} FCFA</p>
                         </section>
-                        <section class="reduction"  *ngIf="p.tauxReduction > 0">
+                        <section class="reduction"  *ngIf="p.tauxReduction != 0">
                             <button class="tauxReduction">{{p.tauxReduction}} %</button>
                         </section>
                     </section>
@@ -44,6 +44,46 @@
         <p>
             Désolé mais nous n'avons récuperer aucune données de la base. Veuillez vérifier connection au serveur en de presence de données en base
         </p>
+    </section>
+</main>
+
+<main *ngIf="favorisProduct == false" class="noFavorisProduct">
+    <section class="list_product" *ngIf="articles != undefined ? articles.length > 0 : false">
+        <section class="item" *ngFor="let p of articles">
+            <section class="product">
+                <section class="image">
+                    <section [ngStyle]="{'background-image': 'url(' + p.image + ')'}"></section>
+                </section>
+                <section class="detail">
+                    <p class="marque">{{p.marque}}</p>
+                    <p class="description" id="description">{{p.nom}} {{communService.parseText(p.description)}}</p>
+                    <section class="prix_vente col-12">
+                        <section class="prix">
+                            <p class="prix_reduis">{{p.prixReduis | number: ''}} FCFA</p>
+                            <p class="prix_normal" *ngIf="p.tauxReduction != 0">{{p.prixNormal | number: ''}} FCFA</p>
+                        </section>
+                        <section class="reduction"  *ngIf="p.tauxReduction != 0">
+                            <button class="tauxReduction">{{p.tauxReduction}} %</button>
+                        </section>
+                    </section>
+                    <section class="hide">
+                        <section class="starsWithReview">
+                            <section class="stars">
+                                <section class="ligth" *ngFor="let s of starsLigth.get(p._id)" [ngStyle]="{'background-image': 'url(' + startLigthImg + ')'}"></section>
+                                <section class="dark" *ngFor="let s of starsDark.get(p._id)" [ngStyle]="{'background-image': 'url(' + startDartImg + ')'}"></section>
+                            </section>
+                            <section class="review">
+                                <span>{{p.nombreEtoile}}.0 ({{review.get(p._id)}} reviews)</span>
+                            </section>
+                        </section>
+                        <section class="btn_group">
+                            <button class="btnBuy" (click)="buy(p)" [disabled]="showCart">Buy Now</button>
+                            <button class="btnknow" routerLink="/product/{{p._id}}">Know More</button>
+                        </section>
+                    </section>
+                </section>
+            </section>
+        </section>
     </section>
 </main>
 <footer>

@@ -1,5 +1,5 @@
 <section class="container">
-    <header>
+    <header [style.background-color]="showCart ? '#30303C' : 'white'" [style.opacity]="showCart ? 0.3 : 1" [style.z-index]="showCart ? -1 : 1">
         <section class="userSymbol">
             {{user.lastName[0]}} {{user.firstName[0]}}
         </section>
@@ -11,10 +11,13 @@
             <span class="nav-item" (click)="setView('profil')" [style.border-bottom]="view === 'profil' ? '5px solid #DCDCE4': 'none'">Mon Profil</span>
         </section>
     </header>
-    
-    <main class="col-12">
+    <section class="modal" *ngIf="showCart">
+        <app-panier [action]="'add'" (out)="close()"></app-panier>
+    </section>
+
+    <main class="col-12" [style.background-color]="showCart ? '#30303C' : 'white'" [style.opacity]="showCart ? 0.3 : 1" [style.z-index]="showCart ? -1 : 1">
         <section *ngIf="view === 'paiement'">
-    
+            <app-paiement-user [user]="user"></app-paiement-user>
         </section>
         <section *ngIf="view === 'commande'">
             <app-panier [user]="user"></app-panier>
@@ -23,14 +26,14 @@
             <app-review [user]="user"></app-review>
         </section>
         <section *ngIf="view === 'favoris'">
-            <app-article [articles]="like.products"></app-article>
+            <app-article [articles]="like.products" (addProductToPaner)="getEvent($event)"></app-article>
         </section>
         <section *ngIf="view === 'profil'" class="register">
             <app-register [title]="'Mes Informations'" [user]="user"></app-register>
         </section>
     </main>
     
-    <footer> 
+    <footer [style.background-color]="showCart ? '#30303C' : 'white'" [style.opacity]="showCart ? 0.3 : 1" [style.z-index]="showCart ? -1 : 1"> 
         <span (click)="logout()">Déconnexion</span>
         <div class="logOutImg" (click)="logout()"></div>
     </footer>

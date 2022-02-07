@@ -10,7 +10,7 @@
                     <h2>Mes Commandes</h2>
                     <span (click)="editer()">Editer</span>
                 </section>
-                <section class="item" *ngFor="let commande of commandes">
+                <section class="item" *ngFor="let commande of commandes" routerLink="/checkout/{{commande._id}}">
                     <section class="image" [ngStyle]="{'background-image': 'url(' + commande?.product?.image + ')'}"></section>
                     <section class="detailProduit">
                         <span class="description">{{commande?.product?.marque}} {{commande?.product?.nom}} {{commande?.product?.description}}</span>

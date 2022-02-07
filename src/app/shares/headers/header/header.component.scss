@@ -11,6 +11,7 @@
         color: #30303C;
         height: 100%;
         width: 100%;
+        z-index: 200;
 
         h4 {
             font-weight: bold;
@@ -30,6 +31,7 @@
             margin: 0px;
 
             .onetLogo {
+                cursor: pointer;
                 margin-left: 5rem;
                 width: 82.5px;
                 height: 44px;
@@ -194,6 +196,7 @@
                         display: block;
                         align-items: center;
                         background: #FFFFFF;
+                        position: relative;
                         z-index: 3;
                         border: 1px solid #E9E9F0;
                         box-sizing: border-box;
@@ -202,7 +205,6 @@
                         .last_arrival {
                             display: block;
                             align-items: center;
-                            padding: 1.5rem;
                             
                             span {
                                 margin-left: 1rem;
@@ -211,17 +213,18 @@
                             section {
                                 display: flex;
                                 align-items: center;
+                                padding: .5rem 16px;
                             }
     
                             section:hover {
                                cursor: pointer;
+                               background-color: #a0a0b080;
                             }
             
                             .smartphone {
-                                margin-bottom: 1rem;
                                 .smartphoneIcon {
-                                    width: 24px;
-                                    height: 24px;
+                                    width: 16px;
+                                    height: 16px;
                                     background-position: center;
                                     background-image: url("../../../../assets/icons/phone.png");
                                     background-size: contain;
@@ -229,11 +232,10 @@
                                 }
                             }
                             .accessoire {
-                                margin-bottom: 1rem;
             
                                 .accessoireIcon {
-                                    width: 24px;
-                                    height: 24px;
+                                    width: 16px;
+                                    height: 16px;
                                     background-position: center;
                                     background-image: url("../../../../assets/icons/speaker.png");
                                     background-size: contain;
@@ -241,11 +243,9 @@
                                 }
                             }
                             .tablet {
-                                margin-bottom: 1rem;
-            
                                 .tabletIcon {
-                                    width: 24px;
-                                    height: 24px;
+                                    width: 16px;
+                                    height: 16px;
                                     background-position: center;
                                     background-image: url("../../../../assets/icons/tablet.png");
                                     background-size: contain;
@@ -254,8 +254,8 @@
                             }
                             .sale {
                                 .saleIcon {
-                                    width: 24px;
-                                    height: 24px;
+                                    width: 16px;
+                                    height: 16px;
                                     background-position: center;
                                     background-image: url("../../../../assets/icons/percent.png");
                                     background-size: contain;
@@ -266,27 +266,40 @@
                         .new_arrival {
                             display: block;
                             align-items: center;
-                            padding: 1.5rem;
+                            // padding: 1.5rem;
                             border-top: 1px solid #E9E9F0;
                             
+                            h3 {
+                                padding-top: .5rem;
+                                padding-bottom: .5rem;
+                                padding-left: 2rem;
+                                font-size: 12px;
+                                line-height: 16px;
+                                display: flex;
+                                align-items: center;
+                                color: #A0A0B0;
+                                margin: 0px;
+                            }
+
                             span {
                                 margin-left: 1rem;
                             }
-            
+
                             section {
                                 display: flex;
                                 align-items: center;
+                                padding: .5rem 16px;
                             }
     
                             section:hover {
-                                cursor: pointer;
+                               cursor: pointer;
+                               background-color: #a0a0b080;
                             }
     
                             .android {
-                                margin-bottom: 1rem;
                                 .androidIcon {
-                                    width: 24px;
-                                    height: 24px;
+                                    width: 16px;
+                                    height: 16px;
                                     background-position: center;
                                     background-image: url("../../../../assets/icons/android.png");
                                     background-size: contain;
@@ -294,11 +307,9 @@
                                 }
                             }
                             .iPhones {
-                                margin-bottom: 1rem;
-            
                                 .iPhonesIcon {
-                                    width: 24px;
-                                    height: 24px;
+                                    width: 16px;
+                                    height: 16px;
                                     background-position: center;
                                     background-image: url("../../../../assets/icons/apple.png");
                                     background-size: contain;
