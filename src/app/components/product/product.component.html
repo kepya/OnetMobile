@@ -59,7 +59,7 @@
                         </section>
                         <section class="favoris col-6">
                             <section class="like" (click)="like(product)">
-                                <section class="coeur"></section>
+                                <section class="coeur" [style.background-image]="isLike ? 'url(../../../assets/icons/VectorCoeurRed.png)': ''"></section>
                                 <span>
                                     Save for later
                                 </span>

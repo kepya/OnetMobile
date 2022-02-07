@@ -38,6 +38,9 @@ export class ProductComponent implements OnInit {
   showCart: boolean = false;
   favoris = new Favoris();
 
+  likes: Products[] = [];
+  isLike: boolean = false;
+
   dialogRef: any;
 
   constructor(private productService: ProductService, private route: ActivatedRoute, public communService: CommunService,
@@ -52,15 +55,31 @@ export class ProductComponent implements OnInit {
     } else {
       this.all();
     }
+    this.getLike();
   }
 
   open() {
     this.dialogRef = this.dialogService.open(PanierComponent, {
       context: {
-        action: 'show'
+        action: 'add'
       },
     });
     
+  }
+
+  getLike() {
+    let userId = sessionStorage.getItem('idUser');
+
+    if (userId) {
+      this.likeService.allByUser(userId).subscribe(
+        (data) => {
+          let d = data.products.map(x => x._id);
+          this.isLike = d.indexOf(this.product._id) > 0 ? true : false;
+        }, (error) => {
+          console.log('Erreur', error);
+        }
+      )
+    }
   }
 
   close() {
@@ -88,7 +107,8 @@ export class ProductComponent implements OnInit {
           }
         },
         (error) => {
-          console.log('Error', error);
+          alert(error.error.erreur)
+          console.log('Error', error.error.erreur);
         }
       );
     } else {
@@ -128,13 +148,11 @@ export class ProductComponent implements OnInit {
   showModal: boolean = false;
 
   getEvent(event) {
-    // if (event != null && event != '') {
-    //   this.showModal = true;
-    // } else {
-    //   this.showModal = false;
-    // }
-
-    alert('Event: ' + event);
+    if (event != null && event != '') {
+      this.showModal = true;
+    } else {
+      this.showModal = false;
+    }
   }
 
   buy(product) {
