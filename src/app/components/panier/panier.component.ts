@@ -28,94 +28,62 @@ export class PanierComponent implements OnInit {
   constructor(private service: CommandeService, private router: Router, protected dialogRef: NbDialogRef<PanierComponent>) { }
 
   ngOnInit(): void {
-    this.getCommandeByUser();
+    // this.getCommandeByUser();
 
     if (this.product._id) {
-      this.addCommande(this.product);
+      this.commande.quantite = 1;
+      this.commande.product = this.product;
+      this.commande.idProduct = this.product._id;
+      this.commande.prix = this.product.prixReduis;
+
+      this.commandes = JSON.parse(sessionStorage.getItem('panier'));
+      let index = this.commandes.findIndex(x => x.idProduct === this.product._id);
+      if (index > -1) {
+        alert('Ce produit est déjà dans votre panier');
+      } else {
+        this.addCommande(this.commande);
+      }
     }
   }
 
-  getCommandeByUser() {
-    let userId = this.user._id ? this.user._id : sessionStorage.getItem('idUser');
+  addCommande(commande: Commande) {
+    this.commandes = JSON.parse(sessionStorage.getItem('panier'));
+    if (this.commandes != null && this.commandes != undefined && this.commandes.length > 0) {
+      let index = this.commandes.findIndex(x => x.idProduct === commande.idProduct);
+      if (index > -1) {
 
-    this.service.findByUser(userId).subscribe(
-      (data) => {
-        if (data && data.length > 0) {
-          this.commandes = data;
-          let prix = data.map(x => x.prix);
-          this.prixTotal = prix.reduce((x, y) => x + y);
-        }
-      },
-      (error) => {
-        alert(error.error);
-        console.log('Error', error);
+        this.commandes.splice(index, 1);
+        this.commandes.push(commande);
+      } else {
+        this.commandes.push(commande);
       }
-    );
-  }
+    } else {
+      this.commandes = [];
+      this.commandes.push(commande);
+    }
 
-  addCommande(product: Products) {
-    this.commande.quantite = 1;
-    this.commande.product = product;
-    this.commande.idProduct = product._id;
-    let userId = this.user._id ? this.user._id : sessionStorage.getItem('idUser');
-    this.commande.idUser = userId;
-    this.commande.prix = product.prixReduis;
-    this.commande.dateCommande = new Date();
-
-    this.service.create(this.commande).subscribe(
-      (data) => {
-        if (data) {
-          alert(data);
-          this.getCommandeByUser();
-          this.commande  = new Commande();
-        }
-      },
-      (error) => {
-        alert(error.error);
-        console.log('Error', error);
-      }
-    );
-  }
-
-  updateCommande(commande: Commande) {
-    this.service.update(commande._id, commande).subscribe(
-      (data) => {
-        if (data) {
-          this.commande  = new Commande();
-          this.getCommandeByUser();
-          alert(data);
-        }
-      },
-      (error) => {
-        alert(error.error);
-        console.log('Error', error);
-      }
-    );
+    let prix = this.commandes.map(x => x.prix);
+    this.prixTotal = prix.reduce((x, y) => x + y);
+    this.commande = new Commande();
+    sessionStorage.setItem('panier', JSON.stringify(this.commandes));
   }
 
   editer() {
     this.action = 'add';
   }
 
-  remove(p: Commande) {
-    this.service.delete(p._id).subscribe(
-      (data) => {
-        alert(data);
-        let index = this.commandes.indexOf(p);
+  remove(commande: Commande) {
+    let index = this.commandes.findIndex(x => x.idProduct === commande.idProduct);
+      if (index > -1) {
         this.commandes.splice(index, 1);
-      },
-      (error) => {
-        alert(error.error);
-        console.log('Error', error);
       }
-    );
   }
 
   add(commande: Commande) {
     commande.quantite++;
     commande.prix += commande.product.prixReduis;
     this.prixTotal += commande.product.prixReduis;
-    this.updateCommande(commande);
+    this.addCommande(commande);
   }
 
   reduce(commande: Commande) {
@@ -123,8 +91,7 @@ export class PanierComponent implements OnInit {
       commande.quantite--;
       commande.prix -= commande.product.prixReduis;
       this.prixTotal -= commande.product.prixReduis;
-      this.updateCommande(commande);
-
+      this.addCommande(commande);
     } else {
       alert('Nous ne pouvons pas aller au dessous de 1');
     }

@@ -65,6 +65,7 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem('token', data.token);
           sessionStorage.setItem('role', data.role);
           sessionStorage.setItem('idUser', data.userId);
+          
           this.findByEmail(this.user.email);
           alert('Authentification reussie');
         } else {
@@ -83,6 +84,8 @@ export class LoginComponent implements OnInit {
       (data) => {
         if (data) {
           this.user = data;
+          sessionStorage.setItem('username', data.firstName);
+
           let route = sessionStorage.getItem('route');
           if (route != null && route != undefined) {
             this.router.navigateByUrl('' + route);

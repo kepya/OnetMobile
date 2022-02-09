@@ -3,6 +3,9 @@ import { Products } from 'src/app/models/products';
 import { CommunService } from 'src/app/shares/services/commun.service';
 import { ProductService } from 'src/app/shares/services/product.service';
 import { ReviewService } from 'src/app/shares/services/review.service';
+import { Location } from '@angular/common';
+import { NbDialogService } from '@nebular/theme';
+import { PanierComponent } from '../panier/panier.component';
 
 @Component({
   selector: 'app-article',
@@ -21,7 +24,7 @@ export class ArticleComponent implements OnInit {
   showCart: boolean = false;
   @Output() addProductToPaner = new EventEmitter<string>();
 
-  constructor(public communService: CommunService, private reviewService: ReviewService, private productService: ProductService) { }
+  constructor(public communService: CommunService, private reviewService: ReviewService, private productService: ProductService,private Location:Location, private dialogService: NbDialogService) { }
 
   ngOnInit(): void {
     console.log('article', this.articles);
@@ -67,8 +70,11 @@ export class ArticleComponent implements OnInit {
   }
 
   buy(product) {
-    this.showCart = !this.showCart;
-    this.addProductToPaner.emit(this.showCart + '');
+    let dialogRef = this.dialogService.open(PanierComponent, {
+      context: {
+        product: product
+      },
+    });
   }
 
 }

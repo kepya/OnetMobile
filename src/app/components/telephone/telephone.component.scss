@@ -1,0 +1,28 @@
+main {
+    font-family: Sarabun;
+    font-style: normal;
+    font-weight: normal;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 14px;
+    line-height: 20px;
+    color: #30303C;
+
+    .container {
+        margin-right: 5rem;
+        margin-left: 5rem;
+    
+        .route {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-top: 1rem;
+    
+            .route_d {
+                color: black;
+            }
+        }
+    }
+}

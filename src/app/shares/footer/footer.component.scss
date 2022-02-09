@@ -4,14 +4,14 @@
     padding: 4rem 5em 2rem 5rem;
 
     .content {
-        font-family: Sarabun;
-        font-style: normal;
-        font-weight: normal;
+        font-family: Sarabun !important;
+        font-style: normal !important;
+        font-weight: normal !important;
         display: block;
         font-size: 16px;
         line-height: 24px;
         align-items: center;
-        color: #BBBBCE;
+        color: #BBBBCE !important;
 
         .nav-link {
             display: flex;
@@ -23,7 +23,7 @@
                 font-weight: bold;
                 font-size: 20px;
                 line-height: 28px;
-                color: #FFFFFF;
+                color: #FFFFFF !important;
             }
 
             .visa {
@@ -31,7 +31,11 @@
             }
 
             p:hover {
-                border-bottom: 1px solid #8181d1;
+                border-bottom: 1px solid #8181d1 !important;
+            }
+
+            p {
+                color: #BBBBCE !important;
             }
 
             .margeGauche {
@@ -42,7 +46,7 @@
         .copyright {
             display: flex;
             justify-content: center;
-            color: #5C5C73;
+            color: #5C5C73 !important;
         }
     }
 }

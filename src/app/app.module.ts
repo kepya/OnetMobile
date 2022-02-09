@@ -5,7 +5,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MainComponent } from './components/main/main.component';
 import { ProductComponent } from './components/product/product.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
@@ -15,7 +14,6 @@ import { MatInputModule } from '@angular/material/input';
 import {MatDialogModule} from '@angular/material/dialog';
 import { SearchComponent } from './components/search/search.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
-import { ModalComponent } from './components/modal/modal.component';
 import { HeaderComponent } from './shares/headers/header/header.component';
 import { HeaderPaiementComponent } from './shares/headers/header-paiement/header-paiement.component';
 import { FooterComponent } from './shares/footer/footer.component';
@@ -31,8 +29,9 @@ import { UserAccountComponent } from './components/user-account/user-account.com
 import { ArticleComponent } from './components/article/article.component';
 import { PanierComponent } from './components/panier/panier.component';
 import { PaiementUserComponent } from './components/paiement-user/paiement-user.component';
-import { NbThemeModule, NbLayoutModule, NbDialogService, NbDialogModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbDialogService, NbDialogModule, NbIconModule, NbAutocompleteModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { TelephoneComponent } from './components/telephone/telephone.component';
 
 const materialModules = [
   MatButtonModule,
@@ -45,11 +44,9 @@ const materialModules = [
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent,
     ProductComponent,
     SearchComponent,
     CheckoutComponent,
-    ModalComponent,
     HeaderComponent,
     HeaderPaiementComponent,
     FooterComponent,
@@ -63,6 +60,7 @@ const materialModules = [
     ArticleComponent,
     PanierComponent,
     PaiementUserComponent,
+    TelephoneComponent,
     // ModalComponent
   ],
   imports: [
@@ -73,6 +71,9 @@ const materialModules = [
     CommonModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    NbEvaIconsModule,
+    NbIconModule,
+    NbAutocompleteModule,
     NbDialogModule.forRoot(),
     ...materialModules,
     NbThemeModule.forRoot({ name: 'default' }),

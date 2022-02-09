@@ -441,10 +441,14 @@
                                 }
     
                                 .result {
+                                    overflow-y: scroll;
+                                    height: 400px;
+                                    margin-right: 1rem;
                                     width: 60%;
                                     section {
                                         display: flex;
                                         align-items: center;
+                                        margin-bottom: .5rem;
     
                                         .imageProduit {
                                             width: 72px;
@@ -477,6 +481,11 @@
                                                 color: #ED1C24;
                                             }
                                         }
+                                    }
+
+                                    .product_item:hover {
+                                        cursor: pointer;
+                                        background-color: rgba(48, 48, 60, 0.08);
                                     }
                                 }
                                 .research_option {

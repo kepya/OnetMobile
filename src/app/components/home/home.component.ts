@@ -71,7 +71,6 @@ export class HomeComponent implements OnInit {
       this.showCart = false;
     }
 
-    console.log('Event: ' + event);
   }
 
   getResolution() {
@@ -85,7 +84,6 @@ export class HomeComponent implements OnInit {
     }
 
     this.imageBackground = this.listElement[this.elementSelectionner - 1].url;
-    console.log('previous');
   }
 
   next() {
@@ -95,7 +93,6 @@ export class HomeComponent implements OnInit {
       this.elementSelectionner = 1;
     }
     this.imageBackground = this.listElement[this.elementSelectionner - 1].url;
-    console.log('next');
   }
 
   titre: string = 'description';
@@ -195,7 +192,7 @@ export class HomeComponent implements OnInit {
         if (data != null && data.length > 0) {
           data.forEach((p) => {
             this.getReview(p._id);
-          })
+          });
           this.products = data;
           this.bestProduct = data.slice(0, 5);
           this.onSaleProduct = data.slice(5, 10);
@@ -203,7 +200,6 @@ export class HomeComponent implements OnInit {
           if (this.newArrivalProduct.length==0) {
             this.newArrivalProduct = data.slice(0, 5);
           }
-          console.log('best', this.bestProduct);
           
         }
       },
@@ -217,9 +213,26 @@ export class HomeComponent implements OnInit {
     this.showCart = false;
   }
   searchByPercent(event) {
+    alert(event);
     this.product_search = this.products;
     let result = this.products.filter(x => x.tauxReduction === parseInt(event, 10));
+    console.log('result', result);
+    
     this.products = result;
-    console.log('result', this.products);
+    if (result.length > 0) {
+      if (result.length > 5) {
+        this.bestProduct = result;
+        this.onSaleProduct = result;
+        this.newArrivalProduct = result;
+      } else {
+        this.bestProduct = result.slice(0, 5);
+        this.onSaleProduct = result.slice(5, 10);
+        this.newArrivalProduct = result.slice(10, 15);
+      }
+    } else {
+      this.bestProduct = result;
+      this.onSaleProduct = result;
+      this.newArrivalProduct = result;
+    }
   }
 }

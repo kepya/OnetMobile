@@ -1,14 +1,18 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { debounceTime, distinctUntilChanged, filter, map, Observable, OperatorFunction } from 'rxjs';
+
+import { debounceTime, distinctUntilChanged, Observable, of, OperatorFunction } from 'rxjs';
 import { Products } from 'src/app/models/products';
 import { ProductService } from '../../services/product.service';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { Output, EventEmitter } from '@angular/core';
+import { Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { map, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
@@ -20,22 +24,79 @@ export class HeaderComponent implements OnInit {
   resultPhone = 0;
   resultPhoneCover = 0;
   resultProtectiveMembrane = 0;
+  username: string = '';
 
   @Output() modalSearch = new EventEmitter<string>();
   produits: Observable<readonly Products[]>;
+  articles: Products[] = [];
+  countSmart: number = 0;
+  countSmartCover: number = 0;
+  countProtective: number = 0;
 
-  search: OperatorFunction<string, readonly Products[]> = (text$: Observable<string>) => text$.pipe(
-    debounceTime(2),
-    distinctUntilChanged(),
-    filter(term => term.length >= 1),
-    map(term => this.products.filter(product => new RegExp(term, 'mi').test(product.nom + ' ' + product.marque + ' ' + product.description)).slice(0, 10))
-  );
+  // search: OperatorFunction<string, readonly Products[]> = (text$: Observable<string>) => text$.pipe(
+  //   debounceTime(2),
+  //   distinctUntilChanged(),
+  //   filter(term => term.length >= 1),
+  //   map(term => this.products.filter(product => new RegExp(term, 'mi').test(product.nom + ' ' + product.marque + ' ' + product.description)).slice(0, 10))
+  // );
 
-  constructor(private productService: ProductService, private router: Router) { }
+  constructor(private productService: ProductService, private router: Router, private ref: ChangeDetectorRef) { }
 
   ngOnInit(): void {
-    this.langue = 'fr';
+
+    let langue = localStorage.getItem('langue');
+    if (langue != null && langue != undefined) {
+      this.langue = langue;
+    } else {
+      this.langue = 'fr';
+      localStorage.setItem('langue', 'fr');
+    }
+
+    let id = sessionStorage.getItem('idUser');
+    if (id) {
+      this.username = sessionStorage.getItem('username');
+    }
     this.all();
+  }
+
+  private filterProduct(product: Products, filterValue: string) {
+    // let val = product.nom.search('/' + filterValue +'/i') || product.marque.search('/' + filterValue +'/i');
+    let index = product.nom.toLowerCase().indexOf(filterValue);
+
+    if (index > -1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  private filter(value: string): Products[] {
+    const filterValue = value.toLowerCase();
+    let result = this.products
+    .filter(product => this.filterProduct(product, filterValue));
+    
+    return result;
+  }
+
+  getFilteredOptions(value: string): Observable<Products[]> {
+    return of(value).pipe(
+      map(filterString => this.filter(filterString)),
+    );
+  }
+
+  onChange(value) {
+    this.getFilteredOptions(value).subscribe(
+      (result) => {
+        this.countSmart = result.filter(item => item.type === 'telephone').length;
+        this.countSmartCover = result.filter(item => item.type === 'smart cover').length;
+        this.countProtective = result.filter(item => item.type === 'protective menbrane').length;
+        this.articles = result;
+        console.log('result', result);
+      },
+      (error) => {
+        console.log('error', error);
+      }
+    );
   }
 
   searchProduct(term: string): void {
@@ -50,8 +111,8 @@ export class HeaderComponent implements OnInit {
       observer.next(term);
     });
 
-    let result = this.search(value);
-    this.produits = result; 
+    // let result = this.search(value);
+    // this.produits = result; 
   } 
   
   userAccount(page) {
@@ -64,6 +125,7 @@ export class HeaderComponent implements OnInit {
 
   chooseLanguage(langue: string) {
     this.langue = langue;
+    localStorage.setItem('langue', langue);
   }
 
   all() {
@@ -79,42 +141,8 @@ export class HeaderComponent implements OnInit {
     );
   }
 
-  countSmart(): number {
-  
-    let result = this.produits.pipe(map(items => items.filter(item => item.type === 'telephone').length));
-    console.log('value ',result);
-    result.subscribe(event => {
-      this.resultPhone = event; 
-      console.log(event);
-      return event
-    });
-    console.log(this.resultPhone )
-    return this.resultPhone ;
-  }
-
-  countSmartCover(): number {
-  
-    let result = this.produits.pipe(map(items => items.filter(item => item.type === 'smart cover').length));
-    console.log('value ',result);
-    result.subscribe(event => {
-      this.resultPhoneCover = event; 
-      console.log(event);
-      return event
-    });
-    console.log(this.resultPhoneCover )
-    return this.resultPhoneCover ;
-  }
-
-  countProtective(): number {
-
-    let result = this.produits.pipe(map(items => items.filter(item => item.type === 'protective menbrane').length));
-    console.log('value ',result);
-    result.subscribe(event => {
-      this.resultProtectiveMembrane = event; 
-      console.log(event);
-      return event
-    });
-    console.log(this.resultProtectiveMembrane )
-    return this.resultProtectiveMembrane ;
+  navigate(pro: Products) {
+    //this.router.navigateByUrl
+    alert('' + this.router.url + '/smartphomes/' + pro.marque + '/' + pro._id)
   }
 }

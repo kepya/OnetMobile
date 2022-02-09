@@ -31,6 +31,8 @@ input[type=text], input[type=password], input[type=email] {
 input[type=submit] {
     background-color: #53af57;
     color: white;
+    display: inline-block;
+    box-sizing: border-box;
     padding: 14px 20px;
     margin: 8px 0;
     border: none;

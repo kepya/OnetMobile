@@ -1,9 +1,5 @@
 <header>
     <app-header (modalSearch)="getEvent($event)"></app-header>
-
-    <section class="modal" *ngIf="showCart" >
-        <app-panier [action]="'add'" [product]="product"  (out)="close()"></app-panier>
-    </section>
 </header>
 
 <main [style.background-color]="showCart ? '#30303C' : 'white'" [style.opacity]="showCart ? 0.3 : 1" [style.z-index]="showCart ? -1 : 1">
@@ -78,8 +74,14 @@
             <span>All best sellers</span>
         </section>
 
-        <section class="article">
+        <section class="article"  *ngIf="bestProduct.length > 0">
             <app-article [articles]="bestProduct" [favorisProduct]="false" (addProductToPaner)="getEvent($event)"></app-article>
+        </section>
+        <section *ngIf="bestProduct.length === 0" class="connection">
+            <h1>Pas de meilleur article</h1>
+            <p>
+                Désolé mais nous n'avons trouvé aucun article.
+            </p>
         </section>
 
         <section class="bannerAfterListOfBest">
@@ -91,8 +93,14 @@
             <span>All on sale</span>
         </section>
 
-        <section class="article">
+        <section class="article"  *ngIf="onSaleProduct.length > 0">
             <app-article [articles]="onSaleProduct" [favorisProduct]="false" (addProductToPaner)="getEvent($event)"></app-article>
+        </section>
+        <section *ngIf="onSaleProduct.length === 0" class="connection">
+            <h1>Pas d'article en vente</h1>
+            <p>
+                Désolé mais nous n'avons trouvé aucun article.
+            </p>
         </section>
 
         <section class="searchByPercent">
@@ -114,8 +122,14 @@
             <span>All new arrivals</span>
         </section>
 
-        <section  class="article">
+        <section  class="article" *ngIf="newArrivalProduct.length > 0">
             <app-article [articles]="newArrivalProduct" [favorisProduct]="false" (addProductToPaner)="getEvent($event)"></app-article>
+        </section>
+        <section *ngIf="newArrivalProduct.length === 0" class="connection">
+            <h1>Aucun Nouvel article</h1>
+            <p>
+                Désolé mais nous n'avons trouvé aucun article.
+            </p>
         </section>
 
         <section class="service">

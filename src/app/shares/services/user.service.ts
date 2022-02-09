@@ -25,6 +25,10 @@ export class UserService {
     return this.http.get<User>(this.url + 'findByEmail/' + email);
   }
 
+  allSimpleUser(): Observable<User[]> {
+    return this.http.get<User[]>(this.url + 'allSimpleUser');
+  }
+
   update(id:string, p: User): Observable<string> {
     return this.http.put<string>(this.url + id, p);
   }

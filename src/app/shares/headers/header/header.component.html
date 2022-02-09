@@ -43,7 +43,7 @@
               <section class="last_arrival">
                 <section class="smartphone">
                   <section class="smartphoneIcon"></section>
-                  <span>Smartphones</span>
+                  <span routerLink="/smartphomes">Smartphones</span>
                 </section>
                 <section class="accessoire">
                     <section class="accessoireIcon"></section>
@@ -73,7 +73,7 @@
                 <section class="compte">
                   <section class="account">
                     <section class="iconAccount"></section>
-                    <span class="accountTitle"  (click)="userAccount('home')">Account</span>
+                    <span class="accountTitle"  (click)="userAccount('home')">{{username != null && username != undefined && username.length > 1 ? username: 'Account'}}</span>
                   </section>
                   <section class="card">
                     <section class="iconCard"></section>
@@ -86,17 +86,19 @@
         </section>
         <section class="search">
           <section class="search_item">
-            <input type="text" name="" id="" class="input_search" placeholder="Search"
-              name="product" 
-              #search (keyup)='searchProduct(search.value)'
+            <input type="text" name="" id="" class="input_search"  #in
+              nbInput
+              type="text"
+              (input)="onChange(in.value)"
+              placeholder="Enter value"
             >
           </section>
           <section class="search_item">
             <section class="result_container">
-              <section class="result_content" *ngIf="(produits | async)?.length>0">
+              <section class="result_content" *ngIf="articles.length>0">
                 <section class="result">
                     <h2>Products</h2>
-                    <section *ngFor='let p of produits | async'>
+                    <section *ngFor='let p of articles' class="product_item" (click)="navigate(p)">
                         <section class="imageProduit">
                             <img [src]="p.image" alt="" srcset="">
                         </section>
@@ -111,17 +113,17 @@
         
                     <section class="smartphone">
                         <span>Smartphones</span>
-                        <span class="smartphone_result">{{countSmart()}} results</span>
+                        <span class="smartphone_result">{{countSmart}} results</span>
                     </section>
         
                     <section class="smartphoneCover">
                         <span>Smartphone covers</span>
-                        <span class="smartphoneCover_result">{{countSmartCover()}} results</span>
+                        <span class="smartphoneCover_result">{{countSmartCover}} results</span>
                     </section>
         
                     <section class="protective">
                         <span>Protective membranes</span>
-                        <span class="protective_result">{{countProtective()}} results</span>
+                        <span class="protective_result">{{countProtective}} results</span>
                     </section>
                 </section>
               </section>

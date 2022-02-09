@@ -14,5 +14,25 @@ nb-layout-header nav {
 }
 
 nb-layout .layout {
-    background-color: white;
+    background-color: white !important;
+}
+
+
+.nb-theme-default nb-layout .layout {
+    background-color: white !important;
+}
+
+.layout-container .content nb-layout-footer nav {
+    border-top: none !important;
+    padding: 0px !important;
+}
+
+nb-layout .layout .layout-container .content nb-layout-footer nav {
+    border-top: none !important;
+    padding: 0px !important;
+}
+
+.nb-theme-default h3, .nb-theme-default .h3 {
+    font-size: 20px !important;
+    line-height: 24px !important;
 }
